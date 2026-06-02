@@ -744,10 +744,10 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 
                     <!-- Search button -->
                     <div style="padding:6px;">
-                        <a href="petpals-flow.html" class="btn-white-teal" style="height:100%;padding:0 32px;font-size:16px;border-radius:20px;display:flex;align-items:center;gap:8px;text-decoration:none;">
+                        <button onclick="heroSearch()" class="btn-white-teal" style="height:100%;padding:0 32px;font-size:16px;border-radius:20px;display:flex;align-items:center;gap:8px;border:none;cursor:pointer;">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
                             Search
-                        </a>
+                        </button>
                     </div>
                 </div>
 
@@ -2769,18 +2769,26 @@ function aiReset(){ document.getElementById('ai-step-1').style.display='block'; 
 function aiToggle(btn){ btn.classList.toggle('on'); }
 function aiChipClick(chip){ aiOpen(chip.textContent.replace(/['"]/g,'').trim()); }
 function aiMatch(){ document.getElementById('ai-step-1').style.display='none'; document.getElementById('ai-step-2').style.display='block'; setTimeout(function(){ document.getElementById('ai-step-2').style.display='none'; document.getElementById('ai-step-3').style.display='block'; },2200); }
-function go(page){
-  var loc   = (document.getElementById('loc-display')   || {}).textContent || '';
-  var dates = (document.getElementById('dates-display') || {}).textContent || '';
-  var svc   = (document.getElementById('svc-display')   || {}).textContent || '';
-  var pet   = (document.getElementById('pet-display')   || {}).textContent || '';
+function buildSearchURL() {
+  // Read from hero search bar (main landing page)
+  var loc   = (document.getElementById('hero-loc-display')   || {}).textContent || '';
+  var dates = (document.getElementById('hero-dates-display') || {}).textContent || '';
+  var svc   = (document.getElementById('hero-svc-display')   || {}).textContent || '';
+  var pet   = (document.getElementById('hero-pet-display')   || {}).textContent || '';
+  // Fallback to secondary search bar if hero not found
+  if (!loc.trim()) loc   = (document.getElementById('loc-display')   || {}).textContent || '';
+  if (!dates.trim() || dates.trim() === 'Add dates') dates = (document.getElementById('dates-display') || {}).textContent || '';
+  if (!svc.trim())  svc  = (document.getElementById('svc-display')   || {}).textContent || '';
+  if (!pet.trim())  pet  = (document.getElementById('pet-display')   || {}).textContent || '';
   var p = new URLSearchParams();
-  if (loc.trim())                          p.set('loc',   loc.trim());
-  if (dates.trim() && dates.trim() !== 'Add dates') p.set('dates', dates.trim());
-  if (svc.trim())                          p.set('svc',   svc.trim());
-  if (pet.trim())                          p.set('pet',   pet.trim());
-  window.location.href = 'petpals-flow.html?' + p.toString();
+  if (loc.trim())                                               p.set('loc',   loc.trim());
+  if (dates.trim() && dates.trim() !== 'Add dates')            p.set('dates', dates.trim());
+  if (svc.trim()  && svc.trim()   !== 'All services')          p.set('svc',   svc.trim());
+  if (pet.trim())                                               p.set('pet',   pet.trim());
+  return 'petpals-flow.html?' + p.toString();
 }
+function heroSearch() { window.location.href = buildSearchURL(); }
+function go(page)     { window.location.href = buildSearchURL(); }
 </script>
 
 
