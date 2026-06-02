@@ -1655,6 +1655,36 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 
 <script>
 function go(pageId) {
+  // Sync search values to results nav bar before showing results page
+  if (pageId === 'page-results') {
+    var loc   = (document.getElementById('loc-display')   || {}).textContent || '';
+    var dates = (document.getElementById('dates-display') || {}).textContent || '';
+    var svc   = (document.getElementById('svc-display')   || {}).textContent || '';
+
+    if (loc.trim()) {
+      var elLoc = document.getElementById('nav-loc-display');
+      if (elLoc) elLoc.textContent = loc.trim();
+    }
+    if (dates.trim() && dates.trim() !== 'Add dates') {
+      var elDates = document.getElementById('nav-dates-text');
+      if (elDates) elDates.textContent = dates.trim();
+    }
+    if (svc.trim()) {
+      var elSvc = document.getElementById('nav-svc-display');
+      if (elSvc) elSvc.textContent = svc.trim();
+    }
+
+    // Update heading and subtitle
+    var city = loc.trim() ? loc.trim().split(',')[0].trim() : 'Warsaw';
+    var heading = document.getElementById('results-heading');
+    if (heading) heading.textContent = 'Pet sitters in ' + city;
+
+    var subtitle = document.getElementById('results-subtitle');
+    if (subtitle) {
+      subtitle.textContent = '43 sitters available' + (dates.trim() && dates.trim() !== 'Add dates' ? ' for ' + dates.trim() : '');
+    }
+  }
+
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById(pageId);
   if (target) {
