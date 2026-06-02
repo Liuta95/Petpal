@@ -2092,6 +2092,45 @@ window.ucalConfirm = function(){
 };
 
 // ── Init ───────────────────────────────────────────
+// Pre-populate calendar state from URL param ?dates=...
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  var dStr = p.get('dates');
+  if (!dStr) return;
+
+  // Single date: "Thu, Jun 18"
+  var single = dStr.match(/\w+,\s+(\w{3})\s+(\d{1,2})/);
+  if (single) {
+    var mi = MS.indexOf(single[1]);
+    var dy = parseInt(single[2]);
+    if (mi !== -1 && dy) {
+      var yr = _today.getFullYear();
+      var dt = new Date(yr, mi, dy); dt.setHours(0,0,0,0);
+      if (dt < _today) dt = new Date(yr + 1, mi, dy);
+      U.oneDate = dt;
+      U.mode = 'one';
+      U.vy = dt.getFullYear(); U.vm = dt.getMonth();
+    }
+    return;
+  }
+
+  // Range: "Jun 13 – Jun 17 · 4 nights"  or  "Jun 13 – Jun 17"
+  var range = dStr.match(/(\w{3})\s+(\d{1,2})\s*[–-]\s*(\w{3})\s+(\d{1,2})/);
+  if (range) {
+    var m1 = MS.indexOf(range[1]), d1 = parseInt(range[2]);
+    var m2 = MS.indexOf(range[3]), d2 = parseInt(range[4]);
+    if (m1 !== -1 && d1 && m2 !== -1 && d2) {
+      var yr = _today.getFullYear();
+      var s = new Date(yr, m1, d1); s.setHours(0,0,0,0);
+      var e = new Date(yr, m2, d2); e.setHours(0,0,0,0);
+      if (s < _today) { s = new Date(yr+1, m1, d1); e = new Date(yr+1, m2, d2); }
+      U.rS = s; U.rE = e;
+      U.mode = 'multi'; U.sub = 'range';
+      U.vy = s.getFullYear(); U.vm = s.getMonth();
+    }
+  }
+})();
+
 ucalUpdateHint();
 
 // Expose old names for backwards compat with onclick="ucalOpen()"
