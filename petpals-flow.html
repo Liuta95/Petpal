@@ -595,6 +595,51 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
       if (s) s.classList.add('active');
     });
   }
+
+  // Populate nav search bar from URL params passed by the home page
+  var loc   = params.get('loc');
+  var dates = params.get('dates');
+  var svc   = params.get('svc');
+
+  if (loc || dates || svc) {
+    document.addEventListener('DOMContentLoaded', function(){
+      var city = loc ? loc.split(',')[0].trim() : 'Warsaw';
+
+      if (loc) {
+        var elLoc = document.getElementById('nav-loc-display');
+        if (elLoc) elLoc.textContent = loc;
+      }
+      if (dates) {
+        var elDates = document.getElementById('nav-dates-text');
+        if (elDates) elDates.textContent = dates;
+      }
+      if (svc) {
+        var elSvc = document.getElementById('nav-svc-display');
+        if (elSvc) elSvc.textContent = svc;
+      }
+
+      // Update page heading and subtitle
+      var heading = document.getElementById('results-heading');
+      if (heading) heading.textContent = 'Pet sitters in ' + city;
+
+      var subtitle = document.getElementById('results-subtitle');
+      if (subtitle) {
+        var sub = '43 sitters available';
+        if (dates) sub += ' for ' + dates;
+        subtitle.textContent = sub;
+      }
+
+      // Update loading overlay subtitle
+      var loadingSub = document.getElementById('loading-sub');
+      if (loadingSub) {
+        var parts = [];
+        if (loc)   parts.push(loc);
+        if (dates) parts.push(dates);
+        if (svc)   parts.push(svc);
+        loadingSub.textContent = parts.join(' · ');
+      }
+    });
+  }
 })();
 </script>
 

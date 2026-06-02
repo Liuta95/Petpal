@@ -2769,7 +2769,18 @@ function aiReset(){ document.getElementById('ai-step-1').style.display='block'; 
 function aiToggle(btn){ btn.classList.toggle('on'); }
 function aiChipClick(chip){ aiOpen(chip.textContent.replace(/['"]/g,'').trim()); }
 function aiMatch(){ document.getElementById('ai-step-1').style.display='none'; document.getElementById('ai-step-2').style.display='block'; setTimeout(function(){ document.getElementById('ai-step-2').style.display='none'; document.getElementById('ai-step-3').style.display='block'; },2200); }
-function go(page){ window.location.href='petpals-flow.html'; }
+function go(page){
+  var loc   = (document.getElementById('loc-display')   || {}).textContent || '';
+  var dates = (document.getElementById('dates-display') || {}).textContent || '';
+  var svc   = (document.getElementById('svc-display')   || {}).textContent || '';
+  var pet   = (document.getElementById('pet-display')   || {}).textContent || '';
+  var p = new URLSearchParams();
+  if (loc.trim())                          p.set('loc',   loc.trim());
+  if (dates.trim() && dates.trim() !== 'Add dates') p.set('dates', dates.trim());
+  if (svc.trim())                          p.set('svc',   svc.trim());
+  if (pet.trim())                          p.set('pet',   pet.trim());
+  window.location.href = 'petpals-flow.html?' + p.toString();
+}
 </script>
 
 
