@@ -23,6 +23,63 @@
     .hero-sfield { border-right: none; border-bottom: 1px solid rgba(26,18,9,0.08); }
 }
 
+/* ── HERO SOCIAL PROOF CLUSTER ── */
+.hero-headline-wrap {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
+}
+.hero-soc-proof {
+    position: absolute;
+    right: -196px;
+    top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    pointer-events: none;
+}
+.hero-soc-avatars {
+    display: flex;
+    align-items: center;
+}
+.hero-soc-avatars img,
+.hero-soc-avatars span {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 2.5px solid white;
+    object-fit: cover;
+    margin-left: -10px;
+    flex-shrink: 0;
+}
+.hero-soc-avatars img:first-child,
+.hero-soc-avatars span:first-child { margin-left: 0; }
+.hero-soc-count {
+    background: #D4650F; color: white;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800;
+}
+.hero-soc-badge {
+    background: #D4650F; color: white;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 12px; border-radius: 99px;
+    white-space: nowrap; display: inline-block;
+}
+/* Mobile: stack proof inline above headline */
+@media (max-width: 1140px) {
+    .hero-soc-proof {
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        margin: 0 auto 18px;
+        justify-content: center;
+        pointer-events: auto;
+    }
+    .hero-headline-wrap { width: auto; }
+}
+
 
 /* ── UNIVERSAL BOOKING CALENDAR ── */
 #ucal-bd {
@@ -689,25 +746,29 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 
             <!-- Headline -->
             <div class="text-center mb-10">
-                <h1 style="font-size:clamp(2.8rem,6vw,5.5rem); font-weight:900; color:#1A1209; line-height:1.08; letter-spacing:-0.02em;">
-                    Find Trusted
-                    <!-- avatar cluster inline -->
-                    <span class="inline-flex items-center mx-3 -space-x-3 relative" style="vertical-align:middle;">
-                        <img src="https://i.pravatar.cc/80?img=47" style="width:56px;height:56px;border-radius:50%;border:3px solid white;object-fit:cover;">
-                        <img src="https://i.pravatar.cc/80?img=32" style="width:56px;height:56px;border-radius:50%;border:3px solid white;object-fit:cover;">
-                        <img src="https://i.pravatar.cc/80?img=25" style="width:56px;height:56px;border-radius:50%;border:3px solid white;object-fit:cover;">
-                        <img src="https://i.pravatar.cc/80?img=44" style="width:56px;height:56px;border-radius:50%;border:3px solid white;object-fit:cover;">
-                        <span style="width:56px;height:56px;border-radius:50%;border:3px solid white;background:#D4650F;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white;">50k+</span>
-                        <!-- floating name badge -->
-                        <span style="position:absolute;top:-28px;left:10px;background:#D4650F;color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;white-space:nowrap;">Sarah ⭐ 5.0</span>
-                        <span style="position:absolute;bottom:-28px;right:0;background:white;color:#1A1209;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;white-space:nowrap;">Max 🐾 Verified</span>
-                    </span>
-                    Pet Sitters
-                </h1>
-                <h1 style="font-size:clamp(2.8rem,6vw,5.5rem); font-weight:900; color:#4A3728; line-height:1.08; letter-spacing:-0.02em; margin-top:4px;">
-                    Near You
-                </h1>
-                <p style="font-size:1.2rem; color:#4A3728; max-width:560px; margin:24px auto 0; line-height:1.6;">
+                <div class="hero-headline-wrap">
+
+                    <!-- Social proof cluster — desktop: absolute right; mobile: inline above -->
+                    <div class="hero-soc-proof" aria-label="Trusted by 50,000+ pet owners">
+                        <div class="hero-soc-avatars">
+                            <img src="https://i.pravatar.cc/80?img=47" alt="Verified sitter" style="z-index:4;position:relative;">
+                            <img src="https://i.pravatar.cc/80?img=32" alt="Verified sitter" style="z-index:3;position:relative;">
+                            <img src="https://i.pravatar.cc/80?img=25" alt="Verified sitter" style="z-index:2;position:relative;">
+                            <img src="https://i.pravatar.cc/80?img=44" alt="Verified sitter" style="z-index:1;position:relative;">
+                            <span class="hero-soc-count" style="z-index:0;position:relative;">50k+</span>
+                        </div>
+                        <span class="hero-soc-badge">Sarah ⭐ 5.0</span>
+                    </div>
+
+                    <!-- Clean 3-line headline — single h1 -->
+                    <h1 style="font-size:clamp(2.8rem,6vw,5.5rem); font-weight:900; color:#1A1209; line-height:1.1; letter-spacing:-0.02em; text-align:center;">
+                        Find Trusted<br>
+                        Pet Sitters<br>
+                        <span style="color:#4A3728;">Near You</span>
+                    </h1>
+                </div>
+
+                <p style="font-size:1.15rem; color:#4A3728; max-width:520px; margin:20px auto 0; line-height:1.65;">
                     Connect with verified, loving sitters in your neighbourhood. Your pet stays home, happy and calm.
                 </p>
             </div>
