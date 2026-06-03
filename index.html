@@ -877,17 +877,18 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     <!-- About Section -->
     <section id="about" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-12">
                 <span class="section-tag">Our story</span>
                 <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">About PetPals</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     We're on a mission to make pet care accessible, trustworthy, and stress-free for pet owners around the world.
                 </p>
             </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+
+            <!-- Story block: media left, text right -->
+            <div class="grid lg:grid-cols-2 gap-10 items-center mb-14">
                 <div>
-                    <div style="border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(26,18,9,0.14);position:relative;aspect-ratio:4/3;">
+                    <div style="border-radius:18px;overflow:hidden;box-shadow:0 10px 32px rgba(26,18,9,0.10);position:relative;aspect-ratio:5/4;">
                         <video
                             autoplay muted loop playsinline
                             style="width:100%;height:100%;object-fit:cover;display:block;"
@@ -895,60 +896,55 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                             aria-label="PetPals sitters at work">
                             <source src="hero-video.mp4" type="video/mp4">
                         </video>
-                        <!-- photo fallback -->
                         <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=700&auto=format&fit=crop&q=80') center/cover;z-index:-1;"></div>
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Our Story</h3>
-                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">
+                    <h3 style="font-size:1.75rem;font-weight:800;color:#1A1209;margin-bottom:1.25rem;letter-spacing:-0.01em;">Our Story</h3>
+                    <p style="font-size:1.05rem;color:#4A3728;margin-bottom:1rem;line-height:1.75;">
                         Founded in 2020, PetPals was born from a simple idea: every pet deserves love and care, even when their owners can't be there.
                     </p>
-                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                    <p style="font-size:1.05rem;color:#4A3728;margin-bottom:1.75rem;line-height:1.75;">
                         We started in San Francisco with just 10 sitters and have grown to serve over 50 countries worldwide. Our platform connects passionate pet lovers with families who need reliable, trustworthy care for their furry companions.
                     </p>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="bg-primary-50 rounded-xl p-6">
-                            <div class="text-3xl font-bold text-primary-600 mb-2">50+</div>
-                            <div class="text-gray-700 font-medium">Countries Served</div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div style="background:#EAF2F1;border-radius:14px;padding:1.25rem 1.5rem;">
+                            <div style="font-size:1.875rem;font-weight:800;color:#007A7A;margin-bottom:0.25rem;">50+</div>
+                            <div style="font-size:0.875rem;font-weight:600;color:#4A3728;">Countries Served</div>
                         </div>
-                        <div class="bg-coral-50 rounded-xl p-6">
-                            <div class="text-3xl font-bold text-coral-600 mb-2">99%</div>
-                            <div class="text-gray-700 font-medium">Customer Satisfaction</div>
+                        <div style="background:#FBF0E6;border-radius:14px;padding:1.25rem 1.5rem;">
+                            <div style="font-size:1.875rem;font-weight:800;color:#B85510;margin-bottom:0.25rem;">99%</div>
+                            <div style="font-size:0.875rem;font-weight:600;color:#4A3728;">Customer Satisfaction</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Mission, Vision, Values -->
-            <div class="grid md:grid-cols-3 gap-8">
+            <!-- Mission / Vision / Values -->
+            <div class="grid md:grid-cols-3 gap-6">
                 <!-- Mission -->
-                <div class="rounded-2xl p-8 text-center" style="background: linear-gradient(135deg, #C8EAE8 0%, #B0DDD9 100%);">
-                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background: rgba(26,18,9,0.07); border-radius: 18px;">
-                        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Paw print with heart -->
-                            <circle cx="19" cy="20" r="9" stroke="#4A3728" stroke-width="2.2" fill="none"/>
-                            <path d="M19 24 C19 24, 14 20, 14 17 C14 15.3 15.3 14 17 14 C17.9 14 18.8 14.4 19 15 C19.2 14.4 20.1 14 21 14 C22.7 14 24 15.3 24 17 C24 20 19 24 19 24Z" fill="#4A3728"/>
-                            <!-- Small paw dots -->
-                            <circle cx="12" cy="12" r="2.2" fill="#4A3728" opacity="0.5"/>
-                            <circle cx="19" cy="10" r="2.2" fill="#4A3728" opacity="0.5"/>
-                            <circle cx="26" cy="12" r="2.2" fill="#4A3728" opacity="0.5"/>
+                <div style="border-radius:18px;padding:2rem;background:#F2F7F6;border:1px solid rgba(0,122,122,0.1);">
+                    <div style="width:44px;height:44px;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;background:rgba(0,122,122,0.08);border-radius:12px;">
+                        <svg width="22" height="22" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="20" r="9" stroke="#007A7A" stroke-width="2.2" fill="none"/>
+                            <path d="M19 24 C19 24, 14 20, 14 17 C14 15.3 15.3 14 17 14 C17.9 14 18.8 14.4 19 15 C19.2 14.4 20.1 14 21 14 C22.7 14 24 15.3 24 17 C24 20 19 24 19 24Z" fill="#007A7A"/>
+                            <circle cx="12" cy="12" r="2.2" fill="#007A7A" opacity="0.4"/>
+                            <circle cx="19" cy="10" r="2.2" fill="#007A7A" opacity="0.4"/>
+                            <circle cx="26" cy="12" r="2.2" fill="#007A7A" opacity="0.4"/>
                         </svg>
                     </div>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-4">Our Mission</h4>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h4 style="font-size:1.1rem;font-weight:800;color:#1A1209;margin-bottom:0.625rem;letter-spacing:-0.01em;">Our Mission</h4>
+                    <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.7;">
                         To create a world where every pet receives exceptional care through a trusted community of passionate sitters.
                     </p>
                 </div>
 
                 <!-- Vision -->
-                <div class="rounded-2xl p-8 text-center" style="background: linear-gradient(135deg, #FDF0E8 0%, #F5D0B0 100%);">
-                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background: rgba(232,160,122,0.12); border-radius: 18px;">
-                        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Telescope / vision icon -->
+                <div style="border-radius:18px;padding:2rem;background:#FBF5EE;border:1px solid rgba(184,85,16,0.1);">
+                    <div style="width:44px;height:44px;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;background:rgba(184,85,16,0.08);border-radius:12px;">
+                        <svg width="22" height="22" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="19" cy="19" r="7" stroke="#B85510" stroke-width="2.2" fill="none"/>
-                            <circle cx="19" cy="19" r="3" fill="#B85510" opacity="0.35"/>
-                            <!-- Rays -->
+                            <circle cx="19" cy="19" r="3" fill="#B85510" opacity="0.4"/>
                             <line x1="19" y1="6" x2="19" y2="9" stroke="#B85510" stroke-width="2.2" stroke-linecap="round"/>
                             <line x1="19" y1="29" x2="19" y2="32" stroke="#B85510" stroke-width="2.2" stroke-linecap="round"/>
                             <line x1="6" y1="19" x2="9" y2="19" stroke="#B85510" stroke-width="2.2" stroke-linecap="round"/>
@@ -959,23 +955,22 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                             <line x1="11.9" y1="26.1" x2="9.8" y2="28.2" stroke="#B85510" stroke-width="2.2" stroke-linecap="round"/>
                         </svg>
                     </div>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h4>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h4 style="font-size:1.1rem;font-weight:800;color:#1A1209;margin-bottom:0.625rem;letter-spacing:-0.01em;">Our Vision</h4>
+                    <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.7;">
                         Building the world's most trusted pet care network, making quality care accessible to every pet owner.
                     </p>
                 </div>
 
                 <!-- Values -->
-                <div class="rounded-2xl p-8 text-center" style="background: linear-gradient(135deg, #E0EAF5 0%, #C0D5E8 100%);">
-                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background: rgba(3,68,74,0.1); border-radius: 18px;">
-                        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Shield with heart -->
-                            <path d="M19 5 L30 9 L30 19 C30 25.5 25 30.5 19 33 C13 30.5 8 25.5 8 19 L8 9 Z" stroke="#1A1209" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
-                            <path d="M19 23 C19 23, 14.5 19.5 14.5 17 C14.5 15.6 15.6 14.5 17 14.5 C17.8 14.5 18.5 14.9 19 15.5 C19.5 14.9 20.2 14.5 21 14.5 C22.4 14.5 23.5 15.6 23.5 17 C23.5 19.5 19 23 19 23Z" fill="#1A1209"/>
+                <div style="border-radius:18px;padding:2rem;background:#F5F2EE;border:1px solid rgba(26,18,9,0.07);">
+                    <div style="width:44px;height:44px;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;background:rgba(26,18,9,0.05);border-radius:12px;">
+                        <svg width="22" height="22" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 5 L30 9 L30 19 C30 25.5 25 30.5 19 33 C13 30.5 8 25.5 8 19 L8 9 Z" stroke="#4A3728" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+                            <path d="M19 23 C19 23, 14.5 19.5 14.5 17 C14.5 15.6 15.6 14.5 17 14.5 C17.8 14.5 18.5 14.9 19 15.5 C19.5 14.9 20.2 14.5 21 14.5 C22.4 14.5 23.5 15.6 23.5 17 C23.5 19.5 19 23 19 23Z" fill="#4A3728"/>
                         </svg>
                     </div>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-4">Our Values</h4>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h4 style="font-size:1.1rem;font-weight:800;color:#1A1209;margin-bottom:0.625rem;letter-spacing:-0.01em;">Our Values</h4>
+                    <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.7;">
                         Trust, compassion, and excellence in everything we do. Pets come first, always.
                     </p>
                 </div>
