@@ -835,6 +835,69 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                     </button>
                 </div>
             </div>
+
+            <!-- Sitter preview strip -->
+            <div style="max-width:900px;margin:20px auto 0;padding:0 0 8px;">
+                <div style="display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;">
+
+                    <!-- Card 1 -->
+                    <div style="background:rgba(255,255,255,0.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.75);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;flex:1;min-width:220px;transition:background 0.15s;"
+                         onmouseover="this.style.background='rgba(255,255,255,0.82)'" onmouseout="this.style.background='rgba(255,255,255,0.65)'">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80"
+                             alt="Michał K." style="width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,0.9);">
+                        <div style="flex:1;min-width:0;overflow:hidden;">
+                            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:3px;">
+                                <span style="font-size:13px;font-weight:700;color:#1A1209;white-space:nowrap;">Michał K.</span>
+                                <span style="font-size:12px;font-weight:700;color:#1A1209;white-space:nowrap;">€18<span style="font-weight:500;color:#6B5744;font-size:11px;">/hr</span></span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:5px;">
+                                <span style="font-size:11px;font-weight:700;color:#D4650F;">★ 5.0</span>
+                                <span style="font-size:11px;color:#6B5744;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">· 0.8 km · Dog Walking</span>
+                            </div>
+                        </div>
+                        <span style="font-size:10px;font-weight:700;color:#2E7D32;background:rgba(232,245,232,0.9);padding:3px 9px;border-radius:99px;flex-shrink:0;white-space:nowrap;">● Available</span>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div style="background:rgba(255,255,255,0.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.75);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;flex:1;min-width:220px;transition:background 0.15s;"
+                         onmouseover="this.style.background='rgba(255,255,255,0.82)'" onmouseout="this.style.background='rgba(255,255,255,0.65)'">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80"
+                             alt="Anna B." style="width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,0.9);">
+                        <div style="flex:1;min-width:0;overflow:hidden;">
+                            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:3px;">
+                                <span style="font-size:13px;font-weight:700;color:#1A1209;white-space:nowrap;">Anna B.</span>
+                                <span style="font-size:12px;font-weight:700;color:#1A1209;white-space:nowrap;">€22<span style="font-weight:500;color:#6B5744;font-size:11px;">/hr</span></span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:5px;">
+                                <span style="font-size:11px;font-weight:700;color:#D4650F;">★ 4.9</span>
+                                <span style="font-size:11px;color:#6B5744;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">· 1.4 km · Pet Sitting</span>
+                            </div>
+                        </div>
+                        <span style="font-size:10px;font-weight:700;color:#2E7D32;background:rgba(232,245,232,0.9);padding:3px 9px;border-radius:99px;flex-shrink:0;white-space:nowrap;">● Available</span>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div style="background:rgba(255,255,255,0.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.75);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;flex:1;min-width:220px;transition:background 0.15s;"
+                         onmouseover="this.style.background='rgba(255,255,255,0.82)'" onmouseout="this.style.background='rgba(255,255,255,0.65)'">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&auto=format&fit=crop&q=80"
+                             alt="Piotr W." style="width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,0.9);">
+                        <div style="flex:1;min-width:0;overflow:hidden;">
+                            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:3px;">
+                                <span style="font-size:13px;font-weight:700;color:#1A1209;white-space:nowrap;">Piotr W.</span>
+                                <span style="font-size:12px;font-weight:700;color:#1A1209;white-space:nowrap;">€15<span style="font-weight:500;color:#6B5744;font-size:11px;">/hr</span></span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:5px;">
+                                <span style="font-size:11px;font-weight:700;color:#D4650F;">★ 4.8</span>
+                                <span style="font-size:11px;color:#6B5744;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">· 2.1 km · Dog Walking</span>
+                            </div>
+                        </div>
+                        <span style="font-size:10px;font-weight:700;color:#B85510;background:rgba(253,240,232,0.9);padding:3px 9px;border-radius:99px;flex-shrink:0;white-space:nowrap;">⚡ Quick Reply</span>
+                    </div>
+
+                </div>
+                <p style="text-align:center;font-size:11px;color:#8B7060;margin-top:10px;letter-spacing:0.03em;font-weight:500;">43 sitters available near Kraków this week</p>
+            </div>
+
         </div>
 
         <style>
