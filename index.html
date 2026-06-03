@@ -813,72 +813,78 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                     </div>
                 </div>
 
-                <!-- AI Pill -->
-                <div style="background:rgba(255,255,255,0.75);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,0.8);border-radius:18px;padding:14px 20px;margin-top:12px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            </div>
+
+            <!-- Unified bottom panel -->
+            <div style="max-width:900px;margin:8px auto 0;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:20px;overflow:hidden;">
+
+                <!-- AI match row -->
+                <div style="padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
                     <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;">
-                        <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#FDE8D8,#F5D0B0);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                            <span class="material-symbols-rounded" style="font-size:20px;color:#B85510;font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">auto_awesome</span>
+                        <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#FDE8D8,#F5D0B0);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <span class="material-symbols-rounded" style="font-size:20px;color:#B85510;font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;" aria-hidden="true">auto_awesome</span>
                         </div>
                         <div>
-                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
                                 <span style="background:#FDE8D8;color:#C05A18;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;">✦ AI-powered</span>
                             </div>
                             <div style="font-size:14px;font-weight:800;color:#1A1209;">Find your best sitter match</div>
-                            <div style="font-size:12px;color:#6B5744;margin-top:1px;">Tell us about your pet — we'll match the perfect sitter.</div>
+                            <div style="font-size:12px;color:#6B5744;margin-top:2px;">Tell us about your pet — we'll match the perfect sitter.</div>
                         </div>
                     </div>
-                    <button onclick="aiOpen()" style="background:transparent;color:#C05A18;border:1px solid rgba(184,85,16,0.22);border-radius:12px;padding:8px 18px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background 0.15s,border-color 0.15s;display:inline-flex;align-items:center;gap:5px;"
-                        onmouseover="this.style.background='rgba(184,85,16,0.06)';this.style.borderColor='rgba(184,85,16,0.4)'"
-                        onmouseout="this.style.background='transparent';this.style.borderColor='rgba(184,85,16,0.22)'">
-                        <span class="material-symbols-rounded" style="font-size:14px;color:#C05A18;">arrow_forward</span>
+                    <button onclick="aiOpen()" style="background:transparent;color:#C05A18;border:1px solid rgba(184,85,16,0.25);border-radius:12px;padding:9px 20px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background 0.15s,border-color 0.15s;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;"
+                        onmouseover="this.style.background='rgba(184,85,16,0.06)';this.style.borderColor='rgba(184,85,16,0.45)'"
+                        onmouseout="this.style.background='transparent';this.style.borderColor='rgba(184,85,16,0.25)'">
+                        <span class="material-symbols-rounded" style="font-size:14px;color:#C05A18;" aria-hidden="true">arrow_forward</span>
                         Try Sitter Match
                     </button>
                 </div>
-            </div>
 
-            <!-- Trust strip -->
-            <div style="max-width:900px;margin:20px auto 0;">
-                <div style="background:rgba(255,255,255,0.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.7);border-radius:18px;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:0;flex-wrap:wrap;">
+                <!-- Divider -->
+                <div style="height:1px;background:rgba(26,18,9,0.07);margin:0 24px;"></div>
 
-                    <div style="display:flex;align-items:center;gap:10px;padding:4px 0;">
-                        <div style="display:flex;align-items:center;margin-right:4px;">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="" aria-hidden="true" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid white;margin-right:-6px;position:relative;z-index:3;">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="" aria-hidden="true" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid white;margin-right:-6px;position:relative;z-index:2;">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&auto=format&fit=crop&q=80" alt="" aria-hidden="true" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid white;position:relative;z-index:1;">
+                <!-- Trust signals row -->
+                <div style="padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:0;flex-wrap:wrap;row-gap:8px;">
+
+                    <div style="display:flex;align-items:center;gap:9px;">
+                        <div style="display:flex;align-items:center;">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="" aria-hidden="true" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid white;margin-right:-5px;position:relative;z-index:3;">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="" aria-hidden="true" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid white;margin-right:-5px;position:relative;z-index:2;">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&auto=format&fit=crop&q=80" alt="" aria-hidden="true" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid white;margin-right:8px;position:relative;z-index:1;">
                         </div>
                         <div>
-                            <div style="font-size:13px;font-weight:700;color:#1A1209;">2,400+ sitters in Kraków</div>
-                            <div style="font-size:11px;color:#6B5744;margin-top:1px;">43 available this week</div>
-                        </div>
-                    </div>
-
-                    <div style="width:1px;height:36px;background:rgba(26,18,9,0.08);flex-shrink:0;margin:0 4px;"></div>
-
-                    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;">
-                        <span class="material-symbols-rounded" style="font-size:18px;color:#D4650F;" aria-hidden="true">verified</span>
-                        <div>
-                            <div style="font-size:13px;font-weight:700;color:#1A1209;">ID-verified profiles</div>
-                            <div style="font-size:11px;color:#6B5744;margin-top:1px;">Every sitter checked</div>
+                            <div style="font-size:12px;font-weight:700;color:#1A1209;">2,400+ sitters in Kraków</div>
+                            <div style="font-size:11px;color:#6B5744;">43 available this week</div>
                         </div>
                     </div>
 
-                    <div style="width:1px;height:36px;background:rgba(26,18,9,0.08);flex-shrink:0;margin:0 4px;"></div>
+                    <div style="width:1px;height:30px;background:rgba(26,18,9,0.07);flex-shrink:0;"></div>
 
-                    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;">
-                        <span class="material-symbols-rounded" style="font-size:18px;color:#D4650F;" aria-hidden="true">star</span>
+                    <div style="display:flex;align-items:center;gap:7px;">
+                        <span class="material-symbols-rounded" style="font-size:16px;color:#D4650F;" aria-hidden="true">verified</span>
                         <div>
-                            <div style="font-size:13px;font-weight:700;color:#1A1209;">★ 4.9 average rating</div>
-                            <div style="font-size:11px;color:#6B5744;margin-top:1px;">From 12,000+ reviews</div>
+                            <div style="font-size:12px;font-weight:700;color:#1A1209;">ID-verified profiles</div>
+                            <div style="font-size:11px;color:#6B5744;">Every sitter checked</div>
                         </div>
                     </div>
 
-                    <div style="width:1px;height:36px;background:rgba(26,18,9,0.08);flex-shrink:0;margin:0 4px;"></div>
+                    <div style="width:1px;height:30px;background:rgba(26,18,9,0.07);flex-shrink:0;"></div>
 
-                    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;">
-                        <span class="material-symbols-rounded" style="font-size:18px;color:#D4650F;" aria-hidden="true">bolt</span>
+                    <div style="display:flex;align-items:center;gap:7px;">
+                        <span class="material-symbols-rounded" style="font-size:16px;color:#D4650F;" aria-hidden="true">star</span>
                         <div>
-                            <div style="font-size:13px;font-weight:700;color:#1A1209;">Avg. reply in 12 min</div>
-                            <div style="font-size:11px;color:#6B5744;margin-top:1px;">Fast, responsive sitters</div>
+                            <div style="font-size:12px;font-weight:700;color:#1A1209;">★ 4.9 average rating</div>
+                            <div style="font-size:11px;color:#6B5744;">From 12,000+ reviews</div>
+                        </div>
+                    </div>
+
+                    <div style="width:1px;height:30px;background:rgba(26,18,9,0.07);flex-shrink:0;"></div>
+
+                    <div style="display:flex;align-items:center;gap:7px;">
+                        <span class="material-symbols-rounded" style="font-size:16px;color:#D4650F;" aria-hidden="true">bolt</span>
+                        <div>
+                            <div style="font-size:12px;font-weight:700;color:#1A1209;">Avg. reply in 12 min</div>
+                            <div style="font-size:11px;color:#6B5744;">Fast, responsive sitters</div>
                         </div>
                     </div>
 
