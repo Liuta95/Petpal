@@ -595,11 +595,11 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
         .btn-secondary {
             display: inline-flex; align-items: center; gap: 8px;
             padding: 12px 24px; background: transparent; color: #1A1209;
-            border: 2px solid #1A1209; border-radius: 99px; font-weight: 600; font-size: 15px;
+            border: 2px solid #8A7060; border-radius: 99px; font-weight: 600; font-size: 15px;
             cursor: pointer; text-decoration: none;
-            transition: background 0.2s ease, box-shadow 0.2s ease;
+            transition: background 0.2s ease, border-color 0.2s ease;
         }
-        .btn-secondary:hover { background: rgba(26,18,9,0.06); }
+        .btn-secondary:hover { background: rgba(26,18,9,0.05); border-color: #6B5744; }
 
         .btn-outline-white {
             display: inline-flex; align-items: center; gap: 8px;
@@ -715,9 +715,9 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                 </div>
                 
                 <div class="flex items-center" style="gap:24px;">
-                    <a href="#" style="font-size:14px; font-weight:500; color:#6B5744; text-decoration:none; transition:color 0.15s;"
+                    <a href="#" style="font-size:14px; font-weight:600; color:#6B5744; text-decoration:none; transition:color 0.15s;"
                        onmouseover="this.style.color='#1A1209'" onmouseout="this.style.color='#6B5744'">Become a Sitter</a>
-                    <a href="#" style="font-size:14px; font-weight:500; color:#6B5744; text-decoration:none; transition:color 0.15s;"
+                    <a href="#" style="font-size:14px; font-weight:600; color:#6B5744; text-decoration:none; transition:color 0.15s;"
                        onmouseover="this.style.color='#1A1209'" onmouseout="this.style.color='#6B5744'">Sign In</a>
                     <a href="#" class="btn-primary" style="font-size:14px; padding:10px 22px;">Sign Up</a>
                 </div>
@@ -827,7 +827,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                             <div style="font-size:12px;color:#6B5744;margin-top:1px;">Tell us about your pet — we'll match the perfect sitter.</div>
                         </div>
                     </div>
-                    <button onclick="aiOpen()" style="background:transparent;color:#C05A18;border:1px solid rgba(184,85,16,0.22);border-radius:12px;padding:8px 18px;font-size:12px;font-weight:500;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background 0.15s,border-color 0.15s;display:inline-flex;align-items:center;gap:5px;"
+                    <button onclick="aiOpen()" style="background:transparent;color:#C05A18;border:1px solid rgba(184,85,16,0.22);border-radius:12px;padding:8px 18px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background 0.15s,border-color 0.15s;display:inline-flex;align-items:center;gap:5px;"
                         onmouseover="this.style.background='rgba(184,85,16,0.06)';this.style.borderColor='rgba(184,85,16,0.4)'"
                         onmouseout="this.style.background='transparent';this.style.borderColor='rgba(184,85,16,0.22)'">
                         <span class="material-symbols-rounded" style="font-size:14px;color:#C05A18;">arrow_forward</span>
