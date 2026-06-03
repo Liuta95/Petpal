@@ -1038,326 +1038,65 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     <section id="features" class="py-24" style="background: #EDE5DA;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <!-- Header: title left, description right -->
-            <div class="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-16 mb-14">
-                <div class="lg:w-2/5 flex items-center gap-6">
-                    <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight whitespace-nowrap">Why PetPals?</h2>
-                    <div class="hidden lg:block flex-1 h-px" style="background: linear-gradient(to right, #90C0BC, transparent);"></div>
-                </div>
-                <p class="lg:w-3/5 text-xl lg:text-2xl text-gray-700 leading-snug font-normal">
-                    Everything you need to find, book, and manage trusted pet care — all in one place, with love.
-                </p>
-            </div>
-
-            <!-- Scroll nav buttons -->
-            <div class="flex justify-end gap-3 mb-6">
-                <button id="feat-prev" onclick="featureScroll(-1)" aria-label="Previous" class="w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all duration-200" style="border-color:#8B6F5E; color:#8B6F5E; background:white;">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14L6 9L11 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <button id="feat-next" onclick="featureScroll(1)" aria-label="Next" class="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 text-white" style="background:#C05A18;">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4L12 9L7 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-            </div>
-
-            <!-- Scrollable cards track -->
-            <div id="features-track" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory" style="scrollbar-width:none; -ms-overflow-style:none;">
-            <style>#features-track::-webkit-scrollbar{display:none}</style>
-
-            <!-- CARD 1: Verified Sitters (teal) -->
-            <div class="snap-start flex-shrink-0 rounded-3xl p-7 flex flex-col relative overflow-hidden" style="width:400px; min-height:480px; background:linear-gradient(145deg,#C5E8E8 0%,#A8DDD8 100%);">
-                <div class="absolute top-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-md" style="background:#C05A18;">
-                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 3L22 7V13C22 18 17.5 22 13 23C8.5 22 4 18 4 13V7L13 3Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M9.5 13L12 15.5L17 10.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2" style="max-width:70%;">Verified Sitters</h3>
-                <p class="text-gray-600 text-base leading-relaxed mb-8" style="max-width:75%;">Every sitter passes background checks, ID verification, and real review validation. Your pet's safety is always our #1 priority.</p>
-                <!-- Illustration: badge + stars -->
-                <div class="mt-auto rounded-2xl p-5 flex flex-col gap-4" style="background:white;">
-                    <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:linear-gradient(135deg,#007A7A,#1A1209);">
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4L23 8V14C23 19.5 18.5 24 14 25C9.5 24 5 19.5 5 14V8L14 4Z" fill="white" opacity="0.2" stroke="white" stroke-width="1.5"/><path d="M10 14L13 17L19 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900">ID Verified</div>
-                            <div class="text-sm text-gray-500">Background checked</div>
-                        </div>
-                        <div class="ml-auto flex gap-0.5">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        </div>
-                    </div>
-                    <div class="h-px" style="background:#C8EAE8;"></div>
-                    <div class="flex gap-3">
-                        <div class="flex-1 rounded-xl p-3 text-center" style="background:#EDE5DA;">
-                            <div class="text-2xl font-bold" style="color:#8B6F5E;">98%</div>
-                            <div class="text-xs text-gray-500 mt-0.5">Satisfaction</div>
-                        </div>
-                        <div class="flex-1 rounded-xl p-3 text-center" style="background:#EDE5DA;">
-                            <div class="text-2xl font-bold" style="color:#8B6F5E;">50k+</div>
-                            <div class="text-xs text-gray-500 mt-0.5">Sitters</div>
-                        </div>
-                        <div class="flex-1 rounded-xl p-3 text-center" style="background:#EDE5DA;">
-                            <div class="text-2xl font-bold" style="color:#8B6F5E;">24/7</div>
-                            <div class="text-xs text-gray-500 mt-0.5">Support</div>
-                        </div>
-                    </div>
+            <!-- Section header -->
+            <div style="margin-bottom:3rem;">
+                <p style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8B6F5E;margin-bottom:12px;">Why PetPals</p>
+                <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+                    <h2 style="font-size:clamp(2rem,4vw,3.25rem);font-weight:900;color:#1A1209;line-height:1.05;letter-spacing:-0.02em;margin:0;">Why PetPals?</h2>
+                    <p style="font-size:1.05rem;color:#5C4A3A;max-width:420px;line-height:1.7;margin:0;">Everything you need to find, book, and care for your pet — without the guesswork.</p>
                 </div>
             </div>
 
-            <!-- CARD 2: Photo Updates (coral) -->
-            <div class="snap-start flex-shrink-0 rounded-3xl p-7 flex flex-col relative overflow-hidden" style="width:400px; min-height:480px; background:linear-gradient(145deg,#FDE8D8 0%,#F5D0B0 100%);">
-                <div class="absolute top-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-md" style="background:#D4650F;">
-                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="3" y="6" width="20" height="15" rx="3" stroke="white" stroke-width="2" fill="none"/><circle cx="13" cy="13.5" r="3.5" stroke="white" stroke-width="2" fill="none"/><path d="M9 6L10.5 3.5H15.5L17 6" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2" style="max-width:70%;">Photo Updates</h3>
-                <p class="text-gray-600 text-base leading-relaxed mb-8" style="max-width:75%;">Receive adorable photos and videos of your pet during their stay. Never miss a single moment of their adventure.</p>
-                <!-- Illustration: photo feed mockup -->
-                <div class="mt-auto rounded-2xl p-5" style="background:white;">
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 rounded-full" style="background:linear-gradient(135deg,#D4650F,#B85510);"></div>
-                        <div>
-                            <div class="text-sm font-bold text-gray-900">Sarah's update 🐾</div>
-                            <div class="text-xs text-gray-400">2 min ago</div>
+            <!-- Unified 2×2 feature grid -->
+            <div style="background:white;border-radius:24px;overflow:hidden;">
+                <style>
+                  .feat-grid { display:grid; grid-template-columns:1fr 1fr; }
+                  @media(max-width:640px){
+                    .feat-grid { grid-template-columns:1fr; }
+                    .feat-grid > div { border-right:none !important; }
+                    .feat-grid > div:last-child { border-bottom:none !important; }
+                  }
+                </style>
+                <div class="feat-grid">
+
+                    <!-- Cell 1: Verified Sitters -->
+                    <div style="padding:40px;border-right:1px solid rgba(26,18,9,0.07);border-bottom:1px solid rgba(26,18,9,0.07);">
+                        <div style="width:44px;height:44px;background:#2E1E0E;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
+                            <span class="material-symbols-rounded" style="font-size:22px;color:white;" aria-hidden="true">verified_user</span>
                         </div>
-                        <div class="ml-auto w-2.5 h-2.5 rounded-full" style="background:#C05A18;"></div>
+                        <h3 style="font-size:1.2rem;font-weight:800;color:#1A1209;margin:0 0 12px;letter-spacing:-0.01em;">Verified Sitters</h3>
+                        <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.75;margin:0;">Every sitter passes ID verification and background checks before being listed. Real reviews, honest profiles — your pet's safety comes first.</p>
                     </div>
-                    <div class="grid grid-cols-3 gap-2 mb-3">
-                        <div class="aspect-square rounded-xl" style="background:linear-gradient(135deg,#F5D0B0,#ffb380);"></div>
-                        <div class="aspect-square rounded-xl" style="background:linear-gradient(135deg,#B0DDD9,#007A7A);"></div>
-                        <div class="aspect-square rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#FDE8D8,#F5D0B0);">🐶</div>
+
+                    <!-- Cell 2: Easy Booking -->
+                    <div style="padding:40px;border-bottom:1px solid rgba(26,18,9,0.07);">
+                        <div style="width:44px;height:44px;background:#2E1E0E;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
+                            <span class="material-symbols-rounded" style="font-size:22px;color:white;" aria-hidden="true">calendar_month</span>
+                        </div>
+                        <h3 style="font-size:1.2rem;font-weight:800;color:#1A1209;margin:0 0 12px;letter-spacing:-0.01em;">Easy Booking</h3>
+                        <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.75;margin:0;">Pick your dates, browse profiles nearby, and confirm your booking in minutes. No back-and-forth, no hidden steps — just a smooth, simple experience.</p>
                     </div>
-                    <div class="text-sm text-gray-600 rounded-xl px-3 py-2" style="background:#fff8f4;">"Max is having the best time! 🐾❤️"</div>
+
+                    <!-- Cell 3: Photo Updates -->
+                    <div style="padding:40px;border-right:1px solid rgba(26,18,9,0.07);">
+                        <div style="width:44px;height:44px;background:#2E1E0E;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
+                            <span class="material-symbols-rounded" style="font-size:22px;color:white;" aria-hidden="true">photo_camera</span>
+                        </div>
+                        <h3 style="font-size:1.2rem;font-weight:800;color:#1A1209;margin:0 0 12px;letter-spacing:-0.01em;">Photo Updates</h3>
+                        <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.75;margin:0;">Receive photos and messages from your sitter during the stay. Stay close to your pet no matter where you are — peace of mind, delivered.</p>
+                    </div>
+
+                    <!-- Cell 4: Emergency Support -->
+                    <div style="padding:40px;">
+                        <div style="width:44px;height:44px;background:#2E1E0E;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
+                            <span class="material-symbols-rounded" style="font-size:22px;color:white;" aria-hidden="true">support_agent</span>
+                        </div>
+                        <h3 style="font-size:1.2rem;font-weight:800;color:#1A1209;margin:0 0 12px;letter-spacing:-0.01em;">24/7 Support</h3>
+                        <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.75;margin:0;">Our support team is available around the clock. If anything unexpected happens, we're here — with vet hotline access and emergency assistance.</p>
+                    </div>
+
                 </div>
             </div>
-
-            <!-- CARD 3: Easy Booking (dark teal) -->
-            <div class="snap-start flex-shrink-0 rounded-3xl p-7 flex flex-col relative overflow-hidden" style="width:400px; min-height:480px; background:linear-gradient(145deg,#E0EAF5 0%,#C0D5E8 100%);">
-                <div class="absolute top-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-md" style="background:#C05A18;">
-                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="3" y="5" width="20" height="18" rx="3" stroke="white" stroke-width="2" fill="none"/><path d="M8 3V7M18 3V7M3 11H23" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="7" y="14" width="4" height="4" rx="1" fill="white"/><rect x="15" y="14" width="4" height="4" rx="1" fill="white"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2" style="max-width:70%;">Easy Booking</h3>
-                <p class="text-gray-600 text-base leading-relaxed mb-8" style="max-width:75%;">Book your perfect sitter in just minutes. Pick your dates, browse profiles, and confirm — it's that simple.</p>
-                <!-- Illustration: mini calendar -->
-                <div class="mt-auto rounded-2xl p-5" style="background:white;">
-                    <div class="text-sm font-bold text-gray-700 mb-3">June 2025</div>
-                    <div class="grid grid-cols-7 gap-1 text-center text-xs text-gray-400 mb-2">
-                        <div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div><div>Su</div>
-                    </div>
-                    <div class="grid grid-cols-7 gap-1 text-center text-sm">
-                        <div class="py-1.5 rounded-lg text-gray-400">1</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">2</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">3</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">4</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">5</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">6</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">7</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">8</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">9</div>
-                        <div class="py-1.5 rounded-lg font-bold text-white" style="background:#C05A18;">10</div>
-                        <div class="py-1.5 rounded-lg font-bold text-white" style="background:#C05A18;">11</div>
-                        <div class="py-1.5 rounded-lg font-bold text-white" style="background:#C05A18;">12</div>
-                        <div class="py-1.5 rounded-lg font-bold text-white" style="background:#D4650F;">13</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">14</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">15</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">16</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">17</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">18</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">19</div>
-                        <div class="py-1.5 rounded-lg text-gray-400">20</div>
-                    </div>
-                    <div class="mt-3 rounded-xl px-3 py-2 flex items-center gap-2" style="background:#EDE5DA;">
-                        <div class="w-2 h-2 rounded-full" style="background:#C05A18;"></div>
-                        <span class="text-xs text-gray-600 font-medium">3 nights booked · Confirmed ✓</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 4: Real-Time Chat (teal light) -->
-            <div class="snap-start flex-shrink-0 rounded-3xl p-7 flex flex-col relative overflow-hidden" style="width:400px; min-height:480px; background:linear-gradient(145deg,#C5E8E8 0%,#A8DDD8 100%);">
-                <div class="absolute top-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-md" style="background:#C05A18;">
-                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 5H22C23.1 5 24 5.9 24 7V17C24 18.1 23.1 19 22 19H8L3 23V7C3 5.9 3.9 5 4 5Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M8 11H18M8 14H14" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2" style="max-width:70%;">Real-Time Chat</h3>
-                <p class="text-gray-600 text-base leading-relaxed mb-8" style="max-width:75%;">Stay connected with your sitter through built-in messaging. Updates, photos, peace of mind — always in your pocket.</p>
-                <!-- Chat mockup -->
-                <div class="mt-auto rounded-2xl p-5 flex flex-col gap-3" style="background:white;">
-                    <div class="flex items-end gap-2">
-                        <div class="w-8 h-8 rounded-full flex-shrink-0" style="background:linear-gradient(135deg,#007A7A,#1A1209);"></div>
-                        <div class="rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm text-gray-700 max-w-xs" style="background:#EDE5DA;">Buddy just had his walk! 🐕 He's loving the park today</div>
-                    </div>
-                    <div class="flex items-end gap-2 justify-end">
-                        <div class="rounded-2xl rounded-br-sm px-4 py-2.5 text-sm text-white max-w-xs" style="background:#C05A18;">Aww that's amazing! Any photos? 📸</div>
-                        <div class="w-8 h-8 rounded-full flex-shrink-0" style="background:linear-gradient(135deg,#D4650F,#B85510);"></div>
-                    </div>
-                    <div class="flex items-end gap-2">
-                        <div class="w-8 h-8 rounded-full flex-shrink-0" style="background:linear-gradient(135deg,#007A7A,#1A1209);"></div>
-                        <div class="rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm text-gray-700" style="background:#EDE5DA;">Sending now! 📷🐾</div>
-                    </div>
-                    <div class="flex items-center gap-2 mt-1">
-                        <div class="flex-1 rounded-xl px-3 py-2 text-sm text-gray-400 border" style="border-color:#C8EAE8;">Type a message...</div>
-                        <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:#C05A18;">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><path d="M2 8L14 2L8 14L7 9L2 8Z"/></svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 5: Emergency Support (coral) -->
-            <div class="snap-start flex-shrink-0 rounded-3xl p-7 flex flex-col relative overflow-hidden" style="width:400px; min-height:480px; background:linear-gradient(145deg,#FDE8D8 0%,#F5D0B0 100%);">
-                <div class="absolute top-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-md" style="background:#D4650F;">
-                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="9" stroke="white" stroke-width="2" fill="none"/><path d="M13 8V13M13 16V17" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2" style="max-width:70%;">Emergency Support</h3>
-                <p class="text-gray-600 text-base leading-relaxed mb-8" style="max-width:75%;">24/7 emergency support with direct vet contacts. We're always here if anything unexpected happens to your pet.</p>
-                <!-- Stats illustration -->
-                <div class="mt-auto rounded-2xl p-5" style="background:white;">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background:linear-gradient(135deg,#FDE8D8,#F5D0B0);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2Z" stroke="#B85510" stroke-width="2" fill="none"/><path d="M12 6V12L16 14" stroke="#B85510" stroke-width="2" stroke-linecap="round"/></svg>
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900">Always on call</div>
-                            <div class="text-xs text-gray-500">Average response: &lt;2 min</div>
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full" style="background:#D4650F;"></div>
-                            <span class="text-sm text-gray-600">Vet hotline access</span>
-                            <div class="ml-auto text-xs font-bold" style="color:#8B6F5E;">24/7</div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full" style="background:#D4650F;"></div>
-                            <span class="text-sm text-gray-600">Insurance covered</span>
-                            <div class="ml-auto text-xs font-bold" style="color:#8B6F5E;">✓</div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full" style="background:#D4650F;"></div>
-                            <span class="text-sm text-gray-600">Nearest clinic finder</span>
-                            <div class="ml-auto text-xs font-bold" style="color:#8B6F5E;">GPS</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 6: Global Coverage (dark) -->
-            <div class="snap-start flex-shrink-0 rounded-3xl p-7 flex flex-col relative overflow-hidden" style="width:400px; min-height:480px; background:linear-gradient(145deg,#E0EAF5 0%,#C0D5E8 100%);">
-                <div class="absolute top-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-md" style="background:#C05A18;">
-                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="9" stroke="white" stroke-width="2" fill="none"/><path d="M13 4C13 4 10 8 10 13C10 18 13 22 13 22" stroke="white" stroke-width="1.5"/><path d="M13 4C13 4 16 8 16 13C16 18 13 22 13 22" stroke="white" stroke-width="1.5"/><path d="M4 13H22" stroke="white" stroke-width="1.5"/><path d="M5.5 8.5H20.5M5.5 17.5H20.5" stroke="white" stroke-width="1.5"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2" style="max-width:70%;">Global Coverage</h3>
-                <p class="text-gray-600 text-base leading-relaxed mb-8" style="max-width:75%;">Available in 50+ countries and growing. Find trusted sitters wherever life takes you and your pet.</p>
-                <!-- Map dots illustration -->
-                <div class="mt-auto rounded-2xl p-5" style="background:white;">
-                    <div class="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wide">Active sitters worldwide</div>
-                    <!-- Dotted world map simulation -->
-                    <div class="relative h-28 rounded-xl mb-3" style="background:linear-gradient(135deg,#C8EAE8,#B0DDD9);">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg width="260" height="100" viewBox="0 0 260 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- continent blobs -->
-                                <ellipse cx="55" cy="48" rx="28" ry="20" fill="#4A3728" opacity="0.15"/>
-                                <ellipse cx="120" cy="40" rx="35" ry="25" fill="#4A3728" opacity="0.15"/>
-                                <ellipse cx="185" cy="52" rx="25" ry="18" fill="#4A3728" opacity="0.15"/>
-                                <ellipse cx="230" cy="45" rx="18" ry="22" fill="#4A3728" opacity="0.15"/>
-                                <!-- city dots -->
-                                <circle cx="55" cy="45" r="4" fill="#B85510"/>
-                                <circle cx="90" cy="38" r="3.5" fill="#4A3728"/>
-                                <circle cx="125" cy="35" r="4" fill="#B85510"/>
-                                <circle cx="155" cy="48" r="3" fill="#4A3728"/>
-                                <circle cx="190" cy="50" r="4" fill="#B85510"/>
-                                <circle cx="225" cy="42" r="3.5" fill="#1A1209"/>
-                                <!-- pulse rings -->
-                                <circle cx="55" cy="45" r="8" stroke="#B85510" stroke-width="1.5" opacity="0.4"/>
-                                <circle cx="125" cy="35" r="8" stroke="#B85510" stroke-width="1.5" opacity="0.4"/>
-                                <circle cx="190" cy="50" r="8" stroke="#B85510" stroke-width="1.5" opacity="0.4"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <div class="flex-1 rounded-xl p-2 text-center" style="background:#EDE5DA;">
-                            <div class="text-xl font-bold" style="color:#8B6F5E;">50+</div>
-                            <div class="text-xs text-gray-500">Countries</div>
-                        </div>
-                        <div class="flex-1 rounded-xl p-2 text-center" style="background:#EDE5DA;">
-                            <div class="text-xl font-bold" style="color:#8B6F5E;">200+</div>
-                            <div class="text-xs text-gray-500">Cities</div>
-                        </div>
-                        <div class="flex-1 rounded-xl p-2 text-center" style="background:#EDE5DA;">
-                            <div class="text-xl font-bold" style="color:#8B6F5E;">1M+</div>
-                            <div class="text-xs text-gray-500">Bookings</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 7: AI Sitter Match -->
-            <div class="snap-start flex-shrink-0 rounded-3xl p-7 flex flex-col relative overflow-hidden" style="width:400px; min-height:480px; background:linear-gradient(145deg,#FDE8D8 0%,#F5D0B0 100%);">
-                <div class="flex items-start justify-between gap-4 mb-2">
-                    <h3 class="text-2xl font-bold text-gray-900">AI Sitter Match</h3>
-                    <div class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center shadow-md" style="background:#C05A18;">
-                        <span style="font-size:22px;">✨</span>
-                    </div>
-                </div>
-                <p class="text-gray-600 text-base leading-relaxed mb-8" style="max-width:75%;">Get sitter recommendations tailored to your pet's personality, needs, and routine.</p>
-                <div class="mt-auto rounded-2xl p-5 flex flex-col gap-4" style="background:white;">
-                    <div style="font-size:12px;font-weight:700;color:#C05A18;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px;">Matched for you</div>
-                    <div style="display:flex;flex-direction:column;gap:10px;">
-                        <div style="display:flex;align-items:center;gap:10px;">
-                            <img src="https://i.pravatar.cc/80?img=47" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
-                            <div style="flex:1;">
-                                <div style="font-size:13px;font-weight:700;color:#1A1209;">Anna K.</div>
-                                <div style="font-size:11px;color:#6B5744;">Great for anxious pets</div>
-                            </div>
-                            <span style="font-size:10px;font-weight:800;background:#FDE8D8;color:#C05A18;padding:3px 8px;border-radius:99px;">✦ Best match</span>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:10px;">
-                            <img src="https://i.pravatar.cc/80?img=32" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
-                            <div style="flex:1;">
-                                <div style="font-size:13px;font-weight:700;color:#1A1209;">Maja S.</div>
-                                <div style="font-size:11px;color:#6B5744;">Experienced with medication</div>
-                            </div>
-                            <span style="font-size:10px;font-weight:800;background:#E8F5E8;color:#2E7D32;padding:3px 8px;border-radius:99px;">✓ Verified</span>
-                        </div>
-                    </div>
-                    <div style="border-top:1px solid #F2EBE2;padding-top:12px;font-size:12px;color:#B5A090;">
-                        AI suggestions based on profiles, reviews & your pet's needs.
-                    </div>
-                </div>
-            </div>
-
-            </div><!-- end track -->
-
-            <!-- Scroll dots indicator -->
-            <div class="flex justify-center gap-2 mt-8" id="feat-dots">
-                <div class="w-8 h-2 rounded-full transition-all" style="background:#C05A18;" data-dot="0"></div>
-                <div class="w-2 h-2 rounded-full transition-all" style="background:#90C0BC;" data-dot="1"></div>
-                <div class="w-2 h-2 rounded-full transition-all" style="background:#90C0BC;" data-dot="2"></div>
-                <div class="w-2 h-2 rounded-full transition-all" style="background:#90C0BC;" data-dot="3"></div>
-            </div>
-        </div>
-
-        <script>
-        (function(){
-            const track = document.getElementById('features-track');
-            const dots = document.querySelectorAll('#feat-dots [data-dot]');
-            const cardW = 400 + 24; // card width + gap
-
-            function featureScroll(dir) {
-                track.scrollBy({ left: dir * cardW, behavior: 'smooth' });
-            }
-            window.featureScroll = featureScroll;
-
-            track.addEventListener('scroll', () => {
-                const idx = Math.round(track.scrollLeft / cardW);
-                dots.forEach((d, i) => {
-                    d.style.background = i === idx ? '#1A1209' : '#90C0BC';
-                    d.style.width = i === idx ? '32px' : '8px';
-                });
-            });
-        })();
-        </script>
     </section>
 
     <!-- Services We Offer Section -->
