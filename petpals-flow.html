@@ -299,7 +299,7 @@ body { font-family: 'Inter', sans-serif; background: #F7F3EE; color: #1A1209; -w
 .ucal-nav:focus-visible { outline:2px solid #C05A18; outline-offset:2px; box-shadow:0 0 0 3px rgba(192,90,24,0.14); }
 
 .ucal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:1px; }
-.ucal-dh { text-align:center; font-size:10px; font-weight:700; color:#B5A090; padding:0 0 7px; text-transform:uppercase; letter-spacing:.05em; }
+.ucal-dh { text-align:center; font-size:10px; font-weight:700; color:#5C4A3A; padding:0 0 7px; text-transform:uppercase; letter-spacing:.05em; }
 .ucal-d {
   position:relative; aspect-ratio:1; display:flex; align-items:center; justify-content:center;
   flex-direction:column; border:none; background:none; cursor:pointer;
@@ -792,7 +792,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 <div id="page-results" class="page active">
 
   <!-- Loading overlay -->
-  <div id="search-loading" style="display:none; position:fixed; inset:0; z-index:500; background:rgba(247,243,238,0.95); backdrop-filter:blur(6px); flex-direction:column; align-items:center; justify-content:center; gap:20px;">
+  <div id="search-loading" role="status" aria-live="polite" aria-label="Searching for sitters" style="display:none; position:fixed; inset:0; z-index:500; background:rgba(247,243,238,0.95); backdrop-filter:blur(6px); flex-direction:column; align-items:center; justify-content:center; gap:20px;">
     <div style="display:flex; gap:8px; align-items:center;">
       <div class="ldot" style="width:10px;height:10px;border-radius:50%;background:#1A1209;animation:ldot 1.2s ease-in-out infinite;"></div>
       <div class="ldot" style="width:10px;height:10px;border-radius:50%;background:#1A1209;animation:ldot 1.2s ease-in-out 0.2s infinite;"></div>
@@ -836,6 +836,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     </div>
   </nav>
 
+  <main id="main-content">
   <div style="max-width:1200px; margin:0 auto; padding:32px 24px;">
 
     <!-- Breadcrumbs -->
@@ -876,8 +877,8 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
         </div>
 
         <!-- Dates -->
-        <div class="nav-pill" id="nav-dates" onclick="ucalOpen()">
-          <span class="material-symbols-rounded" style="font-size:14px;color:var(--light);flex-shrink:0;">calendar_today</span>
+        <div class="nav-pill" id="nav-dates" onclick="ucalOpen()" tabindex="0" role="button" aria-label="Select dates" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();ucalOpen()}">
+          <span class="material-symbols-rounded" style="font-size:14px;color:var(--light);flex-shrink:0;" aria-hidden="true">calendar_today</span>
           <span id="nav-dates-text" style="font-size:14px;color:var(--mid);white-space:nowrap;">Add dates</span>
         </div>
 
@@ -888,9 +889,9 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
         </div>
 
         <!-- Search button -->
-        <div style="background:var(--dark); color:var(--bg); width:40px; height:40px; border-radius:99px; display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer;" onclick="navSearch()">
-          <span class="material-symbols-rounded" style="font-size:17px;">search</span>
-        </div>
+        <button aria-label="Search" onclick="navSearch()" style="background:var(--dark); color:var(--bg); width:40px; height:40px; border-radius:99px; display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer; border:none;">
+          <span class="material-symbols-rounded" style="font-size:17px;" aria-hidden="true">search</span>
+        </button>
       </div>
     </div>
 
@@ -919,11 +920,11 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     <div id="sitters-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px;">
 
       <!-- Sitter 1 -->
-      <div class="card sitter-card" onclick="go('page-profile')">
+      <div class="card sitter-card" onclick="go('page-profile')" role="button" tabindex="0" aria-label="View profile of Michał K." onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('page-profile')}">
         <div style="position:relative;">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80" alt="Sitter" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80" alt="Michał K." style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
           <div class="sitter-badge"><span style="color:var(--green);">●</span> Available</div>
-          <button style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.9);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <button aria-label="Save Michał K. to favourites" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.9);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">
             <span class="material-symbols-rounded" style="font-size:18px;color:var(--dark);">favorite_border</span>
           </button>
         </div>
@@ -951,11 +952,11 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
       </div>
 
       <!-- Sitter 2 -->
-      <div class="card sitter-card" onclick="go('page-profile')">
+      <div class="card sitter-card" onclick="go('page-profile')" role="button" tabindex="0" aria-label="View profile of Anna B." onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('page-profile')}">
         <div style="position:relative;">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80" alt="Sitter" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80" alt="Anna B." style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
           <div class="sitter-badge"><span style="color:var(--green);">●</span> Available</div>
-          <button style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.9);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <button aria-label="Remove Anna B. from favourites" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.9);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">
             <span class="material-symbols-rounded" style="font-size:18px;color:var(--dark);">favorite</span>
           </button>
         </div>
@@ -983,9 +984,9 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
       </div>
 
       <!-- Sitter 3 -->
-      <div class="card sitter-card" onclick="go('page-profile')">
+      <div class="card sitter-card" onclick="go('page-profile')" role="button" tabindex="0" aria-label="View profile of Piotr W." onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('page-profile')}">
         <div style="position:relative;">
-          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80" alt="Sitter" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80" alt="Piotr W." style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
           <div class="sitter-badge" style="background:var(--peach-bg);color:var(--dark);">⚡ Quick Reply</div>
         </div>
         <div style="padding:18px 20px;">
@@ -1012,9 +1013,9 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
       </div>
 
       <!-- Sitter 4 -->
-      <div class="card sitter-card" onclick="go('page-profile')">
+      <div class="card sitter-card" onclick="go('page-profile')" role="button" tabindex="0" aria-label="View profile of Karolina M." onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('page-profile')}">
         <div style="position:relative;">
-          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop&q=80" alt="Sitter" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop&q=80" alt="Karolina M." style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
           <div class="sitter-badge"><span style="color:var(--green);">●</span> Available</div>
         </div>
         <div style="padding:18px 20px;">
@@ -1040,9 +1041,9 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
       </div>
 
       <!-- Sitter 5 -->
-      <div class="card sitter-card" onclick="go('page-profile')">
+      <div class="card sitter-card" onclick="go('page-profile')" role="button" tabindex="0" aria-label="View profile of Tomasz R." onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('page-profile')}">
         <div style="position:relative;">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80" alt="Sitter" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80" alt="Tomasz R." style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
           <div class="sitter-badge" style="background:var(--peach-bg);color:var(--dark);">⭐ New</div>
         </div>
         <div style="padding:18px 20px;">
@@ -1068,9 +1069,9 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
       </div>
 
       <!-- Sitter 6 -->
-      <div class="card sitter-card" onclick="go('page-profile')">
+      <div class="card sitter-card" onclick="go('page-profile')" role="button" tabindex="0" aria-label="View profile of Natalia D." onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('page-profile')}">
         <div style="position:relative;">
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&auto=format&fit=crop&q=80" alt="Sitter" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&auto=format&fit=crop&q=80" alt="Natalia D." style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
           <div class="sitter-badge"><span style="color:var(--green);">●</span> Available</div>
         </div>
         <div style="padding:18px 20px;">
@@ -1101,6 +1102,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
       <button class="btn btn-secondary">Load more sitters</button>
     </div>
   </div>
+  </main>
 </div><!-- /page-results -->
 
 
@@ -1134,7 +1136,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 
   <!-- Photo header -->
   <div style="position:relative; height:380px; overflow:hidden;">
-    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&auto=format&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&auto=format&fit=crop&q=80" alt="Dog running happily in a park" style="width:100%;height:100%;object-fit:cover;display:block;">
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,18,9,0.6));"></div>
   </div>
 
@@ -1142,7 +1144,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 
     <!-- Profile header -->
     <div style="background:var(--white); border-radius:var(--r-xl); box-shadow:var(--shadow-lg); padding:32px 36px; margin-top:-80px; position:relative; z-index:10; display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80" class="avatar" style="width:100px;height:100px;border:4px solid var(--white);box-shadow:var(--shadow-md);flex-shrink:0;">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80" alt="Michał K." class="avatar" style="width:100px;height:100px;border:4px solid var(--white);box-shadow:var(--shadow-md);flex-shrink:0;">
       <div style="flex:1;min-width:200px;">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px;">
           <h1 style="font-size:26px;font-weight:900;color:var(--dark);">Michał K.</h1>
@@ -1226,7 +1228,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
           <div style="display:flex;flex-direction:column;gap:16px;">
             <div class="review-card">
               <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-                <img src="https://i.pravatar.cc/80?img=11" class="avatar" style="width:40px;height:40px;">
+                <img src="https://i.pravatar.cc/80?img=11" alt="Joanna P." class="avatar" style="width:40px;height:40px;">
                 <div>
                   <div style="font-weight:700;font-size:14px;color:var(--dark);">Joanna P.</div>
                   <div style="font-size:12px;color:var(--light);">2 weeks ago</div>
@@ -1237,7 +1239,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             </div>
             <div class="review-card">
               <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-                <img src="https://i.pravatar.cc/80?img=22" class="avatar" style="width:40px;height:40px;">
+                <img src="https://i.pravatar.cc/80?img=22" alt="Krzysztof N." class="avatar" style="width:40px;height:40px;">
                 <div>
                   <div style="font-weight:700;font-size:14px;color:var(--dark);">Krzysztof N.</div>
                   <div style="font-size:12px;color:var(--light);">1 month ago</div>
@@ -1248,7 +1250,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             </div>
             <div class="review-card">
               <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-                <img src="https://i.pravatar.cc/80?img=33" class="avatar" style="width:40px;height:40px;">
+                <img src="https://i.pravatar.cc/80?img=33" alt="Magdalena W." class="avatar" style="width:40px;height:40px;">
                 <div>
                   <div style="font-weight:700;font-size:14px;color:var(--dark);">Magdalena W.</div>
                   <div style="font-size:12px;color:var(--light);">1 month ago</div>
@@ -1475,7 +1477,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
       <div style="position:sticky;top:100px;display:flex;flex-direction:column;gap:16px;">
         <div class="card" style="padding:24px 28px;">
           <div style="display:flex;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid rgba(26,18,9,0.08);margin-bottom:20px;">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80" class="avatar" style="width:64px;height:64px;">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80" alt="Michał K." class="avatar" style="width:64px;height:64px;">
             <div>
               <div style="font-size:17px;font-weight:800;color:var(--dark);">Michał K.</div>
               <div style="font-size:13px;color:var(--light);">Śródmieście, Warsaw</div>
@@ -1570,7 +1572,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     <!-- Booking card -->
     <div class="card fade-up" style="padding:28px 32px;text-align:left;margin-bottom:24px;animation-delay:0.3s;">
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(26,18,9,0.08);">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80" class="avatar" style="width:56px;height:56px;">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80" alt="Michał K." class="avatar" style="width:56px;height:56px;">
         <div>
           <div style="font-size:17px;font-weight:800;color:var(--dark);">Michał K.</div>
           <div style="font-size:13px;color:var(--light);">Śródmieście, Warsaw</div>
