@@ -618,9 +618,11 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
         if (elSvc) elSvc.textContent = svc;
       }
 
-      // Update page heading and subtitle
+      // Update page heading, breadcrumb and subtitle
       var heading = document.getElementById('results-heading');
       if (heading) heading.textContent = 'Pet sitters in ' + city;
+      var bc = document.getElementById('breadcrumb-current');
+      if (bc) bc.textContent = 'Pet sitters in ' + city;
 
       var subtitle = document.getElementById('results-subtitle');
       if (subtitle) {
@@ -835,6 +837,22 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
   </nav>
 
   <div style="max-width:1200px; margin:0 auto; padding:32px 24px;">
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="Breadcrumb" style="margin-bottom:16px;">
+      <ol style="list-style:none;display:flex;align-items:center;gap:6px;font-size:13px;flex-wrap:wrap;">
+        <li>
+          <a href="index.html" style="color:var(--light);text-decoration:none;display:flex;align-items:center;gap:4px;font-weight:500;transition:color 0.15s;"
+             onmouseover="this.style.color='var(--dark)'" onmouseout="this.style.color='var(--light)'">
+            <span class="material-symbols-rounded" style="font-size:14px;vertical-align:middle;">home</span>
+            Home
+          </a>
+        </li>
+        <li style="color:var(--cream);font-size:12px;">›</li>
+        <li style="color:var(--dark);font-weight:600;" id="breadcrumb-current">Pet sitters in Warsaw</li>
+      </ol>
+    </nav>
+
     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:16px;">
       <div>
         <h1 id="results-heading" style="font-size:24px; font-weight:800; color:var(--dark);">Pet sitters in Warsaw</h1>
@@ -1652,10 +1670,12 @@ function go(pageId) {
       if (elSvc) elSvc.textContent = svc.trim();
     }
 
-    // Update heading and subtitle
+    // Update heading, breadcrumb and subtitle
     var city = loc.trim() ? loc.trim().split(',')[0].trim() : 'Warsaw';
     var heading = document.getElementById('results-heading');
     if (heading) heading.textContent = 'Pet sitters in ' + city;
+    var bc = document.getElementById('breadcrumb-current');
+    if (bc) bc.textContent = 'Pet sitters in ' + city;
 
     var subtitle = document.getElementById('results-subtitle');
     if (subtitle) {
