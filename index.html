@@ -825,108 +825,23 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                         <div id="hero-svc-display" style="font-size:15px;color:#1A1209;font-weight:500;pointer-events:none;">All services</div>
                     </div>
 
-                    <!-- Search button -->
-                    <div style="padding:6px;">
-                        <button onclick="heroSearch()" class="btn-white-teal" style="height:100%;padding:0 32px;font-size:16px;border-radius:20px;display:flex;align-items:center;gap:8px;border:none;cursor:pointer;">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <!-- Actions -->
+                    <div style="padding:6px;display:flex;flex-direction:column;gap:5px;justify-content:center;">
+                        <button onclick="heroSearch()" class="btn-white-teal" style="padding:0 26px;font-size:15px;border-radius:16px;display:flex;align-items:center;gap:7px;border:none;cursor:pointer;height:42px;white-space:nowrap;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
                             Search
+                        </button>
+                        <button onclick="aiOpen()" style="height:34px;padding:0 14px;font-size:11px;font-weight:700;font-family:inherit;color:#B85510;background:rgba(184,85,16,0.06);border:1px solid rgba(184,85,16,0.2);border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;transition:background 0.15s,border-color 0.15s;"
+                            onmouseover="this.style.background='rgba(184,85,16,0.11)';this.style.borderColor='rgba(184,85,16,0.35)'"
+                            onmouseout="this.style.background='rgba(184,85,16,0.06)';this.style.borderColor='rgba(184,85,16,0.2)'">
+                            <span class="material-symbols-rounded" style="font-size:13px;color:#B85510;" aria-hidden="true">auto_awesome</span>
+                            Try AI Match
                         </button>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Service switcher -->
-            <div style="max-width:900px;margin:14px auto 0;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;" role="tablist" aria-label="Select service type">
-                <button class="hero-svc-btn active" role="tab" aria-selected="true"  data-svc="dog-walking" onclick="heroSvcSwitch('dog-walking')">
-                    <span class="material-symbols-rounded" style="font-size:15px;" aria-hidden="true">directions_walk</span> Dog Walking
-                </button>
-                <button class="hero-svc-btn" role="tab" aria-selected="false" data-svc="pet-sitting"  onclick="heroSvcSwitch('pet-sitting')">
-                    <span class="material-symbols-rounded" style="font-size:15px;" aria-hidden="true">home</span> Pet Sitting
-                </button>
-                <button class="hero-svc-btn" role="tab" aria-selected="false" data-svc="overnight"     onclick="heroSvcSwitch('overnight')">
-                    <span class="material-symbols-rounded" style="font-size:15px;" aria-hidden="true">bedtime</span> Overnight Care
-                </button>
-                <button class="hero-svc-btn" role="tab" aria-selected="false" data-svc="drop-in"       onclick="heroSvcSwitch('drop-in')">
-                    <span class="material-symbols-rounded" style="font-size:15px;" aria-hidden="true">schedule</span> Drop-in Visits
-                </button>
-            </div>
-
-            <!-- Unified bottom panel -->
-            <div style="max-width:900px;margin:8px auto 0;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:20px;overflow:hidden;">
-
-                <!-- AI match row -->
-                <div style="padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-                    <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;">
-                        <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#FDE8D8,#F5D0B0);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                            <span class="material-symbols-rounded" style="font-size:20px;color:#B85510;font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;" aria-hidden="true">auto_awesome</span>
-                        </div>
-                        <div>
-                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
-                                <span style="background:#FDE8D8;color:#C05A18;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;">✦ AI-powered</span>
-                            </div>
-                            <div id="hero-ai-title" class="hero-panel-fade" style="font-size:14px;font-weight:800;color:#1A1209;">Find your best Dog Walking match</div>
-                            <div id="hero-ai-sub" class="hero-panel-fade" style="font-size:12px;color:#6B5744;margin-top:2px;">Daily walks with GPS tracking and photo updates after every session.</div>
-                        </div>
-                    </div>
-                    <button onclick="aiOpen()" style="background:transparent;color:#C05A18;border:1px solid rgba(184,85,16,0.25);border-radius:12px;padding:9px 20px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background 0.15s,border-color 0.15s;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;"
-                        onmouseover="this.style.background='rgba(184,85,16,0.06)';this.style.borderColor='rgba(184,85,16,0.45)'"
-                        onmouseout="this.style.background='transparent';this.style.borderColor='rgba(184,85,16,0.25)'">
-                        <span class="material-symbols-rounded" style="font-size:14px;color:#C05A18;" aria-hidden="true">arrow_forward</span>
-                        Try Sitter Match
-                    </button>
-                </div>
-
-                <!-- Divider -->
-                <div style="height:1px;background:rgba(26,18,9,0.07);margin:0 24px;"></div>
-
-                <!-- Trust signals row -->
-                <div style="padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:0;flex-wrap:wrap;row-gap:8px;">
-
-                    <div style="display:flex;align-items:center;gap:9px;">
-                        <div style="display:flex;align-items:center;">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="" aria-hidden="true" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid white;margin-right:-5px;position:relative;z-index:3;">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="" aria-hidden="true" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid white;margin-right:-5px;position:relative;z-index:2;">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&auto=format&fit=crop&q=80" alt="" aria-hidden="true" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid white;margin-right:8px;position:relative;z-index:1;">
-                        </div>
-                        <div>
-                            <div style="font-size:12px;font-weight:700;color:#1A1209;">2,400+ sitters in Kraków</div>
-                            <div style="font-size:11px;color:#6B5744;">43 available this week</div>
-                        </div>
-                    </div>
-
-                    <div style="width:1px;height:30px;background:rgba(26,18,9,0.07);flex-shrink:0;"></div>
-
-                    <div style="display:flex;align-items:center;gap:7px;">
-                        <span class="material-symbols-rounded" style="font-size:16px;color:#D4650F;" aria-hidden="true">verified</span>
-                        <div>
-                            <div style="font-size:12px;font-weight:700;color:#1A1209;">ID-verified profiles</div>
-                            <div style="font-size:11px;color:#6B5744;">Every sitter checked</div>
-                        </div>
-                    </div>
-
-                    <div style="width:1px;height:30px;background:rgba(26,18,9,0.07);flex-shrink:0;"></div>
-
-                    <div style="display:flex;align-items:center;gap:7px;">
-                        <span class="material-symbols-rounded" style="font-size:16px;color:#D4650F;" aria-hidden="true">star</span>
-                        <div>
-                            <div style="font-size:12px;font-weight:700;color:#1A1209;">★ 4.9 average rating</div>
-                            <div style="font-size:11px;color:#6B5744;">From 12,000+ reviews</div>
-                        </div>
-                    </div>
-
-                    <div style="width:1px;height:30px;background:rgba(26,18,9,0.07);flex-shrink:0;"></div>
-
-                    <div style="display:flex;align-items:center;gap:7px;">
-                        <span class="material-symbols-rounded" style="font-size:16px;color:#D4650F;" aria-hidden="true">bolt</span>
-                        <div>
-                            <div style="font-size:12px;font-weight:700;color:#1A1209;">Avg. reply in 12 min</div>
-                            <div style="font-size:11px;color:#6B5744;">Fast, responsive sitters</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
 
         </div>
 
@@ -936,59 +851,6 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                 50% { opacity: 0.6; transform: scale(1.2); }
             }
         </style>
-        <script>
-        (function(){
-            var SVCS = [
-                { id:'dog-walking', label:'Dog Walking',
-                  ai:'Find your best Dog Walking match',
-                  sub:'Daily walks with GPS tracking and photo updates after every session.' },
-                { id:'pet-sitting', label:'Pet Sitting',
-                  ai:'Find a trusted in-home sitter',
-                  sub:'Your pet stays home, relaxed — with a sitter who follows their routine.' },
-                { id:'overnight',   label:'Overnight Care',
-                  ai:'Find trusted overnight care nearby',
-                  sub:'A sitter who stays through the night, so your pet is never alone.' },
-                { id:'drop-in',     label:'Drop-in Visits',
-                  ai:'Find sitters for quick check-ins',
-                  sub:'A quick visit to feed, play, and check on your pet while you\'re away.' }
-            ];
-
-            window.heroSvcSwitch = function(id) {
-                var svc = null;
-                for (var i = 0; i < SVCS.length; i++) { if (SVCS[i].id === id) { svc = SVCS[i]; break; } }
-                if (!svc) return;
-
-                // Update pills
-                document.querySelectorAll('.hero-svc-btn').forEach(function(btn) {
-                    var on = btn.dataset.svc === id;
-                    btn.classList.toggle('active', on);
-                    btn.setAttribute('aria-selected', on ? 'true' : 'false');
-                });
-
-                // Sync search bar service field
-                var sd = document.getElementById('hero-svc-display');
-                if (sd) sd.textContent = svc.label;
-
-                // Fade panel text
-                var t = document.getElementById('hero-ai-title');
-                var s = document.getElementById('hero-ai-sub');
-                if (t && s) {
-                    t.style.opacity = '0'; s.style.opacity = '0';
-                    setTimeout(function() {
-                        t.textContent = svc.ai;
-                        s.textContent = svc.sub;
-                        t.style.opacity = '1'; s.style.opacity = '1';
-                    }, 180);
-                }
-            };
-
-            // Initialise search bar to match default active service
-            document.addEventListener('DOMContentLoaded', function() {
-                var sd = document.getElementById('hero-svc-display');
-                if (sd) sd.textContent = 'Dog Walking';
-            });
-        })();
-        </script>
     </section>
 
     <!-- Scrolling Tags Bar -->
