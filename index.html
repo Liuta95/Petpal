@@ -23,6 +23,27 @@
     .hero-sfield { border-right: none; border-bottom: 1px solid rgba(26,18,9,0.08); }
 }
 
+/* ── HERO SERVICE SWITCHER ── */
+.hero-svc-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px; border-radius: 99px;
+    background: rgba(255,255,255,0.38); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.52);
+    color: #5C4A3A; font-size: 13px; font-weight: 600; font-family: inherit;
+    cursor: pointer; transition: all 0.2s ease; white-space: nowrap;
+}
+.hero-svc-btn:hover:not(.active) {
+    background: rgba(255,255,255,0.56);
+    border-color: rgba(255,255,255,0.72);
+}
+.hero-svc-btn.active {
+    background: rgba(255,255,255,0.88);
+    border-color: rgba(255,255,255,0.96);
+    color: #1A1209;
+    box-shadow: 0 2px 16px rgba(26,18,9,0.10);
+}
+.hero-panel-fade { transition: opacity 0.18s ease; }
+
 /* ── HERO SOCIAL PROOF CLUSTER ── */
 .hero-headline-wrap {
     display: block;
@@ -815,6 +836,22 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 
             </div>
 
+            <!-- Service switcher -->
+            <div style="max-width:900px;margin:14px auto 0;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;" role="tablist" aria-label="Select service type">
+                <button class="hero-svc-btn active" role="tab" aria-selected="true"  data-svc="dog-walking" onclick="heroSvcSwitch('dog-walking')">
+                    <span class="material-symbols-rounded" style="font-size:15px;" aria-hidden="true">directions_walk</span> Dog Walking
+                </button>
+                <button class="hero-svc-btn" role="tab" aria-selected="false" data-svc="pet-sitting"  onclick="heroSvcSwitch('pet-sitting')">
+                    <span class="material-symbols-rounded" style="font-size:15px;" aria-hidden="true">home</span> Pet Sitting
+                </button>
+                <button class="hero-svc-btn" role="tab" aria-selected="false" data-svc="overnight"     onclick="heroSvcSwitch('overnight')">
+                    <span class="material-symbols-rounded" style="font-size:15px;" aria-hidden="true">bedtime</span> Overnight Care
+                </button>
+                <button class="hero-svc-btn" role="tab" aria-selected="false" data-svc="drop-in"       onclick="heroSvcSwitch('drop-in')">
+                    <span class="material-symbols-rounded" style="font-size:15px;" aria-hidden="true">schedule</span> Drop-in Visits
+                </button>
+            </div>
+
             <!-- Unified bottom panel -->
             <div style="max-width:900px;margin:8px auto 0;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:20px;overflow:hidden;">
 
@@ -828,8 +865,8 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                             <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
                                 <span style="background:#FDE8D8;color:#C05A18;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;">✦ AI-powered</span>
                             </div>
-                            <div style="font-size:14px;font-weight:800;color:#1A1209;">Find your best sitter match</div>
-                            <div style="font-size:12px;color:#6B5744;margin-top:2px;">Tell us about your pet — we'll match the perfect sitter.</div>
+                            <div id="hero-ai-title" class="hero-panel-fade" style="font-size:14px;font-weight:800;color:#1A1209;">Find your best Dog Walking match</div>
+                            <div id="hero-ai-sub" class="hero-panel-fade" style="font-size:12px;color:#6B5744;margin-top:2px;">Daily walks with GPS tracking and photo updates after every session.</div>
                         </div>
                     </div>
                     <button onclick="aiOpen()" style="background:transparent;color:#C05A18;border:1px solid rgba(184,85,16,0.25);border-radius:12px;padding:9px 20px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background 0.15s,border-color 0.15s;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;"
@@ -899,6 +936,59 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                 50% { opacity: 0.6; transform: scale(1.2); }
             }
         </style>
+        <script>
+        (function(){
+            var SVCS = [
+                { id:'dog-walking', label:'Dog Walking',
+                  ai:'Find your best Dog Walking match',
+                  sub:'Daily walks with GPS tracking and photo updates after every session.' },
+                { id:'pet-sitting', label:'Pet Sitting',
+                  ai:'Find a trusted in-home sitter',
+                  sub:'Your pet stays home, relaxed — with a sitter who follows their routine.' },
+                { id:'overnight',   label:'Overnight Care',
+                  ai:'Find trusted overnight care nearby',
+                  sub:'A sitter who stays through the night, so your pet is never alone.' },
+                { id:'drop-in',     label:'Drop-in Visits',
+                  ai:'Find sitters for quick check-ins',
+                  sub:'A quick visit to feed, play, and check on your pet while you\'re away.' }
+            ];
+
+            window.heroSvcSwitch = function(id) {
+                var svc = null;
+                for (var i = 0; i < SVCS.length; i++) { if (SVCS[i].id === id) { svc = SVCS[i]; break; } }
+                if (!svc) return;
+
+                // Update pills
+                document.querySelectorAll('.hero-svc-btn').forEach(function(btn) {
+                    var on = btn.dataset.svc === id;
+                    btn.classList.toggle('active', on);
+                    btn.setAttribute('aria-selected', on ? 'true' : 'false');
+                });
+
+                // Sync search bar service field
+                var sd = document.getElementById('hero-svc-display');
+                if (sd) sd.textContent = svc.label;
+
+                // Fade panel text
+                var t = document.getElementById('hero-ai-title');
+                var s = document.getElementById('hero-ai-sub');
+                if (t && s) {
+                    t.style.opacity = '0'; s.style.opacity = '0';
+                    setTimeout(function() {
+                        t.textContent = svc.ai;
+                        s.textContent = svc.sub;
+                        t.style.opacity = '1'; s.style.opacity = '1';
+                    }, 180);
+                }
+            };
+
+            // Initialise search bar to match default active service
+            document.addEventListener('DOMContentLoaded', function() {
+                var sd = document.getElementById('hero-svc-display');
+                if (sd) sd.textContent = 'Dog Walking';
+            });
+        })();
+        </script>
     </section>
 
     <!-- Scrolling Tags Bar -->
