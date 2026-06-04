@@ -826,16 +826,16 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                     </div>
 
                     <!-- Actions -->
-                    <div style="padding:6px;display:flex;flex-direction:column;gap:5px;justify-content:center;">
-                        <button onclick="heroSearch()" class="btn-white-teal" style="padding:0 26px;font-size:15px;border-radius:16px;display:flex;align-items:center;gap:7px;border:none;cursor:pointer;height:42px;white-space:nowrap;">
+                    <div style="padding:6px;display:flex;flex-direction:row;align-items:stretch;gap:6px;">
+                        <button onclick="aiOpen()" style="height:100%;padding:0 16px;font-size:12px;font-weight:700;font-family:inherit;color:#B85510;background:rgba(184,85,16,0.06);border:1px solid rgba(184,85,16,0.22);border-radius:16px;cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:background 0.15s,border-color 0.15s;"
+                            onmouseover="this.style.background='rgba(184,85,16,0.11)';this.style.borderColor='rgba(184,85,16,0.38)'"
+                            onmouseout="this.style.background='rgba(184,85,16,0.06)';this.style.borderColor='rgba(184,85,16,0.22)'">
+                            <span class="material-symbols-rounded" style="font-size:14px;color:#B85510;" aria-hidden="true">auto_awesome</span>
+                            Try AI Match
+                        </button>
+                        <button onclick="heroSearch()" class="btn-white-teal" style="padding:0 26px;font-size:15px;border-radius:16px;display:flex;align-items:center;gap:7px;border:none;cursor:pointer;white-space:nowrap;">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
                             Search
-                        </button>
-                        <button onclick="aiOpen()" style="height:34px;padding:0 14px;font-size:11px;font-weight:700;font-family:inherit;color:#B85510;background:rgba(184,85,16,0.06);border:1px solid rgba(184,85,16,0.2);border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;transition:background 0.15s,border-color 0.15s;"
-                            onmouseover="this.style.background='rgba(184,85,16,0.11)';this.style.borderColor='rgba(184,85,16,0.35)'"
-                            onmouseout="this.style.background='rgba(184,85,16,0.06)';this.style.borderColor='rgba(184,85,16,0.2)'">
-                            <span class="material-symbols-rounded" style="font-size:13px;color:#B85510;" aria-hidden="true">auto_awesome</span>
-                            Try AI Match
                         </button>
                     </div>
                 </div>
