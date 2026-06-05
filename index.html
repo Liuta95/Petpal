@@ -46,22 +46,24 @@
 
 /* ── HERO PAW PRINTS ── */
 @keyframes pawStamp {
-    0%   { opacity:0; transform:scale(0.4) rotate(var(--pr,0deg)); }
-    20%  { opacity:1; transform:scale(1.05) rotate(var(--pr,0deg)); }
-    35%  { opacity:1; transform:scale(1) rotate(var(--pr,0deg)); }
-    72%  { opacity:1; transform:scale(1) rotate(var(--pr,0deg)); }
-    100% { opacity:0.18; transform:scale(1) rotate(var(--pr,0deg)); }
+    0%   { opacity:0; transform:scale(0.42) rotate(var(--pr,0deg)); }
+    18%  { opacity:1; transform:scale(1.04) rotate(var(--pr,0deg)); }
+    32%  { opacity:1; transform:scale(1) rotate(var(--pr,0deg)); }
+    68%  { opacity:1; transform:scale(1) rotate(var(--pr,0deg)); }
+    100% { opacity:0;  transform:scale(1) rotate(var(--pr,0deg)); }
 }
 .hero-paw {
     position:absolute; pointer-events:none;
     width:34px; height:40px;
-    color:rgba(74,55,40,0.55);
+    color:rgba(74,55,40,0.50);
     opacity:0;
-    animation:pawStamp 2.8s ease-out var(--pd,0s) forwards;
     will-change:opacity,transform;
 }
 @media(prefers-reduced-motion:reduce){ .hero-paw { display:none !important; } }
-@media(max-width:640px){ .hero-paw:nth-child(n+5){ display:none; } }
+@media(max-width:640px){
+    .hero-paw[data-paw-idx="3"],
+    .hero-paw[data-paw-idx="4"] { display:none; }
+}
 
 /* ── HERO SOCIAL PROOF CLUSTER ── */
 .hero-headline-wrap {
@@ -773,20 +775,22 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
         <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10" style="background:radial-gradient(circle, #ffffff 0%, transparent 70%); transform:translate(30%,-30%);"></div>
         <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-10" style="background:radial-gradient(circle, #D4650F 0%, transparent 70%); transform:translate(-30%,30%);"></div>
 
-        <!-- Paw print trail — single diagonal path, lower-left → upper-right (aria-hidden) -->
-        <div aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;">
-            <!--
-              Realistic paw SVG: 4 toe pads fanned above a wider main pad.
-              viewBox 0 0 48 56 — toe pads at top, main pad lower-center.
-              Trail: left foot (L) / right foot (R) alternating, ≈0.32s apart.
-            -->
-            <!-- P1 L: 0.3s --> <svg class="hero-paw" style="--pd:0.30s;--pr:-38deg;left:4.5%; top:83%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9"  cy="20" rx="6"  ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6"  ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6"  ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6"  ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
-            <!-- P2 R: 0.62s --><svg class="hero-paw" style="--pd:0.62s;--pr:-36deg;left:13.5%;top:77%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9"  cy="20" rx="6"  ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6"  ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6"  ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6"  ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
-            <!-- P3 L: 0.94s --><svg class="hero-paw" style="--pd:0.94s;--pr:-39deg;left:22.5%;top:71%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9"  cy="20" rx="6"  ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6"  ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6"  ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6"  ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
-            <!-- P4 R: 1.26s --><svg class="hero-paw" style="--pd:1.26s;--pr:-36deg;left:31.5%;top:65%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9"  cy="20" rx="6"  ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6"  ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6"  ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6"  ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
-            <!-- P5 L: 1.58s --><svg class="hero-paw" style="--pd:1.58s;--pr:-38deg;left:40.5%;top:59%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9"  cy="20" rx="6"  ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6"  ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6"  ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6"  ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
-            <!-- P6 R: 1.90s --><svg class="hero-paw" style="--pd:1.90s;--pr:-35deg;left:49.5%;top:54%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9"  cy="20" rx="6"  ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6"  ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6"  ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6"  ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
-            <!-- P7 L: 2.22s --><svg class="hero-paw" style="--pd:2.22s;--pr:-39deg;left:58.5%;top:49%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9"  cy="20" rx="6"  ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6"  ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6"  ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6"  ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+        <!-- Two-pass paw trail: left first, then right (aria-hidden, JS-driven) -->
+        <div aria-hidden="true" id="hero-paw-trail" style="position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;">
+            <!-- SVG paw: 4 fanned toe pads + wide main pad -->
+            <!-- Left trail — runs inward from left edge, lower-left → upper-right -->
+            <svg class="hero-paw hero-paw-left" data-paw-idx="0" style="--pr:-36deg;left:2%;  top:81%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+            <svg class="hero-paw hero-paw-left" data-paw-idx="1" style="--pr:-38deg;left:9%;  top:75%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+            <svg class="hero-paw hero-paw-left" data-paw-idx="2" style="--pr:-35deg;left:16%; top:69%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+            <svg class="hero-paw hero-paw-left" data-paw-idx="3" style="--pr:-37deg;left:23%; top:63%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+            <svg class="hero-paw hero-paw-left" data-paw-idx="4" style="--pr:-36deg;left:30%; top:57%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+
+            <!-- Right trail — runs inward from right edge, lower-right → upper-left -->
+            <svg class="hero-paw hero-paw-right" data-paw-idx="0" style="--pr:36deg; right:2%;  top:78%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+            <svg class="hero-paw hero-paw-right" data-paw-idx="1" style="--pr:38deg; right:9%;  top:72%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+            <svg class="hero-paw hero-paw-right" data-paw-idx="2" style="--pr:35deg; right:16%; top:66%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+            <svg class="hero-paw hero-paw-right" data-paw-idx="3" style="--pr:37deg; right:23%; top:60%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
+            <svg class="hero-paw hero-paw-right" data-paw-idx="4" style="--pr:36deg; right:30%; top:55%;" viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="9" cy="20" rx="6" ry="7.5" transform="rotate(-15,9,20)"/><ellipse cx="20" cy="12" rx="6" ry="7.5" transform="rotate(-6,20,12)"/><ellipse cx="31" cy="12" rx="6" ry="7.5" transform="rotate(6,31,12)"/><ellipse cx="41" cy="20" rx="6" ry="7.5" transform="rotate(15,41,20)"/><ellipse cx="25" cy="43" rx="16" ry="12"/></svg>
         </div>
 
         <!-- NAV spacer -->
@@ -896,6 +900,57 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                 50% { opacity: 0.6; transform: scale(1.2); }
             }
         </style>
+        <script>
+        (function(){
+            if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+
+            var STAGGER    = 300;   // ms between each paw appearing
+            var ANIM_DUR   = 1.8;   // seconds — one paw's full stamp+linger+fade
+            var PAUSE_MID  = 900;   // ms pause between left and right passes
+            var PAUSE_REP  = 5500;  // ms long pause before repeating the sequence
+
+            function startTrail(cls, cb) {
+                var paws = Array.from(document.querySelectorAll('.' + cls));
+                if (!paws.length) { cb(); return; }
+
+                // Cut any running animation, reset opacity
+                paws.forEach(function(p) {
+                    p.style.animation = 'none';
+                    p.style.opacity   = '0';
+                });
+
+                // Two rAF frames ensure the browser registers the reset before restarting
+                requestAnimationFrame(function(){
+                    requestAnimationFrame(function(){
+                        paws.forEach(function(p, i) {
+                            p.style.animation =
+                                'pawStamp ' + ANIM_DUR + 's ease-out ' +
+                                (i * STAGGER / 1000).toFixed(2) + 's both';
+                        });
+                        // Wait until the last paw has fully completed its animation
+                        var total = (paws.length - 1) * STAGGER + ANIM_DUR * 1000 + 150;
+                        setTimeout(cb, total);
+                    });
+                });
+            }
+
+            function run() {
+                // Pass 1: left trail appears then fades
+                startTrail('hero-paw-left', function(){
+                    // Short pause, then pass 2: right trail
+                    setTimeout(function(){
+                        startTrail('hero-paw-right', function(){
+                            // Long pause before the whole sequence repeats
+                            setTimeout(run, PAUSE_REP);
+                        });
+                    }, PAUSE_MID);
+                });
+            }
+
+            // Brief initial delay so the page settles before the first pass
+            setTimeout(run, 1400);
+        })();
+        </script>
     </section>
 
     <!-- Scrolling Tags Bar -->
