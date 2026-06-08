@@ -810,21 +810,23 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <div class="text-center mb-6">
                 <div class="hero-headline-wrap">
 
-                    <!-- Social proof cluster — desktop: absolute right; mobile: inline above -->
-                    <div class="hero-soc-proof" aria-label="Trusted by 50,000+ pet owners">
-                        <div class="hero-soc-avatars">
-                            <img src="https://i.pravatar.cc/80?img=47" alt="Verified sitter" style="z-index:4;position:relative;">
-                            <img src="https://i.pravatar.cc/80?img=32" alt="Verified sitter" style="z-index:3;position:relative;">
-                            <img src="https://i.pravatar.cc/80?img=25" alt="Verified sitter" style="z-index:2;position:relative;">
-                            <img src="https://i.pravatar.cc/80?img=44" alt="Verified sitter" style="z-index:1;position:relative;">
-                            <span class="hero-soc-count" style="z-index:0;position:relative;">50k+</span>
-                        </div>
-                        <span class="hero-soc-badge">Sarah ⭐ 5.0</span>
-                    </div>
-
-                    <!-- 2-line headline -->
-                    <h1 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif); text-align:center; font-size:clamp(2.5rem,5.2vw,4.5rem); font-weight:600; color:#1A1209; line-height:1.1; letter-spacing:-0.01em; margin:0;">
-                        Find a trusted pet sitter<br><em style="font-style:italic; color:#D4650F;">near you</em>
+                    <!-- Full headline: line 1 plain, line 2 = "near you" + social proof side by side -->
+                    <h1 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif); font-size:clamp(2.5rem,5.2vw,4.5rem); font-weight:600; color:#1A1209; line-height:1.1; letter-spacing:-0.01em; margin:0; text-align:center;">
+                        <span style="display:block;">Find a trusted pet sitter</span>
+                        <span style="display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:6px;">
+                            <em style="font-style:italic; color:#D4650F;">near you</em>
+                            <!-- Social proof cluster -->
+                            <span style="display:flex; flex-direction:column; align-items:flex-start; gap:7px; pointer-events:auto;" aria-label="Trusted by 50,000+ pet owners">
+                                <span class="hero-soc-avatars">
+                                    <img src="https://i.pravatar.cc/80?img=47" alt="Verified sitter" style="z-index:4;position:relative;">
+                                    <img src="https://i.pravatar.cc/80?img=32" alt="Verified sitter" style="z-index:3;position:relative;">
+                                    <img src="https://i.pravatar.cc/80?img=25" alt="Verified sitter" style="z-index:2;position:relative;">
+                                    <img src="https://i.pravatar.cc/80?img=44" alt="Verified sitter" style="z-index:1;position:relative;">
+                                    <span class="hero-soc-count" style="z-index:0;position:relative;">50k+</span>
+                                </span>
+                                <span class="hero-soc-badge">Sarah ⭐ 5.0</span>
+                            </span>
+                        </span>
                     </h1>
                 </div>
 
