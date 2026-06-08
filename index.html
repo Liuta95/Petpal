@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetPals - Trust Local Pet Sitters Near You</title>
+    <title>PetPals — Find a trusted pet sitter near you</title>
+    <link rel="stylesheet" href="colors_and_type.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
     <style>.material-symbols-rounded { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-size: 22px; line-height: 1; }
@@ -565,8 +566,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
   transition: top 0.2s;
 }
 .skip-link:focus { top:0; }
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-        * { font-family: 'Inter', sans-serif; }
+        * { font-family: var(--font-body, "Instrument Sans", "Inter", system-ui, sans-serif); }
         
         body {
             margin: 0;
@@ -750,10 +750,10 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                 </div>
                 
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary-500 font-medium transition-colors">Features</a>
-                    <a href="#how-it-works" class="text-gray-600 hover:text-primary-500 font-medium transition-colors">How It Works</a>
-                    <a href="#countries" class="text-gray-600 hover:text-primary-500 font-medium transition-colors">Countries</a>
-                    <a href="#testimonials" class="text-gray-600 hover:text-primary-500 font-medium transition-colors">Reviews</a>
+                    <a href="#services" style="font-size:14px;font-weight:600;color:#6B5744;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#1A1209'" onmouseout="this.style.color='#6B5744'">Services</a>
+                    <a href="#how-it-works" style="font-size:14px;font-weight:600;color:#6B5744;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#1A1209'" onmouseout="this.style.color='#6B5744'">How it works</a>
+                    <a href="#countries" style="font-size:14px;font-weight:600;color:#6B5744;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#1A1209'" onmouseout="this.style.color='#6B5744'">Cities</a>
+                    <a href="#testimonials" style="font-size:14px;font-weight:600;color:#6B5744;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#1A1209'" onmouseout="this.style.color='#6B5744'">Reviews</a>
                 </div>
                 
                 <div class="flex items-center" style="gap:24px;">
@@ -823,14 +823,13 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                     </div>
 
                     <!-- 2-line headline -->
-                    <h1 style="text-align:center; letter-spacing:-0.025em; line-height:1.05;">
-                        <span style="display:block; font-size:clamp(1.85rem,3.7vw,3.6rem); font-weight:900; color:#4A3728;">Find Trusted</span>
-                        <span style="display:block; font-size:clamp(2.4rem,5.1vw,4.9rem); font-weight:900; color:#1A1209; margin-top:0.04em;">Pet Sitters Near You</span>
+                    <h1 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif); text-align:center; font-size:clamp(2.5rem,5.2vw,4.5rem); font-weight:600; color:#1A1209; line-height:1.06; letter-spacing:-0.01em; margin:0;">
+                        Find a trusted pet sitter <em style="font-style:italic; color:#D4650F; white-space:nowrap;">near you</em>
                     </h1>
                 </div>
 
-                <p style="font-size:1.1rem; color:#4A3728; max-width:460px; margin:10px auto 0; line-height:1.65;">
-                    Connect with verified, loving sitters in your neighbourhood. Your pet stays home, happy and calm.
+                <p style="font-size:1.1rem; color:#4A3728; max-width:520px; margin:18px auto 0; line-height:1.65;">
+                    Verified sitters in your neighbourhood, ready to care for your pet exactly the way you want.
                 </p>
             </div>
 
@@ -989,7 +988,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <!-- Header -->
             <div style="max-width:640px;margin-bottom:3rem;">
                 <span class="section-tag">Why pet owners trust us</span>
-                <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#1A1209;line-height:1.08;letter-spacing:-0.025em;margin:16px 0 16px;">Built on trust.<br>Grounded in Kraków.</h2>
+                <h2 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:clamp(2rem,4vw,3rem);font-weight:600;color:#1A1209;line-height:1.08;letter-spacing:-0.01em;margin:16px 0 16px;">Built on trust.<br>Grounded in Kraków.</h2>
                 <p style="font-size:1.05rem;color:#5C4A3A;line-height:1.75;margin:0;">Every sitter is ID-verified, reviewed by real pet owners, and available near you. No guesswork — just clear profiles and honest feedback from your neighbourhood.</p>
             </div>
 
@@ -1026,22 +1025,22 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <div style="display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;border-top:1px solid rgba(26,18,9,0.07);padding-top:2rem;">
 
                 <div style="text-align:center;padding:0 2.5rem;">
-                    <div style="font-size:1.75rem;font-weight:900;color:#1A1209;letter-spacing:-0.02em;">2,400+</div>
+                    <div style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:2rem;font-weight:600;color:#1A1209;letter-spacing:-0.01em;">2,400+</div>
                     <div style="font-size:0.8125rem;font-weight:600;color:#6B5744;margin-top:3px;">Verified sitters</div>
                 </div>
                 <div style="width:1px;height:40px;background:rgba(26,18,9,0.08);flex-shrink:0;"></div>
                 <div style="text-align:center;padding:0 2.5rem;">
-                    <div style="font-size:1.75rem;font-weight:900;color:#1A1209;letter-spacing:-0.02em;">4.9★</div>
+                    <div style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:2rem;font-weight:600;color:#1A1209;letter-spacing:-0.01em;">4.9★</div>
                     <div style="font-size:0.8125rem;font-weight:600;color:#6B5744;margin-top:3px;">Average rating</div>
                 </div>
                 <div style="width:1px;height:40px;background:rgba(26,18,9,0.08);flex-shrink:0;"></div>
                 <div style="text-align:center;padding:0 2.5rem;">
-                    <div style="font-size:1.75rem;font-weight:900;color:#1A1209;letter-spacing:-0.02em;">12 min</div>
+                    <div style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:2rem;font-weight:600;color:#1A1209;letter-spacing:-0.01em;">12 min</div>
                     <div style="font-size:0.8125rem;font-weight:600;color:#6B5744;margin-top:3px;">Avg. response time</div>
                 </div>
                 <div style="width:1px;height:40px;background:rgba(26,18,9,0.08);flex-shrink:0;"></div>
                 <div style="text-align:center;padding:0 2.5rem;">
-                    <div style="font-size:1.75rem;font-weight:900;color:#1A1209;letter-spacing:-0.02em;">100%</div>
+                    <div style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:2rem;font-weight:600;color:#1A1209;letter-spacing:-0.01em;">100%</div>
                     <div style="font-size:0.8125rem;font-weight:600;color:#6B5744;margin-top:3px;">ID-checked profiles</div>
                 </div>
 
@@ -1058,7 +1057,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <div style="margin-bottom:3rem;">
                 <span class="section-tag">Why PetPals</span>
                 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;">
-                    <h2 style="font-size:clamp(2rem,4vw,3.25rem);font-weight:900;color:#1A1209;line-height:1.05;letter-spacing:-0.02em;margin:0;">Why PetPals?</h2>
+                    <h2 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:clamp(2rem,4vw,3.25rem);font-weight:600;color:#1A1209;line-height:1.05;letter-spacing:-0.01em;margin:0;">Why PetPals?</h2>
                     <p style="font-size:1.05rem;color:#5C4A3A;max-width:420px;line-height:1.7;margin:0;">Everything you need to find, book, and care for your pet — without the guesswork.</p>
                 </div>
             </div>
@@ -1122,8 +1121,8 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <!-- Header -->
             <div class="mb-12">
                 <span class="section-tag">What we do</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mt-1 mb-3">Services We Offer</h2>
-                <p class="text-lg text-gray-500 max-w-xl">Complete pet care tailored to your pet's needs — from daily walks to in-home sitting.</p>
+                <h2 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:600;color:#1A1209;line-height:1.1;letter-spacing:-0.01em;margin:10px 0 10px;">Complete care, your way</h2>
+                <p style="font-size:1.05rem;color:#4A3728;max-width:520px;line-height:1.65;margin:0;">From daily walks to overnight stays — book exactly the care your pet needs.</p>
             </div>
 
             <!-- Split Layout -->
@@ -1534,7 +1533,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <!-- Heading -->
             <div style="text-align:center; margin-bottom:64px;">
                 <span class="section-tag">Simple process</span>
-                <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#1A1209;margin:12px 0 16px;letter-spacing:-0.02em;">How It Works</h2>
+                <h2 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:clamp(2rem,4vw,3rem);font-weight:600;color:#1A1209;margin:12px 0 16px;letter-spacing:-0.01em;">How it works</h2>
                 <p style="font-size:16px;color:#4A3728;max-width:420px;margin:0 auto;line-height:1.65;">Find, book and enjoy trusted pet care in just a few simple steps.</p>
             </div>
 
@@ -1695,30 +1694,30 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <!-- Header -->
             <div class="text-center mb-12">
                 <span class="section-tag">Global reach</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Available Worldwide</h2>
-                <p class="text-lg text-gray-500 max-w-2xl mx-auto">PetPals is trusted by pet owners across Europe. Find a verified sitter in your city.</p>
+                <h2 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:600;color:#1A1209;line-height:1.1;letter-spacing:-0.01em;margin-bottom:12px;">Find sitters in your city</h2>
+                <p style="font-size:1.05rem;color:#4A3728;max-width:520px;margin:0 auto;line-height:1.65;">PetPals is trusted by pet owners across Europe. Verified local sitters in your neighbourhood.</p>
             </div>
 
             <!-- Stats row -->
-            <div class="flex flex-wrap justify-center gap-8 mb-12">
-                <div class="text-center">
-                    <div class="text-4xl font-black" style="color:#8B6F5E;">25+</div>
-                    <div class="text-sm text-gray-500 font-medium mt-1">Countries</div>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin-bottom:3rem;">
+                <div style="text-align:center;padding:0 2.5rem;">
+                    <div style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:2.25rem;font-weight:600;color:#1A1209;letter-spacing:-0.01em;">25+</div>
+                    <div style="font-size:0.8125rem;font-weight:600;color:#6B5744;margin-top:3px;">Countries</div>
                 </div>
-                <div class="w-px bg-gray-200 hidden sm:block"></div>
-                <div class="text-center">
-                    <div class="text-4xl font-black" style="color:#8B6F5E;">80+</div>
-                    <div class="text-sm text-gray-500 font-medium mt-1">Cities</div>
+                <div style="width:1px;height:44px;background:rgba(26,18,9,0.08);align-self:center;flex-shrink:0;"></div>
+                <div style="text-align:center;padding:0 2.5rem;">
+                    <div style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:2.25rem;font-weight:600;color:#1A1209;letter-spacing:-0.01em;">80+</div>
+                    <div style="font-size:0.8125rem;font-weight:600;color:#6B5744;margin-top:3px;">Cities</div>
                 </div>
-                <div class="w-px bg-gray-200 hidden sm:block"></div>
-                <div class="text-center">
-                    <div class="text-4xl font-black" style="color:#8B6F5E;">50k+</div>
-                    <div class="text-sm text-gray-500 font-medium mt-1">Verified Sitters</div>
+                <div style="width:1px;height:44px;background:rgba(26,18,9,0.08);align-self:center;flex-shrink:0;"></div>
+                <div style="text-align:center;padding:0 2.5rem;">
+                    <div style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:2.25rem;font-weight:600;color:#1A1209;letter-spacing:-0.01em;">50k+</div>
+                    <div style="font-size:0.8125rem;font-weight:600;color:#6B5744;margin-top:3px;">Verified sitters</div>
                 </div>
-                <div class="w-px bg-gray-200 hidden sm:block"></div>
-                <div class="text-center">
-                    <div class="text-4xl font-black" style="color:#B85510;">1M+</div>
-                    <div class="text-sm text-gray-500 font-medium mt-1">Happy Pets</div>
+                <div style="width:1px;height:44px;background:rgba(26,18,9,0.08);align-self:center;flex-shrink:0;"></div>
+                <div style="text-align:center;padding:0 2.5rem;">
+                    <div style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:2.25rem;font-weight:600;color:#1A1209;letter-spacing:-0.01em;">1M+</div>
+                    <div style="font-size:0.8125rem;font-weight:600;color:#6B5744;margin-top:3px;">Happy pets</div>
                 </div>
             </div>
 
@@ -1865,69 +1864,42 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="section-tag">Reviews</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">What Pet Owners Say</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Real stories from happy pet owners who trust PetCare.
-                </p>
+                <h2 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:600;color:#1A1209;line-height:1.1;letter-spacing:-0.01em;margin-bottom:8px;">What pet owners say</h2>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gradient-soft rounded-2xl p-8">
-                    <div class="flex gap-1 mb-4">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                    </div>
-                    <p class="text-gray-700 mb-6 leading-relaxed">
-                        "Amazing experience! Sarah took such great care of Max. She sent photos every day and followed all his routines perfectly. Highly recommend!"
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <img src="https://i.pravatar.cc/150?img=3" class="w-12 h-12 rounded-full">
+                <div style="background:#fff;border:1px solid rgba(26,18,9,0.08);border-radius:24px;box-shadow:0 8px 24px rgba(26,18,9,0.08);padding:28px;">
+                    <div style="color:#D4650F;letter-spacing:2px;font-size:15px;margin-bottom:14px;">★★★★★</div>
+                    <p style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-weight:500;font-style:italic;font-size:1.2rem;line-height:1.5;color:#1A1209;margin:0 0 20px;">She sent photos every day and followed all of Max's routines perfectly. Pure peace of mind while we were away.</p>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <img src="https://i.pravatar.cc/100?img=3" alt="Jennifer M." style="width:46px;height:46px;border-radius:50%;object-fit:cover;">
                         <div>
-                            <div class="font-bold text-gray-900">Jennifer M.</div>
-                            <div class="text-sm text-gray-600">Dog Owner, San Francisco</div>
+                            <div style="font-weight:700;font-size:15px;color:#1A1209;">Jennifer M.</div>
+                            <div style="font-size:13px;color:#6B5744;">Dog Owner · Kraków</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-gradient-soft rounded-2xl p-8">
-                    <div class="flex gap-1 mb-4">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                    </div>
-                    <p class="text-gray-700 mb-6 leading-relaxed">
-                        "We've used PetCare for 6 months now and couldn't be happier. The booking process is so easy and all the sitters have been wonderful."
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <img src="https://i.pravatar.cc/150?img=7" class="w-12 h-12 rounded-full">
+                <div style="background:#fff;border:1px solid rgba(26,18,9,0.08);border-radius:24px;box-shadow:0 8px 24px rgba(26,18,9,0.08);padding:28px;">
+                    <div style="color:#D4650F;letter-spacing:2px;font-size:15px;margin-bottom:14px;">★★★★★</div>
+                    <p style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-weight:500;font-style:italic;font-size:1.2rem;line-height:1.5;color:#1A1209;margin:0 0 20px;">The booking took two minutes and our sitter felt like family by day one. We've used PetPals for six months now.</p>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <img src="https://i.pravatar.cc/100?img=7" alt="Robert K." style="width:46px;height:46px;border-radius:50%;object-fit:cover;">
                         <div>
-                            <div class="font-bold text-gray-900">Robert K.</div>
-                            <div class="text-sm text-gray-600">Cat Owner, London</div>
+                            <div style="font-weight:700;font-size:15px;color:#1A1209;">Robert K.</div>
+                            <div style="font-size:13px;color:#6B5744;">Cat Owner · Berlin</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-gradient-soft rounded-2xl p-8">
-                    <div class="flex gap-1 mb-4">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3728"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z"/></svg>
-                    </div>
-                    <p class="text-gray-700 mb-6 leading-relaxed">
-                        "Peace of mind while traveling! Mike was professional, caring, and our dog absolutely loved him. Will definitely book again."
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <img src="https://i.pravatar.cc/150?img=5" class="w-12 h-12 rounded-full">
+                <div style="background:#fff;border:1px solid rgba(26,18,9,0.08);border-radius:24px;box-shadow:0 8px 24px rgba(26,18,9,0.08);padding:28px;">
+                    <div style="color:#D4650F;letter-spacing:2px;font-size:15px;margin-bottom:14px;">★★★★★</div>
+                    <p style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-weight:500;font-style:italic;font-size:1.2rem;line-height:1.5;color:#1A1209;margin:0 0 20px;">Knowing every sitter is verified made all the difference. Honest reviews, no guesswork — exactly what we needed.</p>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <img src="https://i.pravatar.cc/100?img=13" alt="Marta W." style="width:46px;height:46px;border-radius:50%;object-fit:cover;">
                         <div>
-                            <div class="font-bold text-gray-900">Lisa T.</div>
-                            <div class="text-sm text-gray-600">Dog Owner, Toronto</div>
+                            <div style="font-weight:700;font-size:15px;color:#1A1209;">Marta W.</div>
+                            <div style="font-size:13px;color:#6B5744;">Dog Owner · Warsaw</div>
                         </div>
                     </div>
                 </div>
@@ -1936,24 +1908,22 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 text-white" style="background:#2A2018;">
+    <section class="py-20 text-white" style="background:linear-gradient(160deg, #007A7A 0%, #1A1209 100%);">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Find Your Perfect Pet Sitter?</h2>
-            <p class="text-xl text-primary-50 mb-8">
-                Join thousands of happy pet owners who trust PetCare for their furry friends.
+            <h2 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:clamp(2rem,4.5vw,3.25rem);font-weight:600;color:#fff;line-height:1.06;letter-spacing:-0.01em;margin:0 0 16px;">Your pet deserves the very best</h2>
+            <p style="font-size:1.1rem;color:rgba(247,243,238,0.85);line-height:1.65;margin:0 0 32px;">
+                Join thousands of pet owners who found their perfect sitter on PetPals.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="petpals-flow.html" class="btn-white-teal" style="padding:16px 32px; font-size:17px;">Get Started Free</a>
-                <button class="px-8 py-4 bg-primary-700 text-white rounded-xl font-bold text-lg border-2 border-white/30 hover:bg-primary-800 transition-all">
-                    Learn More
-                </button>
+            <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+                <a href="petpals-flow.html" style="display:inline-flex;align-items:center;gap:8px;padding:15px 32px;background:#fff;color:#007A7A;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.18)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">Get started free</a>
+                <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:15px 32px;background:rgba(255,255,255,0.12);color:#fff;border:2px solid rgba(255,255,255,0.4);border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.22)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">Become a sitter</a>
             </div>
         </div>
     </section>
 
     </main>
     <!-- Footer -->
-    <footer class="bg-primary-900 text-white py-12">
+    <footer class="text-white py-12" style="background:#2E1E0E;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
@@ -1972,49 +1942,45 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                     <text x="95" y="33" font-family="'Inter', Arial, sans-serif" font-size="28" font-weight="800" fill="white">Pals</text>
                 </svg>
                     </div>
-                    <p class="text-primary-200">
-                        Trusted pet care services connecting loving sitters with pet owners worldwide.
+                    <p style="font-size:14px;line-height:1.7;color:rgba(247,243,238,0.6);margin:0;">
+                        Verified, loving pet care in your neighbourhood — across Europe.
                     </p>
                 </div>
                 
                 <div>
-                    <h4 class="font-bold text-lg mb-4">For Pet Owners</h4>
-                    <ul class="space-y-2 text-primary-200">
-                        <li><a href="petpals-flow.html" class="hover:text-white transition-colors">Find a Sitter</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">How It Works</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Safety</a></li>
-                    </ul>
+                    <div style="font-weight:700;font-size:14px;color:#fff;margin-bottom:14px;">For pet owners</div>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                        <a href="petpals-flow.html" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Find a sitter</a>
+                        <a href="#how-it-works" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">How it works</a>
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Pricing</a>
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Safety</a>
+                    </div>
                 </div>
-                
+
                 <div>
-                    <h4 class="font-bold text-lg mb-4">For Pet Sitters</h4>
-                    <ul class="space-y-2 text-primary-200">
-                        <li><a href="#" class="hover:text-white transition-colors">Become a Sitter</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Sitter Resources</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">FAQs</a></li>
-                    </ul>
+                    <div style="font-weight:700;font-size:14px;color:#fff;margin-bottom:14px;">For sitters</div>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Become a sitter</a>
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Sitter resources</a>
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Community</a>
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Insurance</a>
+                    </div>
                 </div>
-                
+
                 <div>
-                    <h4 class="font-bold text-lg mb-4">Company</h4>
-                    <ul class="space-y-2 text-primary-200">
-                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
-                    </ul>
+                    <div style="font-weight:700;font-size:14px;color:#fff;margin-bottom:14px;">Company</div>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">About</a>
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Careers</a>
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Press</a>
+                        <a href="#" style="font-size:14px;color:rgba(247,243,238,0.6);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(247,243,238,0.6)'">Contact</a>
+                    </div>
                 </div>
             </div>
-            
-            <div class="border-t border-primary-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-primary-200 text-sm">© 2024 PetPals. All rights reserved.</p>
-                <div class="flex gap-6 text-sm text-primary-200">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
-                </div>
+
+            <div style="border-top:1px solid rgba(255,255,255,0.12);margin-top:44px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+                <span style="font-size:13px;color:rgba(247,243,238,0.5);">© 2026 PetPals. All rights reserved.</span>
+                <span style="font-size:13px;color:rgba(247,243,238,0.5);">Privacy · Terms · Cookies</span>
             </div>
         </div>
     </footer>

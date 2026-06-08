@@ -1,0 +1,228 @@
+/* ============================================================
+   PetPals — Colors & Type Foundations
+   Warm, human, local, trustworthy, slightly elegant.
+   A high-end European pet-care brand.
+   ============================================================ */
+
+/* ── Fonts ──
+   Display: Cormorant Garamond (elegant serif) — hero + key headings.
+            Self-hosted variable fonts (uploaded), see /fonts.
+   UI/Body: Instrument Sans (clean sans) — everything else.
+            Self-hosted variable fonts (uploaded), see /fonts.
+            Inter self-hosted as a graceful fallback only.
+*/
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-VariableFont_opsz_wght.ttf") format("truetype");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Italic-VariableFont_opsz_wght.ttf") format("truetype");
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("fonts/InstrumentSans-VariableFont_wdth_wght.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("fonts/InstrumentSans-Italic-VariableFont_wdth_wght.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* ── Surfaces / backgrounds ── */
+  --color-bg: #F7F3EE;            /* warm page background */
+  --color-surface: #FFFFFF;       /* cards, inputs */
+  --color-surface-alt: #EDE5DA;   /* soft section background */
+  --color-surface-sand: #FAFAF8;  /* faint card fill used in trust grid */
+  --color-espresso: #2E1E0E;      /* dark brown — icon chips, dark sections */
+
+  /* ── Text ── */
+  --color-text: #1A1209;          /* primary text (near-black espresso) */
+  --color-text-body: #4A3728;     /* body copy */
+  --color-text-muted: #6B5744;    /* secondary / metadata */
+  --color-text-faint: #B5A090;    /* labels on dark, placeholders */
+
+  /* ── Borders ── */
+  --color-border: #B5A090;        /* default border */
+  --color-border-soft: rgba(26,18,9,0.08); /* hairline dividers on light */
+  --color-border-strong: #8A7060; /* emphasis border */
+
+  /* ── Brand: Teal = trust / verified / local ── */
+  --color-teal: #007A7A;
+  --color-teal-soft: #E0F2F2;
+
+  /* ── Brand: Coral = warmth / CTA highlight ── */
+  --color-coral: #B85510;
+  --color-coral-strong: #D4650F;
+  --color-coral-soft: #FDE8D8;
+
+  /* ── Semantic: success ── */
+  --color-success: #2E7D32;
+  --color-success-soft: #E8F5E8;
+
+  /* ── Radii ── */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* ── Shadows (warm-tinted, soft) ── */
+  --shadow-soft: 0 8px 24px rgba(26, 18, 9, 0.08);
+  --shadow-card: 0 12px 32px rgba(26, 18, 9, 0.10);
+  --shadow-floating: 0 24px 60px rgba(26, 18, 9, 0.16);
+
+  /* ── Spacing scale ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 80px;
+  --space-10: 96px;
+
+  /* ── Font families ── */
+  --font-body: "Instrument Sans", "Inter", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+
+  /* ── Type scale (raw tokens) ── */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-md: 18px;
+  --text-lg: 24px;
+  --text-xl: 32px;
+  --text-2xl: 40px;
+  --text-3xl: 56px;
+  --text-hero: 72px;
+
+  /* ── Warm gradient washes (backgrounds only — never on text/CTA) ── */
+  --wash-sand: linear-gradient(160deg, #F5EDE0 0%, #D4C5B0 50%, #F0E8DC 100%);
+  --wash-teal-dark: linear-gradient(160deg, #007A7A 0%, #1A1209 100%);
+}
+
+/* ============================================================
+   SEMANTIC TYPOGRAPHY
+   Display (serif) reserved for hero + section headers + pull-quotes.
+   Body / UI is Inter. Headlines use sentence case, warm and plain.
+   ============================================================ */
+
+.ds-hero {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(48px, 6vw, var(--text-hero));
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.ds-h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 4.5vw, var(--text-3xl));
+  line-height: 1.06;
+  letter-spacing: -0.005em;
+  color: var(--color-text);
+}
+
+.ds-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(32px, 3.5vw, var(--text-2xl));
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.ds-h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.ds-h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-md);
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.ds-lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(18px, 2vw, var(--text-lg));
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+.ds-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--color-text-body);
+}
+
+.ds-body-sm {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* Eyebrow / section tag — uppercase, tracked, teal */
+.ds-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+}
+
+/* Label / chip / metadata */
+.ds-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Optional: serif italic accent inside a headline (warmth) */
+.ds-accent-italic {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-coral);
+}
