@@ -91,18 +91,20 @@ body { font-family: 'Inter', sans-serif; background: #F7F3EE; color: #1A1209; -w
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label { font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
 .field input, .field select {
-  background: var(--white); border: 2px solid transparent;
-  border-radius: var(--r-sm); padding: 13px 16px;
-  font-size: 15px; color: var(--dark); font-family: inherit;
+  background: #fff; border: 1.5px solid #8A7060; /* 3.8:1 ✓ — Figma default */
+  border-radius: 12px; padding: 13px 16px;
+  font-size: 15px; color: #1A1209; font-family: inherit;
   outline: none; width: 100%;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: var(--shadow-sm);
 }
 .field input:focus, .field select:focus {
-  border-color: #C05A18;
-  box-shadow: 0 0 0 4px rgba(192,90,24,0.12);
+  border: 2px solid #005F5F; /* teal focus — Figma ✓ */
+  box-shadow: 0 0 0 3px rgba(0,95,95,0.14);
 }
-.field input::placeholder { color: var(--muted); }
+.field input:disabled, .field select:disabled {
+  background: rgba(255,255,255,0.5); cursor: not-allowed;
+}
+.field input::placeholder { color: #6E5A4A; } /* 4.9:1 ✓ */
 
 /* ── SEARCH BAR CARD ── */
 .search-bar {
@@ -342,8 +344,8 @@ body { font-family: 'Inter', sans-serif; background: #F7F3EE; color: #1A1209; -w
 .rc-radio { width:18px; height:18px; border-radius:50%; border:2px solid #8A7060; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all .15s; } /* 3.8:1 ✓ */
 .rc-end-opt.on .rc-radio { border-color:#A3440F; }
 .rc-end-opt.on .rc-radio::after { content:''; width:8px; height:8px; border-radius:50%; background:#A3440F; }
-.rc-input { border:2px solid #8A7060; border-radius:8px; padding:5px 10px; font-family:inherit; font-size:13px; color:#1A1209; background:#fff; outline:none; width:90px; margin-left:6px; transition:border-color .15s; } /* 3.8:1 ✓ */
-.rc-input:focus { border-color:#A3440F; box-shadow:0 0 0 3px rgba(163,68,15,0.12); }
+.rc-input { border:1.5px solid #8A7060; border-radius:12px; padding:5px 10px; font-family:inherit; font-size:13px; color:#1A1209; background:#fff; outline:none; width:90px; margin-left:6px; transition:border-color .15s; }
+.rc-input:focus { border:2px solid #005F5F; box-shadow:0 0 0 3px rgba(0,95,95,0.14); }
 .rc-summary { font-size:13px; font-weight:600; color:#007A7A; background:#E0F2F2; border-radius:10px; padding:10px 14px; line-height:1.5; }
 
 /* Mode warn */
@@ -538,11 +540,11 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 .ai-fc.on { background:#1A1209; color:#F7F3EE; border-color:#1A1209; }
 .ai-fc:focus-visible { outline:2px solid #C05A18; outline-offset:2px; }
 .ai-textarea {
-  width:100%; background:#fff; border:2px solid #8A7060; border-radius:14px; /* 3.8:1 ✓ */
+  width:100%; background:#fff; border:1.5px solid #8A7060; border-radius:12px;
   padding:14px 16px; font-family:inherit; font-size:14px; color:#1A1209;
-  resize:none; outline:none; line-height:1.6; transition:border-color .2s;
+  resize:none; outline:none; line-height:1.6; transition:border-color .2s, box-shadow .2s;
 }
-.ai-textarea:focus { border-color:#A3440F; box-shadow:0 0 0 3px rgba(163,68,15,.12); }
+.ai-textarea:focus { border:2px solid #005F5F; box-shadow:0 0 0 3px rgba(0,95,95,0.14); }
 .ai-textarea::placeholder { color:#6E5A4A; } /* 4.9:1 ✓ */
 .ai-modal-footer {
   padding:0 28px 28px;
@@ -1470,7 +1472,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
         <div class="card" style="padding:24px 28px;">
           <h2 style="font-size:16px;font-weight:800;color:var(--dark);margin-bottom:6px;">Message to Michał</h2>
           <p style="font-size:13px;color:var(--light);margin-bottom:16px;">Introduce yourself and Max. Sitters love knowing a little about who they'll be caring for.</p>
-          <textarea style="width:100%;background:var(--bg);border:2px solid transparent;border-radius:var(--r-md);padding:16px;font-size:15px;color:var(--dark);font-family:inherit;resize:vertical;min-height:120px;outline:none;transition:border-color 0.2s;" placeholder="Hi Michał, I'd love to book you for Max…" onfocus="this.style.borderColor='#8A7060'" onblur="this.style.borderColor='transparent'">Hi Michał! I'm looking for a reliable sitter for my golden retriever Max while I'm travelling. He's a friendly 3-year-old who loves long walks and belly rubs. Looking forward to hearing from you!</textarea>
+          <textarea style="width:100%;background:#fff;border:1.5px solid #8A7060;border-radius:12px;padding:16px;font-size:15px;color:#1A1209;font-family:inherit;resize:vertical;min-height:120px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;" placeholder="Hi Michał, I'd love to book you for Max…" onfocus="this.style.border='2px solid #005F5F';this.style.boxShadow='0 0 0 3px rgba(0,95,95,0.14)'" onblur="this.style.border='1.5px solid #8A7060';this.style.boxShadow='none'">Hi Michał! I'm looking for a reliable sitter for my golden retriever Max while I'm travelling. He's a friendly 3-year-old who loves long walks and belly rubs. Looking forward to hearing from you!</textarea>
         </div>
 
       </div><!-- /left -->
@@ -2646,8 +2648,8 @@ window.calClose = window.ucalClose;
 .fd-slider-wrap { margin-top:14px; width:100%; }
 .fd-range { width:100%; accent-color:#A3440F; cursor:pointer; display:block; }
 .fd-price-inputs { display:flex; gap:10px; margin-top:12px; width:100%; }
-.fd-price-input { flex:1; min-width:0; background:#fff; border:2px solid rgba(26,18,9,.5); border-radius:10px; padding:10px 12px; font-size:14px; font-family:inherit; color:#1A1209; outline:none; transition:border-color .15s; width:100%; } /* ~3.5:1 ✓ (was 0.22 = 1.6:1 ✗) */
-.fd-price-input:focus { border-color:#C05A18; }
+.fd-price-input { flex:1; min-width:0; background:#fff; border:1.5px solid #8A7060; border-radius:12px; padding:10px 12px; font-size:14px; font-family:inherit; color:#1A1209; outline:none; transition:border-color .15s, box-shadow .15s; width:100%; }
+.fd-price-input:focus { border:2px solid #005F5F; box-shadow:0 0 0 3px rgba(0,95,95,0.14); }
 .fd-price-label { font-size:12px; color:#6E5A4A; margin-bottom:4px; } /* 4.9:1 ✓ */
 #fd-footer { flex-shrink:0; padding:16px 24px; border-top:1px solid rgba(26,18,9,.09); display:flex; align-items:center; justify-content:space-between; background:#F7F3EE; width:100%; flex-wrap:wrap; gap:10px; }
 #fd-count { font-size:14px; color:#6B5744; font-weight:600; }
