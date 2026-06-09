@@ -159,7 +159,7 @@
   border-radius:8px 8px 0 0; transition:all .2s;
 }
 .ucal-tab .t-title { font-size:13px; font-weight:700; color:#6B5744; transition:color .2s; }
-.ucal-tab .t-sub   { font-size:11px; color:#B5A090; font-weight:500; }
+.ucal-tab .t-sub   { font-size:11px; color:#6E5A4A; font-weight:500; }
 .ucal-tab:hover .t-title { color:#1A1209; }
 .ucal-tab.active { border-bottom-color:#C05A18; }
 .ucal-tab.active .t-title { color:#C05A18; }
@@ -197,7 +197,7 @@
 .ucal-nav:focus-visible { outline:2px solid #C05A18; outline-offset:2px; box-shadow:0 0 0 3px rgba(192,90,24,0.14); }
 
 .ucal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:1px; }
-.ucal-dh { text-align:center; font-size:10px; font-weight:700; color:#B5A090; padding:0 0 7px; text-transform:uppercase; letter-spacing:.05em; }
+.ucal-dh { text-align:center; font-size:10px; font-weight:700; color:#6E5A4A; padding:0 0 7px; text-transform:uppercase; letter-spacing:.05em; }
 .ucal-d {
   position:relative; aspect-ratio:1; display:flex; align-items:center; justify-content:center;
   flex-direction:column; border:none; background:none; cursor:pointer;
@@ -217,7 +217,7 @@
 .ucal-d.urh   { background:rgba(237,229,218,.55); border-radius:0; }
 .ucal-d.urs.urh { border-radius:50% 0 0 50%; }
 .ucal-d.umulti { background:#1A1209!important; color:#F7F3EE!important; border-radius:50%; }
-.ucal-d.urec  { background:#E0F2F2; color:#007A7A; font-weight:700; border-radius:50%; box-shadow:0 0 0 2px #C5E8E8; }
+.ucal-d.urec  { background:#E0F2F2; color:#005F5F; font-weight:700; border-radius:50%; box-shadow:0 0 0 2px #C5E8E8; }
 
 /* Recurring controls */
 .ucal-recur { display:none; flex-direction:column; gap:18px; padding:16px 20px 0; border-top:1px solid rgba(26,18,9,.08); }
@@ -240,7 +240,7 @@
 .rc-end-opt.on .rc-radio::after { content:''; width:8px; height:8px; border-radius:50%; background:#C05A18; }
 .rc-input { border:2px solid #D4C5B0; border-radius:8px; padding:5px 10px; font-family:inherit; font-size:13px; color:#1A1209; background:#fff; outline:none; width:90px; margin-left:6px; transition:border-color .15s; }
 .rc-input:focus { border-color:#C05A18; box-shadow:0 0 0 3px rgba(192,90,24,0.12); }
-.rc-summary { font-size:13px; font-weight:600; color:#007A7A; background:#E0F2F2; border-radius:10px; padding:10px 14px; line-height:1.5; }
+.rc-summary { font-size:13px; font-weight:600; color:#005F5F; background:#E0F2F2; border-radius:10px; padding:10px 14px; line-height:1.5; }
 
 /* Mode warn */
 #ucal-warn { display:none; position:absolute; inset:0; z-index:10; background:rgba(255,255,255,.93); backdrop-filter:blur(4px); border-radius:24px; flex-direction:column; align-items:center; justify-content:center; padding:32px; text-align:center; gap:14px; }
@@ -303,7 +303,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
   font-size:14px; color:#1A1209; background:transparent;
   flex:1; font-weight:500;
 }
-#loc-search::placeholder { color:#B5A090; }
+#loc-search::placeholder { color:#6E5A4A; }
 #loc-search:focus { outline:none; }
 .loc-search-wrap:focus-within { box-shadow:0 0 0 2px rgba(192,90,24,0.25) inset; }
 .loc-list {
@@ -319,13 +319,13 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 .loc-item:hover, .loc-item.focused { background:#FDF0E8; }
 .loc-item.active { background:#F0F0F0; }
 .loc-item-left { display:flex; align-items:center; gap:10px; }
-.loc-item-left .material-symbols-rounded { font-size:16px; color:#B5A090; flex-shrink:0; }
+.loc-item-left .material-symbols-rounded { font-size:16px; color:#6E5A4A; flex-shrink:0; }
 .loc-city { font-size:14px; font-weight:600; color:#1A1209; }
 .loc-country { font-size:12px; color:#6B5744; margin-top:1px; }
-.loc-count { font-size:12px; color:#007A7A; font-weight:600; white-space:nowrap; flex-shrink:0; }
+.loc-count { font-size:12px; color:#005F5F; font-weight:600; white-space:nowrap; flex-shrink:0; }
 .loc-item.focused .loc-city { color:#C05A18; }
-.loc-empty { padding:20px 16px; text-align:center; font-size:13px; color:#B5A090; }
-.loc-section-label { padding:8px 16px 4px; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#B5A090; }
+.loc-empty { padding:20px 16px; text-align:center; font-size:13px; color:#6E5A4A; }
+.loc-section-label { padding:8px 16px 4px; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#6E5A4A; }
 
 /* Pet & Service dropdowns reuse loc-* system */
 #pet-dropdown, #svc-dropdown {
@@ -457,12 +457,12 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
   resize:none; outline:none; line-height:1.6; transition:border-color .2s;
 }
 .ai-textarea:focus { border-color:#C05A18; box-shadow:0 0 0 3px rgba(192,90,24,.12); }
-.ai-textarea::placeholder { color:#B5A090; }
+.ai-textarea::placeholder { color:#6E5A4A; }
 .ai-modal-footer {
   padding:0 28px 28px;
   display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
 }
-.ai-trust { font-size:12px; color:#B5A090; display:flex; align-items:flex-start; gap:6px; line-height:1.5; flex:1; }
+.ai-trust { font-size:12px; color:#6E5A4A; display:flex; align-items:flex-start; gap:6px; line-height:1.5; flex:1; }
 
 /* AI Results */
 .ai-results { padding:0 28px 28px; display:flex; flex-direction:column; gap:14px; }
@@ -482,7 +482,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 }
 .ai-tag.match { background:#FDE8D8; color:#C05A18; }
 .ai-tag.green { background:#E8F5E8; color:#2E7D32; }
-.ai-tag.teal  { background:#E0F2F2; color:#007A7A; }
+.ai-tag.teal  { background:#E0F2F2; color:#005F5F; }
 .ai-spinner {
   display:flex; align-items:center; justify-content:center; gap:8px;
   padding:32px; fon
@@ -492,10 +492,10 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
   --c-bg:#F7F3EE; --c-surface:#FFFFFF; --c-alt:#EDE5DA;
   --c-dark:#1A1209; --c-dark2:#2E1E0E;
   --c-body:#4A3728; --c-secondary:#5C4A3A; --c-muted:#6B5744;
-  --c-teal:#007A7A; --c-teal-bg:#E0F2F2;
+  --c-teal:#005F5F; --c-teal-bg:#E0F2F2;
   --c-coral:#B85510; --c-coral-bg:#FDE8D8;
   --c-green:#2E7D32; --c-green-bg:#E8F5E8;
-  --c-border:#B5A090; --c-border-hi:#8A7060;
+  --c-border:#8A7060; --c-border-hi:#8A7060;
 }
 :focus-visible { outline:2px solid #C05A18 !important; outline-offset:3px; border-radius:4px; box-shadow:0 0 0 4px rgba(192,90,24,0.14) !important; }
 :focus:not(:focus-visible) { outline:none; }
@@ -523,13 +523,13 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
   --c-body:      #4A3728;   /* body text — 7.2:1 ✓ */
   --c-secondary: #5C4A3A;   /* secondary text — 5.1:1 ✓ */
   --c-muted:     #6B5744;   /* placeholder, labels — 4.5:1 ✓ */
-  --c-teal:      #007A7A;   /* teal accent — 4.8:1 on white ✓ */
+  --c-teal:      #005F5F;   /* teal accent — 4.8:1 on white ✓ */
   --c-teal-bg:   #E0F2F2;   /* teal light bg */
   --c-coral:     #B85510;   /* coral accent — 5.0:1 on white ✓ */
   --c-coral-bg:  #FDE8D8;   /* coral light bg */
   --c-green:     #2E7D32;   /* success — 5.1:1 ✓ */
   --c-green-bg:  #E8F5E8;
-  --c-border:    #B5A090;   /* default border — 3.1:1 ✓ non-text */
+  --c-border:    #6E5A4A;   /* default border — 3.1:1 ✓ non-text */
   --c-border-hi: #8A7060;   /* high-emphasis border */
 }
 
@@ -598,7 +598,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
         }
         
         .gradient-hero {
-            background: linear-gradient(135deg, #007A7A 0%, #1A1209 100%);
+            background: linear-gradient(135deg, #005F5F 0%, #1A1209 100%);
         }
         
         .gradient-coral {
@@ -736,7 +736,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                     <!-- Icon only -->
                     <svg width="190" height="48" viewBox="0 0 190 48" xmlns="http://www.w3.org/2000/svg">
                     <g transform="translate(2, 2) scale(0.225)">
-                        <path d="M90 10 C40 10,10 48,10 90 C10 132,40 170,90 180 C102 175,115 168,125 158 L145 138 C155 128,158 112,148 100 L130 80 C118 66,118 46,130 34 L140 24 C125 14,108 10,90 10Z" fill="#007A7A"/>
+                        <path d="M90 10 C40 10,10 48,10 90 C10 132,40 170,90 180 C102 175,115 168,125 158 L145 138 C155 128,158 112,148 100 L130 80 C118 66,118 46,130 34 L140 24 C125 14,108 10,90 10Z" fill="#005F5F"/>
                         <path d="M125 158 C135 148,158 130,168 115 C178 100,178 78,165 65 C155 55,140 52,128 58 C118 64,112 76,118 90 L130 108 C140 122,138 142,125 158Z" fill="#F5823A"/>
                         <path d="M125 158 C115 148,108 130,118 114 L130 96 C140 80,136 62,125 52" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
                         <ellipse cx="108" cy="88" rx="6" ry="5" fill="#1A1209"/>
@@ -744,7 +744,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                         <line x1="135" y1="114" x2="160" y2="109" stroke="#c74a0a" stroke-width="1.5" stroke-linecap="round"/>
                         <line x1="135" y1="122" x2="160" y2="122" stroke="#c74a0a" stroke-width="1.5" stroke-linecap="round"/>
                     </g>
-                    <text x="46" y="33" font-family="'Inter', Arial, sans-serif" font-size="28" font-weight="800" fill="#007A7A">Pet</text>
+                    <text x="46" y="33" font-family="'Inter', Arial, sans-serif" font-size="28" font-weight="800" fill="#005F5F">Pet</text>
                     <text x="95" y="33" font-family="'Inter', Arial, sans-serif" font-size="28" font-weight="800" fill="#1A1209">Pals</text>
                 </svg>
                 </div>
@@ -999,25 +999,25 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <div class="grid md:grid-cols-2 gap-5 mb-14">
 
                 <div style="padding:2rem;border:1px solid rgba(26,18,9,0.08);border-radius:18px;background:#FAFAF8;">
-                    <span class="material-symbols-rounded" style="font-size:28px;color:#007A7A;display:block;margin-bottom:1rem;" aria-hidden="true">verified_user</span>
+                    <span class="material-symbols-rounded" style="font-size:28px;color:#005F5F;display:block;margin-bottom:1rem;" aria-hidden="true">verified_user</span>
                     <h3 style="font-size:1.1rem;font-weight:800;color:#1A1209;margin:0 0 0.5rem;letter-spacing:-0.01em;">ID-verified before the first booking</h3>
                     <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.7;margin:0;">Every sitter completes identity verification before their first booking. You see the real person behind the profile — not just a name and photo.</p>
                 </div>
 
                 <div style="padding:2rem;border:1px solid rgba(26,18,9,0.08);border-radius:18px;background:#FAFAF8;">
-                    <span class="material-symbols-rounded" style="font-size:28px;color:#007A7A;display:block;margin-bottom:1rem;" aria-hidden="true">rate_review</span>
+                    <span class="material-symbols-rounded" style="font-size:28px;color:#005F5F;display:block;margin-bottom:1rem;" aria-hidden="true">rate_review</span>
                     <h3 style="font-size:1.1rem;font-weight:800;color:#1A1209;margin:0 0 0.5rem;letter-spacing:-0.01em;">Reviews from real bookings only</h3>
                     <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.7;margin:0;">Every review is tied to a completed booking. No paid rankings, no anonymous stars — just honest feedback from pet owners who have actually been there.</p>
                 </div>
 
                 <div style="padding:2rem;border:1px solid rgba(26,18,9,0.08);border-radius:18px;background:#FAFAF8;">
-                    <span class="material-symbols-rounded" style="font-size:28px;color:#007A7A;display:block;margin-bottom:1rem;" aria-hidden="true">location_on</span>
+                    <span class="material-symbols-rounded" style="font-size:28px;color:#005F5F;display:block;margin-bottom:1rem;" aria-hidden="true">location_on</span>
                     <h3 style="font-size:1.1rem;font-weight:800;color:#1A1209;margin:0 0 0.5rem;letter-spacing:-0.01em;">Neighbourhood-first matching</h3>
                     <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.7;margin:0;">We connect you with sitters who are nearby, not just available. Pet care works best when it's local — someone who knows your area and can be there quickly.</p>
                 </div>
 
                 <div style="padding:2rem;border:1px solid rgba(26,18,9,0.08);border-radius:18px;background:#FAFAF8;">
-                    <span class="material-symbols-rounded" style="font-size:28px;color:#007A7A;display:block;margin-bottom:1rem;" aria-hidden="true">bolt</span>
+                    <span class="material-symbols-rounded" style="font-size:28px;color:#005F5F;display:block;margin-bottom:1rem;" aria-hidden="true">bolt</span>
                     <h3 style="font-size:1.1rem;font-weight:800;color:#1A1209;margin:0 0 0.5rem;letter-spacing:-0.01em;">Responsive and reliable</h3>
                     <p style="font-size:0.9375rem;color:#5C4A3A;line-height:1.7;margin:0;">Most sitters reply within an hour. You'll know your pet is covered before you leave — and you can message your sitter directly if anything comes up.</p>
                 </div>
@@ -1222,10 +1222,10 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 
                     <!-- Service panel -->
                     <div class="svc-panel active" data-svc="overnight" onclick="selectService('overnight')"
-                         style="background:white;border-radius:16px;border:2px solid #007A7A;padding:22px 24px;cursor:pointer;transition:all 0.25s ease;box-shadow:0 4px 20px rgba(26,18,9,0.07);">
+                         style="background:white;border-radius:16px;border:2px solid #005F5F;padding:22px 24px;cursor:pointer;transition:all 0.25s ease;box-shadow:0 4px 20px rgba(26,18,9,0.07);">
                         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
                             <div style="display:flex;align-items:center;gap:14px;">
-                                <div class="svc-panel-icon" style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#007A7A,#1A1209);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.25s;">
+                                <div class="svc-panel-icon" style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#005F5F,#1A1209);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.25s;">
                                     <span class="material-symbols-rounded">pets</span>
                                 </div>
                                 <div>
@@ -1398,7 +1398,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 
                 // Icon
                 const icon = p.querySelector('.svc-panel-icon');
-                icon.style.background = isActive ? 'linear-gradient(135deg,#007A7A,#1A1209)' : '#f3f4f6';
+                icon.style.background = isActive ? 'linear-gradient(135deg,#005F5F,#1A1209)' : '#f3f4f6';
                 // colour handled by CSS on .svc-panel-icon via span color
 
                 // Chevron
@@ -1911,14 +1911,14 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 text-white" style="background:linear-gradient(160deg, #007A7A 0%, #1A1209 100%);">
+    <section class="py-20 text-white" style="background:linear-gradient(160deg, #005F5F 0%, #1A1209 100%);">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 style="font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-size:clamp(2rem,4.5vw,3.25rem);font-weight:600;color:#fff;line-height:1.06;letter-spacing:-0.01em;margin:0 0 16px;">Your pet deserves the very best</h2>
             <p style="font-size:1.1rem;color:rgba(247,243,238,0.85);line-height:1.65;margin:0 0 32px;">
                 Join thousands of pet owners who found their perfect sitter on PetPals.
             </p>
             <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-                <a href="petpals-flow.html" style="display:inline-flex;align-items:center;gap:8px;padding:15px 32px;background:#fff;color:#007A7A;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.18)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">Get started free</a>
+                <a href="petpals-flow.html" style="display:inline-flex;align-items:center;gap:8px;padding:15px 32px;background:#fff;color:#005F5F;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.18)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">Get started free</a>
                 <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:15px 32px;background:rgba(255,255,255,0.12);color:#fff;border:2px solid rgba(255,255,255,0.4);border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.22)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">Become a sitter</a>
             </div>
         </div>
@@ -1933,7 +1933,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
                     <div class="mb-6">
                         <svg width="190" height="48" viewBox="0 0 190 48" xmlns="http://www.w3.org/2000/svg">
                     <g transform="translate(2, 2) scale(0.225)">
-                        <path d="M90 10 C40 10,10 48,10 90 C10 132,40 170,90 180 C102 175,115 168,125 158 L145 138 C155 128,158 112,148 100 L130 80 C118 66,118 46,130 34 L140 24 C125 14,108 10,90 10Z" fill="#007A7A"/>
+                        <path d="M90 10 C40 10,10 48,10 90 C10 132,40 170,90 180 C102 175,115 168,125 158 L145 138 C155 128,158 112,148 100 L130 80 C118 66,118 46,130 34 L140 24 C125 14,108 10,90 10Z" fill="#005F5F"/>
                         <path d="M125 158 C135 148,158 130,168 115 C178 100,178 78,165 65 C155 55,140 52,128 58 C118 64,112 76,118 90 L130 108 C140 122,138 142,125 158Z" fill="#F5823A"/>
                         <path d="M125 158 C115 148,108 130,118 114 L130 96 C140 80,136 62,125 52" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
                         <ellipse cx="108" cy="88" rx="6" ry="5" fill="#1A1209"/>
@@ -1999,7 +1999,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
   <div id="fd-header">
     <h2>More filters</h2>
     <div style="display:flex;align-items:center;gap:16px;">
-      <button onclick="resetDrawer()" style="background:none;border:none;font-size:14px;font-weight:600;color:#B5A090;cursor:pointer;text-decoration:underline;text-underline-offset:3px;">Clear all</button>
+      <button onclick="resetDrawer()" style="background:none;border:none;font-size:14px;font-weight:600;color:#6E5A4A;cursor:pointer;text-decoration:underline;text-underline-offset:3px;">Clear all</button>
       <button onclick="closeDrawer()" style="background:none;border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;" onmouseenter="this.style.background='#EDE5DA'" onmouseleave="this.style.background='none'">
         <span class="material-symbols-rounded" style="font-size:20px;color:#1A1209;">close</span>
       </button>
@@ -2009,8 +2009,8 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     <div class="fd-section open">
       <div class="fd-section-header" onclick="this.parentElement.classList.toggle('open')"><span class="fd-section-title">Price</span><span class="fd-section-chevron">▾</span></div>
       <div class="fd-section-body">
-        <div style="font-size:13px;color:#B5A090;margin-bottom:4px;">Hourly rate</div>
-        <div class="fd-slider-wrap"><input type="range" class="fd-range" min="10" max="80" value="50" oninput="document.getElementById('fd-price-max').value=this.value;fdUpdateCount()"><div style="display:flex;justify-content:space-between;font-size:12px;color:#B5A090;margin-top:4px;"><span>€10</span><span>€80+</span></div></div>
+        <div style="font-size:13px;color:#6E5A4A;margin-bottom:4px;">Hourly rate</div>
+        <div class="fd-slider-wrap"><input type="range" class="fd-range" min="10" max="80" value="50" oninput="document.getElementById('fd-price-max').value=this.value;fdUpdateCount()"><div style="display:flex;justify-content:space-between;font-size:12px;color:#6E5A4A;margin-top:4px;"><span>€10</span><span>€80+</span></div></div>
         <div class="fd-price-inputs"><div style="flex:1"><div class="fd-price-label">Min</div><input class="fd-price-input" type="number" value="10"></div><div style="flex:1"><div class="fd-price-label">Max</div><input class="fd-price-input" type="number" value="50" id="fd-price-max"></div></div>
         <div class="fd-chips" style="margin-top:16px;"><div class="fd-chip on" onclick="fdChipToggle(this,'price')">Under €20/hr</div><div class="fd-chip" onclick="fdChipToggle(this,'price')">€20–€30/hr</div><div class="fd-chip" onclick="fdChipToggle(this,'price')">€30+/hr</div></div>
       </div>
@@ -2029,9 +2029,9 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     <div class="fd-section">
       <div class="fd-section-header" onclick="this.parentElement.classList.toggle('open')"><span class="fd-section-title">Rating &amp; Reviews</span><span class="fd-section-chevron">▾</span></div>
       <div class="fd-section-body">
-        <div style="font-size:13px;color:#B5A090;margin-bottom:4px;">Minimum rating</div>
+        <div style="font-size:13px;color:#6E5A4A;margin-bottom:4px;">Minimum rating</div>
         <div class="fd-chips"><div class="fd-chip" onclick="fdChipToggle(this,'rating')">4.0+</div><div class="fd-chip" onclick="fdChipToggle(this,'rating')">4.5+</div><div class="fd-chip on" onclick="fdChipToggle(this,'rating')">4.8+</div></div>
-        <div style="font-size:13px;color:#B5A090;margin-top:16px;margin-bottom:4px;">Minimum reviews</div>
+        <div style="font-size:13px;color:#6E5A4A;margin-top:16px;margin-bottom:4px;">Minimum reviews</div>
         <div class="fd-chips"><div class="fd-chip" onclick="fdChipToggle(this,'reviews')">5+ reviews</div><div class="fd-chip" onclick="fdChipToggle(this,'reviews')">20+ reviews</div><div class="fd-chip" onclick="fdChipToggle(this,'reviews')">50+ reviews</div></div>
       </div>
     </div>
@@ -2188,7 +2188,7 @@ function resetDrawer() {
 
     <div class="ai-modal-footer">
       <div class="ai-trust">
-        <span class="material-symbols-rounded" style="font-size:15px;color:#B5A090;flex-shrink:0;margin-top:1px;">info</span>
+        <span class="material-symbols-rounded" style="font-size:15px;color:#6E5A4A;flex-shrink:0;margin-top:1px;">info</span>
         AI suggestions are based on sitter profiles, reviews, availability, and your pet's needs.
       </div>
       <button class="btn btn-primary" onclick="aiMatch()" style="padding:12px 28px;font-size:15px;">
@@ -2552,7 +2552,7 @@ function go(page)     { window.location.href = buildSearchURL(); }
         +"padding:10px 16px;cursor:pointer;transition:background .12s;'>"
         +"<div><div style='font-size:14px;font-weight:600;color:#1A1209;'>"+c.city+"</div>"
         +"<div style='font-size:12px;color:#6B5744;'>"+c.country+"</div></div>"
-        +"<div style='font-size:12px;font-weight:600;color:#007A7A;'>"+c.count+" sitters</div></div>";
+        +"<div style='font-size:12px;font-weight:600;color:#005F5F;'>"+c.count+" sitters</div></div>";
     }).join("");
     var html="<div style='padding:10px 16px 6px;border-bottom:1px solid rgba(26,18,9,.08);'>"
       +"<input id='hls' type='text' placeholder='Search city...' style='width:100%;border:none;outline:none;"
@@ -2581,8 +2581,8 @@ function go(page)     { window.location.href = buildSearchURL(); }
             return "<div data-li='"+i+"' style='display:flex;align-items:center;justify-content:space-between;padding:10px 16px;cursor:pointer;transition:background .12s;'>"
               +"<div><div style='font-size:14px;font-weight:600;color:#1A1209;'>"+c.city+"</div>"
               +"<div style='font-size:12px;color:#6B5744;'>"+c.country+"</div></div>"
-              +"<div style='font-size:12px;font-weight:600;color:#007A7A;'>"+c.count+" sitters</div></div>";
-          }).join("") || "<div style='padding:16px;text-align:center;font-size:13px;color:#B5A090;'>No cities found</div>";
+              +"<div style='font-size:12px;font-weight:600;color:#005F5F;'>"+c.count+" sitters</div></div>";
+          }).join("") || "<div style='padding:16px;text-align:center;font-size:13px;color:#6E5A4A;'>No cities found</div>";
         });
       }
     }
@@ -3520,7 +3520,7 @@ window.calClose = window.ucalClose;
 .fd-section-header { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; cursor:pointer; user-select:none; transition:background .15s; width:100%; }
 .fd-section-header:hover { background:rgba(26,18,9,.03); }
 .fd-section-title { font-size:14px; font-weight:700; color:#1A1209; }
-.fd-section-chevron { font-size:16px; color:#B5A090; transition:transform .25s; flex-shrink:0; }
+.fd-section-chevron { font-size:16px; color:#6E5A4A; transition:transform .25s; flex-shrink:0; }
 .fd-section.open .fd-section-chevron { transform:rotate(180deg); }
 .fd-section-body { display:none; padding:4px 24px 20px; width:100%; }
 .fd-section.open .fd-section-body { display:block; }
@@ -3539,7 +3539,7 @@ window.calClose = window.ucalClose;
 .fd-price-inputs { display:flex; gap:10px; margin-top:12px; width:100%; }
 .fd-price-input { flex:1; min-width:0; background:#fff; border:2px solid rgba(26,18,9,.22); border-radius:10px; padding:10px 12px; font-size:14px; font-family:inherit; color:#1A1209; outline:none; transition:border-color .15s; width:100%; }
 .fd-price-input:focus { border-color:#C05A18; }
-.fd-price-label { font-size:12px; color:#B5A090; margin-bottom:4px; }
+.fd-price-label { font-size:12px; color:#6E5A4A; margin-bottom:4px; }
 #fd-footer { flex-shrink:0; padding:16px 24px; border-top:1px solid rgba(26,18,9,.09); display:flex; align-items:center; justify-content:space-between; background:#F7F3EE; width:100%; flex-wrap:wrap; gap:10px; }
 #fd-count { font-size:14px; color:#6B5744; font-weight:600; }
 #fd-count strong { color:#1A1209; }
@@ -3971,7 +3971,7 @@ window.calClose = window.ucalClose;
 .fd-section-header { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; cursor:pointer; user-select:none; transition:background .15s; width:100%; }
 .fd-section-header:hover { background:rgba(26,18,9,.03); }
 .fd-section-title { font-size:14px; font-weight:700; color:#1A1209; }
-.fd-section-chevron { font-size:16px; color:#B5A090; transition:transform .25s; flex-shrink:0; }
+.fd-section-chevron { font-size:16px; color:#6E5A4A; transition:transform .25s; flex-shrink:0; }
 .fd-section.open .fd-section-chevron { transform:rotate(180deg); }
 .fd-section-body { display:none; padding:4px 24px 20px; width:100%; }
 .fd-section.open .fd-section-body { display:block; }
@@ -3990,7 +3990,7 @@ window.calClose = window.ucalClose;
 .fd-price-inputs { display:flex; gap:10px; margin-top:12px; width:100%; }
 .fd-price-input { flex:1; min-width:0; background:#fff; border:2px solid rgba(26,18,9,.22); border-radius:10px; padding:10px 12px; font-size:14px; font-family:inherit; color:#1A1209; outline:none; transition:border-color .15s; width:100%; }
 .fd-price-input:focus { border-color:#C05A18; }
-.fd-price-label { font-size:12px; color:#B5A090; margin-bottom:4px; }
+.fd-price-label { font-size:12px; color:#6E5A4A; margin-bottom:4px; }
 #fd-footer { flex-shrink:0; padding:16px 24px; border-top:1px solid rgba(26,18,9,.09); display:flex; align-items:center; justify-content:space-between; background:#F7F3EE; width:100%; flex-wrap:wrap; gap:10px; }
 #fd-count { font-size:14px; color:#6B5744; font-weight:600; }
 #fd-count strong { color:#1A1209; }
@@ -4003,7 +4003,7 @@ window.calClose = window.ucalClose;
   <div id="fd-header">
     <h2>More filters</h2>
     <div style="display:flex;align-items:center;gap:16px;">
-      <button onclick="resetDrawer()" style="background:none;border:none;font-size:14px;font-weight:600;color:#B5A090;cursor:pointer;text-decoration:underline;text-underline-offset:3px;">Clear all</button>
+      <button onclick="resetDrawer()" style="background:none;border:none;font-size:14px;font-weight:600;color:#6E5A4A;cursor:pointer;text-decoration:underline;text-underline-offset:3px;">Clear all</button>
       <button onclick="closeDrawer()" style="background:none;border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;" onmouseenter="this.style.background='#EDE5DA'" onmouseleave="this.style.background='none'">
         <span class="material-symbols-rounded" style="font-size:20px;color:#1A1209;">close</span>
       </button>
@@ -4013,8 +4013,8 @@ window.calClose = window.ucalClose;
     <div class="fd-section open">
       <div class="fd-section-header" onclick="this.parentElement.classList.toggle('open')"><span class="fd-section-title">Price</span><span class="fd-section-chevron">▾</span></div>
       <div class="fd-section-body">
-        <div style="font-size:13px;color:#B5A090;margin-bottom:4px;">Hourly rate</div>
-        <div class="fd-slider-wrap"><input type="range" class="fd-range" min="10" max="80" value="50" oninput="document.getElementById('fd-price-max').value=this.value;fdUpdateCount()"><div style="display:flex;justify-content:space-between;font-size:12px;color:#B5A090;margin-top:4px;"><span>€10</span><span>€80+</span></div></div>
+        <div style="font-size:13px;color:#6E5A4A;margin-bottom:4px;">Hourly rate</div>
+        <div class="fd-slider-wrap"><input type="range" class="fd-range" min="10" max="80" value="50" oninput="document.getElementById('fd-price-max').value=this.value;fdUpdateCount()"><div style="display:flex;justify-content:space-between;font-size:12px;color:#6E5A4A;margin-top:4px;"><span>€10</span><span>€80+</span></div></div>
         <div class="fd-price-inputs"><div style="flex:1"><div class="fd-price-label">Min</div><input class="fd-price-input" type="number" value="10"></div><div style="flex:1"><div class="fd-price-label">Max</div><input class="fd-price-input" type="number" value="50" id="fd-price-max"></div></div>
         <div class="fd-chips" style="margin-top:16px;"><div class="fd-chip on" onclick="fdChipToggle(this,'price')">Under €20/hr</div><div class="fd-chip" onclick="fdChipToggle(this,'price')">€20–€30/hr</div><div class="fd-chip" onclick="fdChipToggle(this,'price')">€30+/hr</div></div>
       </div>
@@ -4033,9 +4033,9 @@ window.calClose = window.ucalClose;
     <div class="fd-section">
       <div class="fd-section-header" onclick="this.parentElement.classList.toggle('open')"><span class="fd-section-title">Rating &amp; Reviews</span><span class="fd-section-chevron">▾</span></div>
       <div class="fd-section-body">
-        <div style="font-size:13px;color:#B5A090;margin-bottom:4px;">Minimum rating</div>
+        <div style="font-size:13px;color:#6E5A4A;margin-bottom:4px;">Minimum rating</div>
         <div class="fd-chips"><div class="fd-chip" onclick="fdChipToggle(this,'rating')">4.0+</div><div class="fd-chip" onclick="fdChipToggle(this,'rating')">4.5+</div><div class="fd-chip on" onclick="fdChipToggle(this,'rating')">4.8+</div></div>
-        <div style="font-size:13px;color:#B5A090;margin-top:16px;margin-bottom:4px;">Minimum reviews</div>
+        <div style="font-size:13px;color:#6E5A4A;margin-top:16px;margin-bottom:4px;">Minimum reviews</div>
         <div class="fd-chips"><div class="fd-chip" onclick="fdChipToggle(this,'reviews')">5+ reviews</div><div class="fd-chip" onclick="fdChipToggle(this,'reviews')">20+ reviews</div><div class="fd-chip" onclick="fdChipToggle(this,'reviews')">50+ reviews</div></div>
       </div>
     </div>
@@ -4180,7 +4180,7 @@ function resetDrawer() {
 
     <div class="ai-modal-footer">
       <div class="ai-trust">
-        <span class="material-symbols-rounded" style="font-size:15px;color:#B5A090;flex-shrink:0;margin-top:1px;">info</span>
+        <span class="material-symbols-rounded" style="font-size:15px;color:#6E5A4A;flex-shrink:0;margin-top:1px;">info</span>
         AI suggestions are based on sitter profiles, reviews, availability, and your pet's needs.
       </div>
       <button class="btn btn-primary" onclick="aiMatch()" style="padding:12px 28px;font-size:15px;">
@@ -4462,7 +4462,7 @@ function aiMatch() {
 
     <div class="ai-modal-footer">
       <div class="ai-trust">
-        <span class="material-symbols-rounded" style="font-size:15px;color:#B5A090;flex-shrink:0;margin-top:1px;">info</span>
+        <span class="material-symbols-rounded" style="font-size:15px;color:#6E5A4A;flex-shrink:0;margin-top:1px;">info</span>
         AI suggestions are based on sitter profiles, reviews, availability, and your pet's needs.
       </div>
       <button class="btn btn-primary" onclick="aiMatch()" style="padding:12px 28px;font-size:15px;">

@@ -66,15 +66,17 @@
   --color-text: #1A1209;          /* primary text (near-black espresso) */
   --color-text-body: #4A3728;     /* body copy */
   --color-text-muted: #6B5744;    /* secondary / metadata */
-  --color-text-faint: #B5A090;    /* labels on dark, placeholders */
+  --color-text-faint: #B5A090;    /* muted labels on dark surfaces only — not for text on light bg */
+  --color-placeholder: #6E5A4A;   /* input placeholder — 4.9:1 on white ✓ WCAG AA */
 
   /* ── Borders ── */
-  --color-border: #B5A090;        /* default border */
+  --color-border: #8A7060;        /* default border — 3.8:1 on white ✓ WCAG 1.4.11 (was #B5A090 = 2.5:1 ✗) */
+  --color-border-subtle: #B5A090; /* decorative dividers only — not for interactive/required borders */
   --color-border-soft: rgba(26,18,9,0.08); /* hairline dividers on light */
   --color-border-strong: #8A7060; /* emphasis border */
 
   /* ── Brand: Teal = trust / verified / local ── */
-  --color-teal: #007A7A;
+  --color-teal: #005F5F;          /* 7.4:1 on white ✓ WCAG AA (was #007A7A = 4.2:1 ✗) */
   --color-teal-soft: #E0F2F2;
 
   /* ── Brand: Coral = warmth / CTA highlight ── */
@@ -83,7 +85,7 @@
   --color-coral-soft: #FDE8D8;
 
   /* ── Semantic: success ── */
-  --color-success: #2E7D32;
+  --color-success: #1E601E;         /* 5.6:1 on white ✓ WCAG AA (was #2E7D32 = 4.6:1 — marginal) */
   --color-success-soft: #E8F5E8;
 
   /* ── Radii ── */
@@ -126,7 +128,7 @@
 
   /* ── Warm gradient washes (backgrounds only — never on text/CTA) ── */
   --wash-sand: linear-gradient(160deg, #F5EDE0 0%, #D4C5B0 50%, #F0E8DC 100%);
-  --wash-teal-dark: linear-gradient(160deg, #007A7A 0%, #1A1209 100%);
+  --wash-teal-dark: linear-gradient(160deg, #005F5F 0%, #1A1209 100%);
 }
 
 /* ============================================================
