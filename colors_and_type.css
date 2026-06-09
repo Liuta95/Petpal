@@ -80,7 +80,7 @@
   --color-teal-soft: #E0F2F2;
 
   /* ── Brand: Coral = warmth / CTA highlight ── */
-  --color-coral: #B85510;
+  --color-coral: #A3440F;         /* coral text — 5.2:1 on coralSoft ✓ | 6.2:1 on white ✓ WCAG AA (was #B85510 = 4.08:1 ✗) */
   --color-coral-strong: #D4650F;
   --color-coral-soft: #FDE8D8;
 
