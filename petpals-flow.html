@@ -15,8 +15,8 @@
   --c-bg:#F7F3EE; --c-surface:#FFFFFF; --c-alt:#EDE5DA;
   --c-dark:#1A1209; --c-dark2:#2E1E0E;
   --c-body:#4A3728; --c-secondary:#5C4A3A; --c-muted:#6B5744;
-  --c-teal:#007A7A; --c-teal-bg:#E0F2F2;
-  --c-coral:#B85510; --c-coral-bg:#FDE8D8;
+  --c-teal:#005F5F; --c-teal-bg:#E0F2F2;
+  --c-coral:#A3440F; --c-coral-bg:#FDE8D8;
   --c-green:#2E7D32; --c-green-bg:#E8F5E8;
   --c-border:#B5A090; --c-border-hi:#8A7060;
 }
@@ -82,6 +82,8 @@ body { font-family: 'Inter', sans-serif; background: #F7F3EE; color: #1A1209; -w
 .btn-primary-lg:hover { background: var(--dark2); box-shadow: 0 8px 28px rgba(26,18,9,0.25); transform: translateY(-2px); }
 .btn-secondary { background: transparent; color: var(--dark); border: 2px solid var(--c-border-hi, #8A7060); border-radius: 99px; padding: 11px 24px; font-size: 15px; }
 .btn-secondary:hover { background: rgba(26,18,9,0.05); border-color: #6B5744; }
+.btn-coral { background: #FDE8D8; color: #A3440F; border: 1.5px solid #A3440F; border-radius: 99px; padding: 11px 24px; font-size: 15px; }
+.btn-coral:hover { background: #FAD4BC; border-color: #8F4008; color: #8F4008; }
 .btn-ghost { background: transparent; color: var(--mid); border-radius: 99px; padding: 11px 20px; font-size: 14px; }
 .btn-ghost:hover { background: var(--bg-alt); color: var(--dark); }
 
@@ -910,7 +912,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
       <div style="flex:1;"></div>
 
       <!-- More filters -->
-      <button class="btn btn-secondary" style="font-size:13px; padding:7px 16px;" onclick="openDrawer()">
+      <button class="btn btn-coral" style="font-size:13px; padding:7px 16px;" onclick="openDrawer()">
         <span class="material-symbols-rounded" style="font-size:15px;">tune</span> More filters
       </button>
 
@@ -1099,7 +1101,7 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
     </div><!-- /grid -->
 
     <div style="text-align:center; margin-top:40px;">
-      <button class="btn btn-secondary">Load more sitters</button>
+      <button class="btn btn-coral">Load more sitters</button>
     </div>
   </div>
   </main>
