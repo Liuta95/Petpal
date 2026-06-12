@@ -1438,16 +1438,14 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
         .hiw-sticky2 {
             position: sticky;
             top: calc(90px + var(--stack-offset, 0px));
-            /* offset staggers cards when stacked */
         }
 
         .hiw-card2 {
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 12px 56px rgba(26,18,9,0.11);
+            box-shadow: 0 8px 40px rgba(26,18,9,0.09), 0 2px 8px rgba(26,18,9,0.05);
             display: flex;
             min-height: 420px;
-            /* CSS variable driven transforms — same as Jane App */
             transform: scale(var(--stack-scale, 1));
             transform-origin: center top;
             transition: transform 0.1s ease, box-shadow 0.1s ease;
@@ -1470,59 +1468,61 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             overflow: hidden;
         }
 
+        /* Eyebrow label — teal, uppercase, tracked */
         .hiw2-label {
             font-size: 11px; font-weight: 700;
             letter-spacing: 0.12em; text-transform: uppercase;
-            color: #5C4A3A; margin-bottom: 16px;
+            color: #005F5F; margin-bottom: 14px;
         }
+        /* Card headline — display serif for premium feel */
         .hiw-card2 h3 {
-            font-size: 28px; font-weight: 800;
-            color: #1A1209; margin: 0 0 16px; line-height: 1.2;
+            font-family: var(--font-display,'Cormorant Garamond',Georgia,serif);
+            font-size: 30px; font-weight: 600;
+            color: #1A1209; margin: 0 0 14px; line-height: 1.18;
             letter-spacing: -0.01em;
         }
         .hiw-card2 p {
-            font-size: 15px; color: #4A3728; line-height: 1.7; margin: 0;
+            font-size: 15px; color: #4A3728; line-height: 1.72; margin: 0;
         }
 
-        /* Scroll spacer after each card — controls how long it stays pinned */
+        /* Scroll spacer after each card */
         .hiw-spacer2 { height: 60vh; }
-        /* Last card needs no spacer */
         .hiw-step2:last-child .hiw-spacer2 { height: 0; }
 
-        /* Mock UI */
+        /* Mock UI — solid white, unified radius and border */
         .hiw2-mock {
-            background: rgba(255,255,255,0.78);
-            backdrop-filter: blur(10px);
-            border-radius: 18px;
+            background: #FFFFFF;
+            border-radius: 20px;
             padding: 20px;
             width: 100%; max-width: 290px;
-            box-shadow: 0 4px 24px rgba(26,18,9,0.09);
+            box-shadow: 0 2px 20px rgba(26,18,9,0.10);
+            border: 1px solid rgba(26,18,9,0.06);
         }
         .hiw2-row {
             display:flex; align-items:center; gap:10px;
-            padding:9px 0; border-bottom:1px solid rgba(26,18,9,0.07);
+            padding:9px 0; border-bottom:1px solid rgba(26,18,9,0.06);
         }
         .hiw2-row:last-child { border-bottom:none; }
         .hiw2-av { width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0; }
         .hiw2-name { font-size:13px;font-weight:700;color:#1A1209; }
-        .hiw2-sub  { font-size:11px;color:#5C4A3A;margin-top:1px; }
-        .hiw2-star { margin-left:auto;font-size:12px;font-weight:700;color:#D4650F; }
+        .hiw2-sub  { font-size:11px;color:#6B5744;margin-top:1px; }
+        .hiw2-star { margin-left:auto;font-size:12px;font-weight:700;color:#A3440F; }
         .hiw2-chip {
             display:inline-flex;align-items:center;gap:3px;
             padding:3px 9px;border-radius:99px;
             font-size:10px;font-weight:600;
         }
         .hiw2-cal { display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin:10px 0; }
-        .hiw2-day { aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#5C4A3A; }
-        .hiw2-day.s { background:#C05A18;color:#F7F3EE;font-weight:700; }
-        .hiw2-day.r { background:#D4C5B0;color:#1A1209; }
+        .hiw2-day { aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#6B5744; }
+        .hiw2-day.s { background:#A3440F;color:#FDF0E8;font-weight:700; }
+        .hiw2-day.r { background:#E8DDD2;color:#4A3728; }
         .hiw2-bubble { padding:8px 12px;border-radius:13px;font-size:12px;line-height:1.5;max-width:190px; }
 
         @media(max-width:640px){
             .hiw-card2 { flex-direction:column; min-height:auto; }
             .hiw-card2-text { flex:unset; padding:32px 24px 20px; }
             .hiw-card2-visual { min-height:200px; padding:20px; }
-            .hiw-card2 h3 { font-size:22px; }
+            .hiw-card2 h3 { font-size:24px; }
             .hiw-sticky2 { top:70px; }
             .hiw-spacer2 { height:40vh; }
         }
@@ -1539,18 +1539,18 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <!-- Step 1 -->
             <div class="hiw-step2">
                 <div class="hiw-sticky2" style="z-index:1;--stack-offset:0px;">
-                    <div class="hiw-card2" style="background:#EFE8E0;">
+                    <div class="hiw-card2" style="background:#EDE5DA;">
                         <div class="hiw-card2-text">
                             <div class="hiw2-label">Step 01</div>
                             <h3>Search for trusted sitters</h3>
                             <p>Enter your location and dates. Browse verified sitters nearby filtered by service, availability, and rating.</p>
                         </div>
-                        <div class="hiw-card2-visual" style="background:#D4C5B0;">
+                        <div class="hiw-card2-visual" style="background:#D5C8B8;">
                             <div class="hiw2-mock">
-                                <div style="display:flex;align-items:center;gap:8px;background:#F7F3EE;border-radius:10px;padding:10px 12px;margin-bottom:12px;">
-                                    <span class="material-symbols-rounded" style="font-size:15px;color:#8B6F5E;">location_on</span>
+                                <div style="display:flex;align-items:center;gap:8px;background:#F7F3EE;border-radius:12px;padding:10px 12px;margin-bottom:12px;border:1px solid rgba(26,18,9,0.07);">
+                                    <span class="material-symbols-rounded" style="font-size:15px;color:#8A7060;">location_on</span>
                                     <span style="font-size:13px;color:#1A1209;flex:1;">Warsaw, Poland</span>
-                                    <span class="material-symbols-rounded" style="font-size:15px;color:#8B6F5E;">search</span>
+                                    <span class="material-symbols-rounded" style="font-size:15px;color:#8A7060;">search</span>
                                 </div>
                                 <div class="hiw2-row">
                                     <img class="hiw2-av" src="https://i.pravatar.cc/80?img=47" alt="">
@@ -1577,32 +1577,32 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <!-- Step 2 -->
             <div class="hiw-step2">
                 <div class="hiw-sticky2" style="z-index:2;--stack-offset:16px;">
-                    <div class="hiw-card2" style="background:#EBEBF5;flex-direction:row-reverse;">
+                    <div class="hiw-card2" style="background:#E9E6EF;flex-direction:row-reverse;">
                         <div class="hiw-card2-text">
                             <div class="hiw2-label">Step 02</div>
                             <h3>Review profiles & ratings</h3>
                             <p>Read genuine reviews, check verification badges, and message sitters directly before committing.</p>
                         </div>
-                        <div class="hiw-card2-visual" style="background:#D0D0EE;">
+                        <div class="hiw-card2-visual" style="background:#D3CFDF;">
                             <div class="hiw2-mock">
                                 <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;">
                                     <img class="hiw2-av" src="https://i.pravatar.cc/80?img=47" alt="" style="width:44px;height:44px;">
                                     <div>
-                                        <div style="font-size:14px;font-weight:800;color:#1A1209;">Anna K.</div>
-                                        <div style="font-size:11px;color:#5C4A3A;">Professional Sitter</div>
+                                        <div style="font-size:14px;font-weight:700;color:#1A1209;">Anna K.</div>
+                                        <div style="font-size:11px;color:#6B5744;">Professional Sitter</div>
                                         <div style="display:flex;gap:4px;margin-top:5px;">
-                                            <span class="hiw2-chip" style="background:#E8F5E8;color:#2E7D32;">✓ Verified</span>
-                                            <span class="hiw2-chip" style="background:#D4C5B0;color:#4A3728;">5 yrs</span>
+                                            <span class="hiw2-chip" style="background:#E0F2F2;color:#005F5F;">✓ Verified</span>
+                                            <span class="hiw2-chip" style="background:#EDE5DA;color:#4A3728;">5 yrs exp</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:12px;">
-                                    <span style="font-size:22px;font-weight:800;color:#1A1209;">4.9</span>
-                                    <span style="color:#D4650F;font-size:13px;">★★★★★</span>
-                                    <span style="font-size:11px;color:#5C4A3A;">128 reviews</span>
-                                    <span style="margin-left:auto;font-size:15px;font-weight:700;color:#1A1209;">€18<span style="font-size:11px;font-weight:400;color:#5C4A3A;">/hr</span></span>
+                                    <span style="font-size:22px;font-weight:700;color:#1A1209;">4.9</span>
+                                    <span style="color:#A3440F;font-size:13px;">★★★★★</span>
+                                    <span style="font-size:11px;color:#6B5744;">128 reviews</span>
+                                    <span style="margin-left:auto;font-size:15px;font-weight:700;color:#1A1209;">€18<span style="font-size:11px;font-weight:400;color:#6B5744;">/hr</span></span>
                                 </div>
-                                <div style="background:#EFE8E0;border-radius:10px;padding:10px 12px;font-size:12px;color:#4A3728;line-height:1.5;">"I treat every pet like my own 🐾 Lots of love guaranteed."</div>
+                                <div style="background:#F0EBE4;border-radius:12px;padding:10px 12px;font-size:12px;color:#4A3728;line-height:1.5;border:1px solid rgba(26,18,9,0.06);">"I treat every pet like my own 🐾 Lots of love guaranteed."</div>
                             </div>
                         </div>
                     </div>
@@ -1613,28 +1613,28 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <!-- Step 3 -->
             <div class="hiw-step2">
                 <div class="hiw-sticky2" style="z-index:3;--stack-offset:32px;">
-                    <div class="hiw-card2" style="background:#E4F0E4;">
+                    <div class="hiw-card2" style="background:#E5EDEA;">
                         <div class="hiw-card2-text">
                             <div class="hiw2-label">Step 03</div>
                             <h3>Book in a few clicks</h3>
                             <p>Pick your dates, confirm the details, and pay securely through PetPals. Instant confirmation every time.</p>
                         </div>
-                        <div class="hiw-card2-visual" style="background:#C0E0C0;">
+                        <div class="hiw-card2-visual" style="background:#C8D5D0;">
                             <div class="hiw2-mock">
                                 <div style="font-size:12px;font-weight:700;color:#1A1209;margin-bottom:8px;">Select dates</div>
                                 <div class="hiw2-cal">
-                                    <div class="hiw2-day" style="font-size:9px;color:#5C4A3A;font-weight:600;">Mo</div>
-                                    <div class="hiw2-day" style="font-size:9px;color:#5C4A3A;font-weight:600;">Tu</div>
-                                    <div class="hiw2-day" style="font-size:9px;color:#5C4A3A;font-weight:600;">We</div>
-                                    <div class="hiw2-day" style="font-size:9px;color:#5C4A3A;font-weight:600;">Th</div>
-                                    <div class="hiw2-day" style="font-size:9px;color:#5C4A3A;font-weight:600;">Fr</div>
-                                    <div class="hiw2-day" style="font-size:9px;color:#5C4A3A;font-weight:600;">Sa</div>
-                                    <div class="hiw2-day" style="font-size:9px;color:#5C4A3A;font-weight:600;">Su</div>
+                                    <div class="hiw2-day" style="font-size:9px;color:#6B5744;font-weight:600;">Mo</div>
+                                    <div class="hiw2-day" style="font-size:9px;color:#6B5744;font-weight:600;">Tu</div>
+                                    <div class="hiw2-day" style="font-size:9px;color:#6B5744;font-weight:600;">We</div>
+                                    <div class="hiw2-day" style="font-size:9px;color:#6B5744;font-weight:600;">Th</div>
+                                    <div class="hiw2-day" style="font-size:9px;color:#6B5744;font-weight:600;">Fr</div>
+                                    <div class="hiw2-day" style="font-size:9px;color:#6B5744;font-weight:600;">Sa</div>
+                                    <div class="hiw2-day" style="font-size:9px;color:#6B5744;font-weight:600;">Su</div>
                                     <div class="hiw2-day">5</div><div class="hiw2-day">6</div><div class="hiw2-day">7</div><div class="hiw2-day">8</div><div class="hiw2-day">9</div><div class="hiw2-day">10</div><div class="hiw2-day">11</div>
                                     <div class="hiw2-day">12</div><div class="hiw2-day s">13</div><div class="hiw2-day r">14</div><div class="hiw2-day r">15</div><div class="hiw2-day r">16</div><div class="hiw2-day s">17</div><div class="hiw2-day">18</div>
                                 </div>
-                                <div style="background:#F0FBF0;border:1.5px solid #2E7D32;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;">
-                                    <span class="material-symbols-rounded" style="color:#2E7D32;font-size:17px;">check_circle</span>
+                                <div style="background:#E0F2F2;border:1.5px solid #005F5F;border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:8px;">
+                                    <span class="material-symbols-rounded" style="color:#005F5F;font-size:17px;">check_circle</span>
                                     <div>
                                         <div style="font-size:12px;font-weight:700;color:#1A1209;">Booking confirmed!</div>
                                         <div style="font-size:11px;color:#4A3728;">Jun 13–17 · Anna K. · €72</div>
@@ -1650,29 +1650,29 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             <!-- Step 4 -->
             <div class="hiw-step2">
                 <div class="hiw-sticky2" style="z-index:4;--stack-offset:48px;">
-                    <div class="hiw-card2" style="background:#FDF0E8;flex-direction:row-reverse;">
+                    <div class="hiw-card2" style="background:#F0E9E2;flex-direction:row-reverse;">
                         <div class="hiw-card2-text">
                             <div class="hiw2-label">Step 04</div>
                             <h3>Receive updates & relax</h3>
                             <p>Get real-time photo updates and messages from your sitter. Your pet is happy — you can truly switch off.</p>
                         </div>
-                        <div class="hiw-card2-visual" style="background:#F5CAA8;">
+                        <div class="hiw-card2-visual" style="background:#E0CEBE;">
                             <div class="hiw2-mock">
                                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
                                     <img class="hiw2-av" src="https://i.pravatar.cc/80?img=47" alt="" style="width:30px;height:30px;">
                                     <div style="font-size:12px;font-weight:700;color:#1A1209;">Anna K.</div>
-                                    <div style="display:flex;align-items:center;gap:3px;margin-left:4px;"><span style="width:6px;height:6px;border-radius:50%;background:#2E7D32;display:inline-block;"></span><span style="font-size:10px;color:#5C4A3A;">Online</span></div>
+                                    <div style="display:flex;align-items:center;gap:3px;margin-left:4px;"><span style="width:6px;height:6px;border-radius:50%;background:#1E601E;display:inline-block;"></span><span style="font-size:10px;color:#6B5744;">Online</span></div>
                                 </div>
                                 <div style="display:flex;gap:6px;margin-bottom:8px;">
                                     <img class="hiw2-av" src="https://i.pravatar.cc/80?img=47" alt="" style="width:24px;height:24px;flex-shrink:0;">
                                     <div class="hiw2-bubble" style="background:#EDE5DA;color:#1A1209;">Buddy had his walk! He's doing great 🐕</div>
                                 </div>
                                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px;">
-                                    <div style="border-radius:9px;overflow:hidden;aspect-ratio:4/3;"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=200&auto=format&fit=crop&q=70" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-                                    <div style="border-radius:9px;overflow:hidden;aspect-ratio:4/3;"><img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=200&auto=format&fit=crop&q=70" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                                    <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=200&auto=format&fit=crop&q=70" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                                    <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=200&auto=format&fit=crop&q=70" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
                                 </div>
                                 <div style="display:flex;justify-content:flex-end;">
-                                    <div class="hiw2-bubble" style="background:#C05A18;color:#F7F3EE;">Aww so happy! Thank you 🐾❤️</div>
+                                    <div class="hiw2-bubble" style="background:#FDE8D8;color:#A3440F;">Aww so happy! Thank you 🐾❤️</div>
                                 </div>
                             </div>
                         </div>
@@ -1851,10 +1851,6 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
             }
             </script>
 
-            <!-- CTA -->
-            <div class="text-center mt-12">
-                <a href="petpals-flow.html" class="btn-primary-lg">Find Sitters in Your City</a>
-            </div>
         </div>
     </section>
 
