@@ -334,9 +334,8 @@ body { font-family: 'Inter', sans-serif; background: #F7F3EE; color: #1A1209; -w
 .rc-chip:hover { border-color:#A3440F; color:#A3440F; } /* 6.2:1 ✓ */
 .rc-chip.on { background:#1A1209; color:#F7F3EE; border-color:#1A1209; }
 .rc-chip:focus-visible { outline:2px solid #C05A18; outline-offset:2px; box-shadow:0 0 0 3px rgba(192,90,24,0.14); }
-/* fixed 40px columns so buttons stay compact regardless of popup width */
-.dow-grid { display:grid; grid-template-columns:repeat(7,40px); gap:6px; }
-.dow-btn { width:40px; height:40px; border-radius:50%; border:2px solid #8A7060; background:#fff; font-family:inherit; font-size:11px; font-weight:700; color:#4A3728; cursor:pointer; transition:all .15s; display:flex; align-items:center; justify-content:center; } /* border 3.8:1 ✓ */
+.dow-grid { display:flex; gap:6px; align-items:center; }
+.dow-btn { flex:1; min-width:32px; max-width:44px; aspect-ratio:1; border-radius:50%; border:2px solid #8A7060; background:#fff; font-family:inherit; font-size:11px; font-weight:700; color:#4A3728; cursor:pointer; transition:all .15s; display:flex; align-items:center; justify-content:center; } /* border 3.8:1 ✓ */
 .dow-btn:hover { border-color:#A3440F; color:#A3440F; }
 .dow-btn.on { background:#1A1209; color:#F7F3EE; border-color:#1A1209; }
 .dow-btn:focus-visible { outline:2px solid #C05A18; outline-offset:2px; box-shadow:0 0 0 3px rgba(192,90,24,0.14); }
