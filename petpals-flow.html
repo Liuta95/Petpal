@@ -1946,6 +1946,7 @@ window.ucalLeave = function(){ if(U.rH){U.rH=null;ucalRenderHover();} };
 function ucalRenderHover(){
   document.querySelectorAll('.ucal-d').forEach(function(btn){
     btn.classList.remove('urh');
+    btn.classList.remove('ure'); // fix: clear previous hover-end marker on every pass
     if(!U.rS||U.rE||!U.rH) return;
     var y=parseInt(btn.dataset.y),m=parseInt(btn.dataset.m),d=parseInt(btn.dataset.d);
     if(isNaN(y)) return;
