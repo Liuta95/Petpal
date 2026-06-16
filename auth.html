@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetPals — Sign In</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#1A1209;--ink2:#2E1E0E;--body:#4A3728;--muted:#6B5744;--faint:#8A7060;
+  --bg:#F7F3EE;--sand:#EDE5DA;--surface:#fff;
+  --coral:#A3440F;--coral-soft:#FDE8D8;
+  --teal:#005F5F;--teal-soft:#E0F2F2;
+  --green:#1E601E;--green-soft:#E8F5E8;
+  --error:#C71E1E;--error-soft:#FDF0F0;
+  --font-body:"Instrument Sans","Inter",system-ui,sans-serif;
+  --font-display:"Cormorant Garamond",Georgia,serif;
+  --radius:12px;--radius-card:24px;
+  --shadow:0 8px 40px rgba(26,18,9,.10),0 2px 8px rgba(26,18,9,.06);
+}
+
+body{
+  font-family:var(--font-body);background:var(--bg);color:var(--ink);
+  min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+  padding:20px 16px 48px;-webkit-font-smoothing:antialiased;
+}
+
+/* ── TOP NAV ── */
+.auth-nav{
+  width:100%;max-width:460px;display:flex;align-items:center;
+  justify-content:space-between;margin-bottom:16px;
+}
+.back-link{
+  display:flex;align-items:center;gap:5px;font-size:13px;font-weight:600;
+  color:var(--muted);text-decoration:none;transition:color .15s;padding:4px 0;
+}
+.back-link:hover{color:var(--ink)}
+.nav-wordmark{
+  font-family:var(--font-display);font-size:18px;font-weight:600;
+  color:var(--ink);letter-spacing:-.02em;text-decoration:none;
+}
+
+/* ── CARD ── */
+.auth-card{
+  background:var(--surface);border-radius:var(--radius-card);
+  box-shadow:var(--shadow);padding:40px 40px 36px;
+  width:100%;max-width:460px;
+}
+@media(max-width:520px){
+  body{padding:0}
+  .auth-nav{padding:16px 20px 0;margin-bottom:8px}
+  .auth-card{border-radius:0;padding:28px 24px 48px;min-height:calc(100dvh - 48px);box-shadow:none}
+}
+
+/* ── SCREENS ── */
+.screen{display:none}
+.screen.active{display:block;animation:scIn .22s ease both}
+@keyframes scIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ── CARD LOGO ── */
+.card-logo{text-align:center;margin-bottom:28px}
+.card-logo .wordmark{
+  font-family:var(--font-display);font-size:26px;font-weight:600;
+  color:var(--ink);letter-spacing:-.02em;
+}
+.card-logo .wordmark em{color:var(--coral);font-style:normal}
+
+/* ── HEADINGS ── */
+.sc-heading{text-align:center;margin-bottom:26px}
+.sc-heading h1{
+  font-family:var(--font-display);font-size:28px;font-weight:600;
+  color:var(--ink);line-height:1.15;letter-spacing:-.01em;margin-bottom:6px;
+}
+.sc-heading p{font-size:14px;color:var(--body);line-height:1.55}
+
+/* ── PROGRESS BAR ── */
+.prog-wrap{margin-bottom:28px}
+.prog-bar{height:3px;background:rgba(26,18,9,.08);border-radius:99px;overflow:hidden;margin-bottom:7px}
+.prog-fill{height:100%;background:var(--coral);border-radius:99px;transition:width .35s ease}
+.prog-meta{display:flex;align-items:center;justify-content:space-between}
+.prog-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.prog-back{
+  background:none;border:none;font-family:inherit;font-size:12px;font-weight:600;
+  color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;
+  transition:color .15s;
+}
+.prog-back:hover{color:var(--ink)}
+
+/* ── DOTS ── */
+.p-dots{display:flex;gap:6px;justify-content:center;margin-bottom:28px}
+.p-dot{width:6px;height:6px;border-radius:99px;background:rgba(26,18,9,.15);transition:all .25s}
+.p-dot.on{width:20px;background:var(--ink)}
+
+/* ── FORM ELEMENTS ── */
+.field{margin-bottom:14px}
+.field label{
+  display:block;font-size:12px;font-weight:700;color:var(--ink);
+  margin-bottom:5px;letter-spacing:.01em;
+}
+.field label .opt{color:var(--muted);font-weight:400}
+
+.field input,.field select,.field textarea{
+  width:100%;background:#fff;border:1.5px solid var(--faint);
+  border-radius:var(--radius);padding:13px 16px;font-size:15px;
+  color:var(--ink);font-family:inherit;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border:2px solid var(--teal);box-shadow:0 0 0 3px rgba(0,95,95,.14);
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--faint)}
+.field textarea{resize:vertical;min-height:90px;line-height:1.55}
+.field .input-wrap{position:relative}
+.field .input-wrap input{padding-right:44px}
+.field .input-wrap .icon-left{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  color:var(--faint);font-size:18px;pointer-events:none;
+}
+.field .input-wrap input.icon-l-pad{padding-left:42px}
+
+/* pw toggle */
+.pw-toggle{
+  position:absolute;right:13px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;color:var(--faint);
+  display:flex;align-items:center;padding:4px;transition:color .15s;
+}
+.pw-toggle:hover{color:var(--ink)}
+
+/* strength */
+.strength-wrap{display:flex;align-items:center;gap:5px;margin-top:8px}
+.str-bar{flex:1;height:3px;border-radius:99px;background:rgba(26,18,9,.1);transition:background .2s}
+.str-lbl{font-size:11px;font-weight:700;color:var(--muted);min-width:38px;text-align:right}
+
+/* error */
+.err-banner{
+  background:var(--error-soft);border:1px solid rgba(199,30,30,.18);
+  border-radius:var(--radius);padding:10px 14px;font-size:13px;font-weight:600;
+  color:var(--error);margin-bottom:14px;display:none;
+}
+.err-banner.show{display:block}
+
+/* checkbox */
+.chk-row{
+  display:flex;align-items:flex-start;gap:10px;cursor:pointer;
+  font-size:13px;color:var(--body);line-height:1.5;margin-bottom:16px;
+}
+.chk-row input{width:17px;height:17px;flex-shrink:0;accent-color:var(--coral);cursor:pointer;margin-top:1px}
+.chk-row a{color:var(--coral);text-decoration:underline;text-underline-offset:2px}
+
+/* ── BUTTONS ── */
+.btn{
+  width:100%;border:none;border-radius:var(--radius);padding:14px;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:7px;transition:all .15s;
+}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.btn + .btn{margin-top:8px}
+
+.btn-dark{background:var(--ink);color:#F7F3EE}
+.btn-dark:hover:not(:disabled){background:var(--ink2);box-shadow:0 4px 16px rgba(26,18,9,.28);transform:translateY(-1px)}
+
+.btn-coral{background:var(--coral);color:#fff}
+.btn-coral:hover:not(:disabled){background:#8F3A0A;box-shadow:0 4px 16px rgba(163,68,15,.3);transform:translateY(-1px)}
+
+.btn-outline{background:#fff;border:1.5px solid rgba(26,18,9,.18);color:var(--ink)}
+.btn-outline:hover:not(:disabled){background:var(--bg);border-color:var(--faint)}
+
+.btn-ghost{
+  background:transparent;color:var(--muted);font-size:13px;
+  padding:10px;margin-top:4px;
+}
+.btn-ghost:hover{color:var(--ink)}
+
+/* social */
+.social-row{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.btn-social{
+  background:#fff;border:1.5px solid rgba(26,18,9,.16);border-radius:var(--radius);
+  padding:12px 16px;font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all .15s;width:100%;
+}
+.btn-social:hover{background:var(--bg);border-color:var(--faint)}
+.btn-apple{background:var(--ink);color:#F7F3EE;border-color:var(--ink)}
+.btn-apple:hover{background:var(--ink2);border-color:var(--ink2)}
+
+/* divider */
+.divider{
+  display:flex;align-items:center;gap:12px;margin:18px 0;
+  font-size:12px;font-weight:600;color:var(--faint);
+}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(26,18,9,.08)}
+
+/* footer link */
+.auth-footer{text-align:center;margin-top:22px;font-size:13px;color:var(--muted)}
+.auth-footer a,.lnk{
+  color:var(--coral);font-weight:700;text-decoration:none;background:none;border:none;
+  cursor:pointer;font-family:inherit;font-size:inherit;padding:0;
+}
+.auth-footer a:hover,.lnk:hover{text-decoration:underline;text-underline-offset:2px}
+
+/* forgot link */
+.forgot-lnk{
+  display:block;text-align:right;font-size:12px;font-weight:600;color:var(--muted);
+  background:none;border:none;cursor:pointer;font-family:inherit;padding:0;
+  margin-top:-8px;margin-bottom:18px;transition:color .15s;
+}
+.forgot-lnk:hover{color:var(--coral)}
+
+/* ── VERIFY ── */
+.verify-icon{
+  width:72px;height:72px;background:var(--teal-soft);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:4px auto 18px;font-size:30px;
+}
+.verify-email{
+  background:var(--bg);border-radius:8px;padding:9px 16px;
+  font-size:14px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:20px;
+}
+.resend-row{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:10px}
+.resend-btn{
+  background:none;border:none;font-family:inherit;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;padding:4px 0;transition:color .15s;
+}
+.resend-btn:hover{color:var(--ink)}
+.resend-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ── ROLE CARDS ── */
+.role-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.role-card{
+  border:1.5px solid rgba(26,18,9,.13);border-radius:16px;padding:20px 16px 18px;
+  background:#fff;cursor:pointer;text-align:left;transition:all .2s;position:relative;
+  font-family:inherit;
+}
+.role-card:hover{border-color:var(--faint);background:var(--bg)}
+.role-card.sel{border-color:var(--coral);background:var(--coral-soft)}
+.role-card .r-icon{font-size:28px;margin-bottom:10px;display:block;line-height:1}
+.role-card .r-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.role-card .r-desc{font-size:12px;color:var(--muted);line-height:1.45}
+.role-card .r-chk{
+  display:none;position:absolute;top:11px;right:12px;
+  width:20px;height:20px;border-radius:50%;background:var(--coral);
+  color:#fff;font-size:11px;font-weight:700;align-items:center;justify-content:center;
+}
+.role-card.sel .r-chk{display:flex}
+
+.both-row{
+  display:flex;align-items:center;gap:10px;cursor:pointer;
+  font-size:13px;color:var(--body);margin-bottom:20px;
+  padding:11px 14px;border-radius:10px;border:1.5px solid rgba(26,18,9,.1);background:#fff;
+}
+.both-row input{accent-color:var(--coral);width:16px;height:16px;cursor:pointer;flex-shrink:0}
+
+/* ── PET CHIPS ── */
+.chip-row{display:flex;gap:7px;flex-wrap:wrap}
+.chip{
+  padding:8px 14px;border-radius:99px;border:1.5px solid var(--faint);
+  background:#fff;font-family:inherit;font-size:13px;font-weight:600;
+  color:var(--body);cursor:pointer;transition:all .15s;
+}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#F7F3EE}
+
+/* ── SERVICE CHIPS ── */
+.svc-chips{display:flex;flex-wrap:wrap;gap:8px}
+.svc-chip{
+  display:flex;align-items:center;gap:6px;padding:9px 13px;
+  border-radius:10px;border:1.5px solid rgba(26,18,9,.13);background:#fff;
+  font-family:inherit;font-size:13px;font-weight:600;color:var(--body);cursor:pointer;transition:all .15s;
+}
+.svc-chip:hover{border-color:var(--faint)}
+.svc-chip.on{border-color:var(--coral);background:var(--coral-soft);color:var(--coral)}
+.svc-chip .si{font-size:15px}
+
+/* ── PHOTO UPLOAD ── */
+.photo-upload{
+  border:1.5px dashed var(--faint);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;align-items:center;gap:6px;
+  cursor:pointer;transition:all .2s;background:#fff;margin-bottom:14px;
+}
+.photo-upload:hover{border-color:var(--ink);background:var(--bg)}
+.photo-upload .pu-icon{font-size:28px;line-height:1}
+.photo-upload .pu-label{font-size:13px;font-weight:600;color:var(--muted)}
+.photo-upload .pu-sub{font-size:11px;color:var(--faint)}
+
+/* ── SITTER INTRO ── */
+.intro-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.intro-item{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--body);line-height:1.45}
+.intro-icon-box{
+  width:36px;height:36px;border-radius:9px;background:var(--sand);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+}
+.intro-item strong{display:block;font-weight:700;color:var(--ink);margin-bottom:1px}
+
+.earn-card{
+  background:var(--teal-soft);border-radius:14px;padding:16px 18px;
+  display:flex;align-items:center;gap:14px;margin-bottom:20px;
+}
+.earn-amount{
+  font-family:var(--font-display);font-size:32px;font-weight:600;
+  color:var(--teal);line-height:1;
+}
+.earn-label{font-size:13px;color:var(--teal);font-weight:600;margin-bottom:2px}
+.earn-sub{font-size:11px;color:var(--muted)}
+
+/* ── SUCCESS / END STATES ── */
+.success-icon{
+  width:72px;height:72px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:4px auto 18px;font-size:32px;
+}
+.success-icon.green{background:var(--green-soft)}
+.success-icon.teal{background:var(--teal-soft)}
+.success-icon.coral{background:var(--coral-soft)}
+
+.summary-card{
+  background:var(--bg);border-radius:14px;padding:14px 16px;
+  margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.summary-card .s-icon{font-size:28px;flex-shrink:0}
+.summary-card .s-name{font-size:15px;font-weight:700;color:var(--ink)}
+.summary-card .s-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* ── PENDING TRACKER ── */
+.tracker{display:flex;flex-direction:column;gap:0;margin:20px 0}
+.track-step{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 0;border-bottom:1px solid rgba(26,18,9,.06);
+}
+.track-step:last-child{border-bottom:none}
+.t-circle{
+  width:28px;height:28px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;
+}
+.t-circle.done{background:var(--green-soft);color:var(--green)}
+.t-circle.now{background:var(--coral-soft);color:var(--coral)}
+.t-circle.next{background:rgba(26,18,9,.07);color:var(--muted)}
+.t-label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.t-sub{font-size:12px;color:var(--muted)}
+
+/* ── SPACING UTILS ── */
+.mt-4{margin-top:16px}
+.mt-3{margin-top:12px}
+.mt-2{margin-top:8px}
+.mb-0{margin-bottom:0}
+.center{text-align:center}
+.muted{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="auth-nav">
+  <a href="index.html" class="back-link">
+    <span class="material-symbols-rounded" style="font-size:17px;vertical-align:middle">arrow_back</span>
+    PetPals
+  </a>
+  <a href="index.html" class="nav-wordmark">PetPals</a>
+</div>
+
+<div class="auth-card">
+
+<!-- ══════════════════════════════════════
+     S-06  SIGN IN  (default)
+════════════════════════════════════════ -->
+<div class="screen active" id="sc-signin">
+  <div class="card-logo"><span class="wordmark">Pet<em>Pals</em></span></div>
+  <div class="sc-heading">
+    <h1>Welcome back</h1>
+    <p>Sign in to your account to continue</p>
+  </div>
+
+  <div class="social-row">
+    <button class="btn-social" onclick="go('sc-role')">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path d="M17.64 9.2c0-.638-.057-1.252-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908C16.658 14.27 17.64 11.9 17.64 9.2z" fill="#4285F4"/><path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" fill="#34A853"/><path d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.348 6.175 0 7.55 0 9s.348 2.826.957 4.039l3.007-2.332z" fill="#FBBC05"/><path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.166 6.656 3.58 9 3.58z" fill="#EA4335"/></svg>
+      Continue with Google
+    </button>
+    <button class="btn-social btn-apple" onclick="go('sc-role')">
+      <svg width="14" height="18" viewBox="0 0 814 1000" fill="currentColor"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105-42.4-155.5-127.4C46 614.3 0 491.7 0 375.5 0 183 117.5 82.8 233.2 82.8c74.9 0 137.9 50.9 185.7 50.9 45.8 0 118.2-54 207.2-54 33.3 0 121.5 3.9 180.7 67.5zm-85.5-170.7c39.3-45.8 69.3-109.5 69.3-173.3 0-8.9-.6-17.9-2.2-25.6-65.8 2.5-144.7 43.4-192.3 97.7-36.7 41.3-72 105-72 169.9 0 9.5 1.7 19 2.2 22.4 3.9.6 10 1.7 16.1 1.7 59.5 0 133.8-38.8 179-92.8z"/></svg>
+      Continue with Apple
+    </button>
+  </div>
+
+  <div class="divider">or continue with email</div>
+
+  <div class="err-banner" id="si-err">Incorrect email or password. Please try again.</div>
+
+  <div class="field">
+    <label>Email address</label>
+    <input type="email" id="si-email" placeholder="you@example.com" autocomplete="email">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <div class="input-wrap">
+      <input type="password" id="si-pw" placeholder="Your password" autocomplete="current-password">
+      <button class="pw-toggle" onclick="togglePw('si-pw',this)" aria-label="Show password">
+        <span class="material-symbols-rounded" style="font-size:18px">visibility</span>
+      </button>
+    </div>
+  </div>
+  <button class="forgot-lnk" onclick="go('sc-forgot')">Forgot password?</button>
+
+  <button class="btn btn-dark" onclick="handleSignIn()">Sign in</button>
+
+  <div class="auth-footer">Don't have an account? <button class="lnk" onclick="go('sc-signup')">Sign up free</button></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-01  CREATE ACCOUNT
+════════════════════════════════════════ -->
+<div class="screen" id="sc-signup">
+  <div class="card-logo"><span class="wordmark">Pet<em>Pals</em></span></div>
+  <div class="sc-heading">
+    <h1>Create your account</h1>
+    <p>Join thousands of pet owners across Europe</p>
+  </div>
+
+  <div class="social-row">
+    <button class="btn-social" onclick="go('sc-role')">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path d="M17.64 9.2c0-.638-.057-1.252-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908C16.658 14.27 17.64 11.9 17.64 9.2z" fill="#4285F4"/><path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" fill="#34A853"/><path d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.348 6.175 0 7.55 0 9s.348 2.826.957 4.039l3.007-2.332z" fill="#FBBC05"/><path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.166 6.656 3.58 9 3.58z" fill="#EA4335"/></svg>
+      Sign up with Google
+    </button>
+    <button class="btn-social btn-apple" onclick="go('sc-role')">
+      <svg width="14" height="18" viewBox="0 0 814 1000" fill="currentColor"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105-42.4-155.5-127.4C46 614.3 0 491.7 0 375.5 0 183 117.5 82.8 233.2 82.8c74.9 0 137.9 50.9 185.7 50.9 45.8 0 118.2-54 207.2-54 33.3 0 121.5 3.9 180.7 67.5zm-85.5-170.7c39.3-45.8 69.3-109.5 69.3-173.3 0-8.9-.6-17.9-2.2-25.6-65.8 2.5-144.7 43.4-192.3 97.7-36.7 41.3-72 105-72 169.9 0 9.5 1.7 19 2.2 22.4 3.9.6 10 1.7 16.1 1.7 59.5 0 133.8-38.8 179-92.8z"/></svg>
+      Sign up with Apple
+    </button>
+  </div>
+
+  <div class="divider">or sign up with email</div>
+
+  <div class="field">
+    <label>Full name</label>
+    <input type="text" placeholder="Anna Kowalska" autocomplete="name">
+  </div>
+  <div class="field">
+    <label>Email address</label>
+    <input type="email" placeholder="you@example.com" autocomplete="email">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <div class="input-wrap">
+      <input type="password" id="su-pw" placeholder="Min. 8 characters" autocomplete="new-password"
+        oninput="updateStrength(this.value)">
+      <button class="pw-toggle" onclick="togglePw('su-pw',this)" aria-label="Show password">
+        <span class="material-symbols-rounded" style="font-size:18px">visibility</span>
+      </button>
+    </div>
+    <div class="strength-wrap" id="su-strength">
+      <div class="str-bar" id="sb1"></div>
+      <div class="str-bar" id="sb2"></div>
+      <div class="str-bar" id="sb3"></div>
+      <div class="str-bar" id="sb4"></div>
+      <span class="str-lbl" id="su-str-lbl"></span>
+    </div>
+  </div>
+
+  <label class="chk-row">
+    <input type="checkbox" id="su-terms">
+    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+  </label>
+
+  <button class="btn btn-dark" onclick="go('sc-verify')">Create account</button>
+
+  <div class="auth-footer">Already a member? <button class="lnk" onclick="go('sc-signin')">Sign in</button></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-02  VERIFY EMAIL
+════════════════════════════════════════ -->
+<div class="screen" id="sc-verify">
+  <div class="verify-icon">📧</div>
+  <div class="sc-heading">
+    <h1>Check your inbox</h1>
+    <p>We sent a verification link to</p>
+  </div>
+  <div class="verify-email" id="verify-email-shown">you@example.com</div>
+
+  <button class="btn btn-outline" onclick="go('sc-role')" style="margin-bottom:8px">
+    <span class="material-symbols-rounded" style="font-size:18px">open_in_new</span>
+    Open email app
+  </button>
+
+  <p class="center muted" style="margin:16px 0 8px">Didn't receive it?</p>
+  <div class="resend-row">
+    <button class="resend-btn" id="resend-btn" onclick="startResend()">Resend email</button>
+    <span style="color:rgba(26,18,9,.15)">·</span>
+    <button class="resend-btn" onclick="go('sc-signup')">Change email</button>
+  </div>
+
+  <div class="auth-footer mt-4"><button class="lnk" onclick="go('sc-signin')">← Back to sign in</button></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-03  ROLE SELECTION
+════════════════════════════════════════ -->
+<div class="screen" id="sc-role">
+  <div class="sc-heading">
+    <h1>How will you use PetPals?</h1>
+    <p>You can always add the other role later from settings</p>
+  </div>
+
+  <div class="role-cards">
+    <button class="role-card" id="role-owner" onclick="selectRole('owner')">
+      <span class="r-chk">✓</span>
+      <span class="r-icon">🐾</span>
+      <div class="r-name">Pet Owner</div>
+      <div class="r-desc">I'm looking for a trusted sitter for my pet</div>
+    </button>
+    <button class="role-card" id="role-sitter" onclick="selectRole('sitter')">
+      <span class="r-chk">✓</span>
+      <span class="r-icon">🏠</span>
+      <div class="r-name">Pet Sitter</div>
+      <div class="r-desc">I want to offer pet care and earn money</div>
+    </button>
+  </div>
+
+  <label class="both-row">
+    <input type="checkbox" id="check-both">
+    I'm both — I'd like to offer and book pet care
+  </label>
+
+  <button class="btn btn-coral" id="role-continue-btn" onclick="continueRole()" disabled>
+    Continue
+    <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-04  ADD YOUR PET  (Owner — Step 1/2)
+════════════════════════════════════════ -->
+<div class="screen" id="sc-pet">
+  <div class="prog-wrap">
+    <div class="prog-bar"><div class="prog-fill" style="width:50%"></div></div>
+    <div class="prog-meta">
+      <span class="prog-label">Step 1 of 2</span>
+      <button class="prog-back" onclick="go('sc-role')">
+        <span class="material-symbols-rounded" style="font-size:15px">arrow_back</span> Back
+      </button>
+    </div>
+  </div>
+
+  <div class="sc-heading" style="text-align:left;margin-bottom:20px">
+    <h1>Tell us about your pet</h1>
+    <p>We'll use this to personalise your sitter search</p>
+  </div>
+
+  <div class="field">
+    <label>Pet name</label>
+    <input type="text" placeholder="e.g. Buddy">
+  </div>
+
+  <div class="field">
+    <label>Species</label>
+    <div class="chip-row">
+      <button class="chip" onclick="pickChip(this,'species-chips')">🐕 Dog</button>
+      <button class="chip" onclick="pickChip(this,'species-chips')">🐈 Cat</button>
+      <button class="chip" onclick="pickChip(this,'species-chips')">🐇 Rabbit</button>
+      <button class="chip" onclick="pickChip(this,'species-chips')">🦜 Bird</button>
+      <button class="chip" onclick="pickChip(this,'species-chips')">🐟 Other</button>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div class="field mb-0">
+      <label>Age <span class="opt">(optional)</span></label>
+      <select>
+        <option value="">Select age</option>
+        <option>Under 1 year</option>
+        <option>1–3 years</option>
+        <option>4–7 years</option>
+        <option>8+ years</option>
+      </select>
+    </div>
+    <div class="field mb-0">
+      <label>Size <span class="opt">(optional)</span></label>
+      <select>
+        <option value="">Select size</option>
+        <option>Tiny (under 5 kg)</option>
+        <option>Small (5–10 kg)</option>
+        <option>Medium (10–25 kg)</option>
+        <option>Large (25+ kg)</option>
+      </select>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;display:flex;gap:8px">
+    <button class="btn btn-ghost" onclick="go('sc-location')" style="flex:0 0 auto;width:auto;padding:14px 16px;font-size:14px">
+      Skip for now
+    </button>
+    <button class="btn btn-coral" onclick="go('sc-location')" style="flex:1">
+      Continue
+      <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-05  YOUR LOCATION  (Owner — Step 2/2)
+════════════════════════════════════════ -->
+<div class="screen" id="sc-location">
+  <div class="prog-wrap">
+    <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+    <div class="prog-meta">
+      <span class="prog-label">Step 2 of 2</span>
+      <button class="prog-back" onclick="go('sc-pet')">
+        <span class="material-symbols-rounded" style="font-size:15px">arrow_back</span> Back
+      </button>
+    </div>
+  </div>
+
+  <div class="sc-heading" style="text-align:left;margin-bottom:20px">
+    <h1>Where are you based?</h1>
+    <p>We'll show you verified sitters in your neighbourhood</p>
+  </div>
+
+  <div class="field">
+    <label>City or postcode</label>
+    <div class="input-wrap">
+      <span class="material-symbols-rounded icon-left">location_on</span>
+      <input type="text" class="icon-l-pad" placeholder="e.g. Amsterdam or 1011 AB" autocomplete="off">
+    </div>
+  </div>
+
+  <button class="btn btn-outline mt-2" style="margin-bottom:20px;font-size:13px;padding:11px" onclick="">
+    <span class="material-symbols-rounded" style="font-size:17px">my_location</span>
+    Use my current location
+  </button>
+
+  <button class="btn btn-coral" onclick="go('sc-owner-done')">
+    Find sitters near me
+    <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-07  OWNER WELCOME / DONE
+════════════════════════════════════════ -->
+<div class="screen" id="sc-owner-done">
+  <div class="success-icon green">🎉</div>
+  <div class="sc-heading">
+    <h1>You're all set!</h1>
+    <p>Your account is ready. Start finding the perfect sitter for your pet.</p>
+  </div>
+
+  <div class="summary-card">
+    <div class="s-icon">🐾</div>
+    <div>
+      <div class="s-name">Your account is active</div>
+      <div class="s-sub">Pet owner · Amsterdam</div>
+    </div>
+  </div>
+
+  <a href="petpals-flow.html" class="btn btn-dark" style="text-decoration:none">
+    Browse sitters
+    <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+  </a>
+  <button class="btn btn-ghost mt-2" onclick="go('sc-sitter-intro')">
+    Also become a sitter →
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-10  SITTER INTRO
+════════════════════════════════════════ -->
+<div class="screen" id="sc-sitter-intro">
+  <div class="sc-heading">
+    <h1>Become a PetPals Sitter</h1>
+    <p>Join our network of verified, trusted pet carers across Europe</p>
+  </div>
+
+  <div class="earn-card">
+    <div>
+      <div class="earn-amount">€500–</div>
+      <div class="earn-amount">2000</div>
+    </div>
+    <div>
+      <div class="earn-label">Average monthly earnings</div>
+      <div class="earn-sub">Set your own rates and schedule</div>
+    </div>
+  </div>
+
+  <div class="intro-list">
+    <div class="intro-item">
+      <div class="intro-icon-box">🪪</div>
+      <div><strong>You'll need a valid photo ID</strong>All sitters complete an identity check to build trust with pet owners.</div>
+    </div>
+    <div class="intro-item">
+      <div class="intro-icon-box">⏱</div>
+      <div><strong>Takes about 10 minutes</strong>Complete your profile, services, and availability in one session.</div>
+    </div>
+    <div class="intro-item">
+      <div class="intro-icon-box">✅</div>
+      <div><strong>Applications reviewed in 1–2 days</strong>Our team verifies every sitter before their profile goes live.</div>
+    </div>
+  </div>
+
+  <button class="btn btn-coral" onclick="go('sc-sitter-profile')">
+    Start my application
+    <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+  </button>
+  <button class="btn btn-ghost mt-2" onclick="go('sc-owner-done')">Not now</button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-11  SITTER — BASIC PROFILE  (Step 1/8)
+════════════════════════════════════════ -->
+<div class="screen" id="sc-sitter-profile">
+  <div class="prog-wrap">
+    <div class="prog-bar"><div class="prog-fill" style="width:12.5%"></div></div>
+    <div class="prog-meta">
+      <span class="prog-label">Step 1 of 8</span>
+      <button class="prog-back" onclick="go('sc-sitter-intro')">
+        <span class="material-symbols-rounded" style="font-size:15px">arrow_back</span> Back
+      </button>
+    </div>
+  </div>
+
+  <div class="sc-heading" style="text-align:left;margin-bottom:20px">
+    <h1>Your basic profile</h1>
+    <p>This is what pet owners will see first</p>
+  </div>
+
+  <div class="photo-upload" onclick="" role="button" tabindex="0"
+    aria-label="Upload profile photo">
+    <div class="pu-icon">📷</div>
+    <div class="pu-label">Upload a profile photo</div>
+    <div class="pu-sub">JPG or PNG · Max 5 MB · Required</div>
+  </div>
+
+  <div class="field">
+    <label>Display name</label>
+    <input type="text" placeholder="How you'd like to appear to pet owners">
+  </div>
+  <div class="field">
+    <label>Location</label>
+    <div class="input-wrap">
+      <span class="material-symbols-rounded icon-left">location_on</span>
+      <input type="text" class="icon-l-pad" placeholder="Your city or postcode">
+    </div>
+  </div>
+  <div class="field mb-0">
+    <label>About you <span class="opt">(min. 100 characters)</span></label>
+    <textarea placeholder="Tell pet owners a little about yourself — your experience with animals, your home setup, and what makes you a great sitter…"></textarea>
+  </div>
+
+  <button class="btn btn-coral mt-4" onclick="go('sc-sitter-services')">
+    Continue
+    <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-12  SITTER — SERVICES  (Step 2/8)
+════════════════════════════════════════ -->
+<div class="screen" id="sc-sitter-services">
+  <div class="prog-wrap">
+    <div class="prog-bar"><div class="prog-fill" style="width:25%"></div></div>
+    <div class="prog-meta">
+      <span class="prog-label">Step 2 of 8</span>
+      <button class="prog-back" onclick="go('sc-sitter-profile')">
+        <span class="material-symbols-rounded" style="font-size:15px">arrow_back</span> Back
+      </button>
+    </div>
+  </div>
+
+  <div class="sc-heading" style="text-align:left;margin-bottom:20px">
+    <h1>What do you offer?</h1>
+    <p>Select all the services you'd like to provide</p>
+  </div>
+
+  <div class="svc-chips" id="svc-chips">
+    <button class="svc-chip" onclick="toggleSvc(this)"><span class="si">🏠</span> Boarding</button>
+    <button class="svc-chip" onclick="toggleSvc(this)"><span class="si">🦮</span> Dog walking</button>
+    <button class="svc-chip" onclick="toggleSvc(this)"><span class="si">🛋</span> House sitting</button>
+    <button class="svc-chip" onclick="toggleSvc(this)"><span class="si">🚪</span> Drop-in visits</button>
+    <button class="svc-chip" onclick="toggleSvc(this)"><span class="si">☀️</span> Doggy day care</button>
+    <button class="svc-chip" onclick="toggleSvc(this)"><span class="si">🚗</span> Pet taxi</button>
+    <button class="svc-chip" onclick="toggleSvc(this)"><span class="si">✂️</span> Grooming</button>
+    <button class="svc-chip" onclick="toggleSvc(this)"><span class="si">💊</span> Medication admin</button>
+  </div>
+
+  <div style="background:var(--bg);border-radius:10px;padding:12px 14px;margin:16px 0;font-size:13px;color:var(--muted);line-height:1.5">
+    You can set individual prices for each service in a later step.
+  </div>
+
+  <button class="btn btn-coral" id="svc-continue" onclick="go('sc-sitter-review')" disabled>
+    Continue
+    <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-18  SITTER — APPLICATION SUBMITTED
+════════════════════════════════════════ -->
+<div class="screen" id="sc-sitter-review">
+  <div class="success-icon teal">📋</div>
+  <div class="sc-heading">
+    <h1>Application submitted!</h1>
+    <p>Our team will review your profile and get back to you within 1–2 business days.</p>
+  </div>
+
+  <div class="tracker">
+    <div class="track-step">
+      <div class="t-circle done">✓</div>
+      <div>
+        <div class="t-label">Submitted</div>
+        <div class="t-sub">Your application is in — great job!</div>
+      </div>
+    </div>
+    <div class="track-step">
+      <div class="t-circle now">→</div>
+      <div>
+        <div class="t-label">Under review</div>
+        <div class="t-sub">Our team is checking your profile (1–2 days)</div>
+      </div>
+    </div>
+    <div class="track-step">
+      <div class="t-circle next">3</div>
+      <div>
+        <div class="t-label">Decision</div>
+        <div class="t-sub">You'll hear from us by email</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg);border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:13px;color:var(--body);line-height:1.6">
+    While you wait, you can still browse the platform as a pet owner and explore how bookings work.
+  </div>
+
+  <a href="petpals-flow.html" class="btn btn-dark" style="text-decoration:none">
+    Explore PetPals
+    <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+  </a>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-07  FORGOT PASSWORD
+════════════════════════════════════════ -->
+<div class="screen" id="sc-forgot">
+  <div class="sc-heading">
+    <h1>Reset your password</h1>
+    <p>Enter your email and we'll send you a reset link</p>
+  </div>
+
+  <div class="field">
+    <label>Email address</label>
+    <input type="email" placeholder="you@example.com" autocomplete="email">
+  </div>
+
+  <button class="btn btn-dark" onclick="go('sc-reset-sent')">
+    Send reset link
+  </button>
+
+  <div class="auth-footer"><button class="lnk" onclick="go('sc-signin')">← Back to sign in</button></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-08  RESET LINK SENT
+════════════════════════════════════════ -->
+<div class="screen" id="sc-reset-sent">
+  <div class="verify-icon">🔑</div>
+  <div class="sc-heading">
+    <h1>Check your inbox</h1>
+    <p>We've sent a password reset link to</p>
+  </div>
+  <div class="verify-email">you@example.com</div>
+
+  <p class="center muted" style="margin:4px 0 16px;line-height:1.55">
+    The link expires in 1 hour. If you don't see it, check your spam folder.
+  </p>
+
+  <div class="resend-row">
+    <button class="resend-btn" id="reset-resend-btn" onclick="startResend('reset-resend-btn')">Resend link</button>
+    <span style="color:rgba(26,18,9,.15)">·</span>
+    <button class="resend-btn" onclick="go('sc-forgot')">Change email</button>
+  </div>
+
+  <div class="auth-footer mt-4"><button class="lnk" onclick="go('sc-signin')">← Back to sign in</button></div>
+</div>
+
+</div><!-- .auth-card -->
+
+<script>
+// ── NAVIGATION ──────────────────────────────
+var TITLES = {
+  'sc-signin':'Sign In','sc-signup':'Create Account','sc-verify':'Verify Email',
+  'sc-role':'Choose your role','sc-pet':'Add your pet','sc-location':'Your location',
+  'sc-owner-done':'Welcome to PetPals','sc-sitter-intro':'Become a Sitter',
+  'sc-sitter-profile':'Your profile','sc-sitter-services':'Your services',
+  'sc-sitter-review':'Application submitted','sc-forgot':'Reset password',
+  'sc-reset-sent':'Check your inbox'
+};
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.classList.add('active');
+  window.scrollTo(0,0);
+  document.title = 'PetPals — ' + (TITLES[id]||'Account');
+}
+
+// ── URL PARAMS — deep-link to flow ──────────
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  if(p.get('flow')==='sitter') go('sc-sitter-intro');
+  else if(p.get('mode')==='signup') go('sc-signup');
+})();
+
+// ── SIGN IN ──────────────────────────────────
+function handleSignIn(){
+  // demo: always succeeds → go to role (shows existing users skip role if stored)
+  go('sc-role');
+}
+
+// ── PASSWORD VISIBILITY ───────────────────────
+function togglePw(id, btn){
+  var inp = document.getElementById(id);
+  var isHidden = inp.type === 'password';
+  inp.type = isHidden ? 'text' : 'password';
+  btn.querySelector('.material-symbols-rounded').textContent = isHidden ? 'visibility_off' : 'visibility';
+}
+
+// ── PASSWORD STRENGTH ─────────────────────────
+function updateStrength(val){
+  var s = 0;
+  if(val.length >= 8) s++;
+  if(/[A-Z]/.test(val) && /[a-z]/.test(val)) s++;
+  if(/[0-9]/.test(val)) s++;
+  if(/[^A-Za-z0-9]/.test(val)) s++;
+  var colors = ['','#C71E1E','#D4650F','#C09020','#1E601E'];
+  var labels = ['','Weak','Fair','Good','Strong'];
+  [1,2,3,4].forEach(function(i){
+    var bar = document.getElementById('sb'+i);
+    if(bar) bar.style.background = i<=s && val ? colors[s] : 'rgba(26,18,9,.1)';
+  });
+  var lbl = document.getElementById('su-str-lbl');
+  if(lbl){ lbl.textContent = val ? labels[s]||'' : ''; lbl.style.color = val ? colors[s] : ''; }
+}
+
+// ── ROLE SELECTION ────────────────────────────
+var _role = null;
+function selectRole(r){
+  _role = r;
+  document.querySelectorAll('.role-card').forEach(function(c){c.classList.remove('sel')});
+  var card = document.getElementById('role-'+r);
+  if(card) card.classList.add('sel');
+  var btn = document.getElementById('role-continue-btn');
+  if(btn) btn.disabled = false;
+}
+function continueRole(){
+  var both = document.getElementById('check-both');
+  if((both && both.checked) || _role === 'owner') go('sc-pet');
+  else if(_role === 'sitter') go('sc-sitter-intro');
+}
+
+// ── CHIP TOGGLES ──────────────────────────────
+function pickChip(el, groupClass){
+  // single-select: deselect siblings
+  var parent = el.closest('.chip-row') || el.closest('.species-chips');
+  if(parent){
+    parent.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on')});
+  }
+  el.classList.add('on');
+}
+
+function toggleSvc(el){
+  el.classList.toggle('on');
+  var anyOn = document.querySelectorAll('#svc-chips .svc-chip.on').length > 0;
+  var btn = document.getElementById('svc-continue');
+  if(btn) btn.disabled = !anyOn;
+}
+
+// ── RESEND COUNTDOWN ──────────────────────────
+function startResend(btnId){
+  var btn = document.getElementById(btnId || 'resend-btn');
+  if(!btn || btn.disabled) return;
+  var t = 60;
+  btn.disabled = true;
+  btn.textContent = 'Resend in '+t+'s';
+  var iv = setInterval(function(){
+    t--;
+    if(t<=0){
+      clearInterval(iv);
+      btn.disabled = false;
+      btn.textContent = 'Resend email';
+    } else {
+      btn.textContent = 'Resend in '+t+'s';
+    }
+  }, 1000);
+}
+</script>
+</body>
+</html>
