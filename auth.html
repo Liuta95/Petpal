@@ -474,23 +474,17 @@ body{
   <div class="verify-icon">📧</div>
   <div class="sc-heading">
     <h1>Check your inbox</h1>
-    <p>We sent a verification link to</p>
-  </div>
-  <div class="verify-email" id="verify-email-shown">you@example.com</div>
-
-  <button class="btn btn-outline" onclick="go('sc-role')" style="margin-bottom:8px">
-    <span class="material-symbols-rounded" style="font-size:18px">open_in_new</span>
-    Open email app
-  </button>
-
-  <p class="center muted" style="margin:16px 0 8px">Didn't receive it?</p>
-  <div class="resend-row">
-    <button class="resend-btn" id="resend-btn" onclick="startResend()">Resend email</button>
-    <span style="color:rgba(26,18,9,.15)">·</span>
-    <button class="resend-btn" onclick="go('sc-signup')">Change email</button>
+    <p>We sent a verification link to <strong id="verify-email-shown" style="color:#1A1209">you@example.com</strong></p>
   </div>
 
-  <div class="auth-footer mt-4"><button class="lnk" onclick="go('sc-signin')">← Back to sign in</button></div>
+  <p class="center muted" style="font-size:13px;margin:-8px 0 24px">It may take 1–2 minutes. Check spam if needed.</p>
+
+  <button class="btn btn-outline" id="resend-btn" onclick="startResend()" style="margin-bottom:12px">Resend email</button>
+  <button class="resend-btn" style="width:100%;text-align:center" onclick="go('sc-signup')">Change email</button>
+
+  <div class="auth-footer" style="margin-top:32px">
+    <button class="lnk" style="font-size:13px;opacity:.55" onclick="go('sc-signin')">← Back to sign in</button>
+  </div>
 </div>
 
 
