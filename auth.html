@@ -1075,10 +1075,70 @@ body{
     You'll receive a confirmation at your registered email. While you wait, your account is active and you can explore PetPals as a pet owner.
   </div>
 
-  <a href="index.html" class="btn btn-dark" style="text-decoration:none">
+  <button class="btn btn-dark" onclick="go('sc-sitter-account')">
     Go to my account
     <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
-  </a>
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SITTER ACCOUNT
+════════════════════════════════════════ -->
+<div class="screen" id="sc-sitter-account">
+
+  <!-- Header -->
+  <div class="dash-acct">
+    <div class="dash-avatar">🐾</div>
+    <div>
+      <div class="dash-acct-label">Sitter account</div>
+      <div class="dash-acct-name">My account</div>
+    </div>
+    <div class="dash-acct-pill">Under review</div>
+  </div>
+
+  <!-- Application status -->
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:10px">Application status</div>
+  <div class="tracker" style="margin-bottom:24px">
+    <div class="track-step">
+      <div class="t-circle done">✓</div>
+      <div>
+        <div class="t-label">Submitted</div>
+        <div class="t-sub">All 5 steps completed</div>
+      </div>
+    </div>
+    <div class="track-step">
+      <div class="t-circle now">→</div>
+      <div>
+        <div class="t-label">Under review</div>
+        <div class="t-sub">Our team is checking your profile (1–2 days)</div>
+      </div>
+    </div>
+    <div class="track-step">
+      <div class="t-circle next">3</div>
+      <div>
+        <div class="t-label">Decision by email</div>
+        <div class="t-sub">We'll notify you as soon as we have an answer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile card -->
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:10px">My profile</div>
+  <div style="display:flex;align-items:center;gap:14px;padding:14px;background:var(--bg);border-radius:14px;margin-bottom:8px">
+    <div style="width:48px;height:48px;border-radius:50%;background:var(--sand);border:2px solid rgba(26,18,9,.1);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🐾</div>
+    <div>
+      <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px">Your display name</div>
+      <div style="font-size:12px;color:var(--muted)">Your city · Boarding, Dog walking</div>
+    </div>
+    <button onclick="go('sc-sitter-profile')" style="margin-left:auto;background:none;border:1.5px solid rgba(26,18,9,.15);border-radius:8px;padding:6px 12px;font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer">Edit</button>
+  </div>
+
+  <button class="btn btn-outline mt-4" onclick="go('sc-sitter-intro')" style="margin-bottom:8px">
+    <span class="material-symbols-rounded" style="font-size:16px">checklist</span>
+    View setup checklist
+  </button>
+  <button class="btn btn-ghost" onclick="window.location.href='index.html'">Browse PetPals as a pet owner</button>
 </div>
 
 
@@ -1139,6 +1199,7 @@ var TITLES = {
   'sc-sitter-profile':'Your profile','sc-sitter-services':'Services & rates',
   'sc-sitter-id':'Identity verification','sc-sitter-avail':'Availability',
   'sc-sitter-submit':'Review & submit','sc-sitter-review':'Application status',
+  'sc-sitter-account':'My sitter account',
   'sc-forgot':'Reset password',
   'sc-reset-sent':'Check your inbox'
 };
