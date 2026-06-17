@@ -285,6 +285,24 @@ body{
 .photo-upload .pu-label{font-size:13px;font-weight:600;color:var(--muted)}
 .photo-upload .pu-sub{font-size:11px;color:var(--faint)}
 
+/* ── ACCOUNT DASHBOARD ── */
+.sec-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:10px}
+.acct-profile{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--bg);border-radius:14px;margin-bottom:20px}
+.acct-initials{width:48px;height:48px;border-radius:50%;background:var(--coral-soft);border:2px solid rgba(163,68,15,.15);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--coral);flex-shrink:0;letter-spacing:-.02em}
+.acct-info{flex:1;min-width:0}
+.acct-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.acct-email{font-size:12px;color:var(--muted);margin-bottom:6px}
+.acct-tags{display:flex;flex-wrap:wrap;gap:5px}
+.acct-tag{font-size:11px;font-weight:600;padding:3px 8px;border-radius:99px;background:rgba(26,18,9,.07);color:var(--body)}
+.acct-edit{flex-shrink:0;background:none;border:1.5px solid rgba(26,18,9,.15);border-radius:8px;padding:6px 12px;font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all .15s}
+.acct-edit:hover{border-color:var(--ink);color:var(--ink)}
+.acct-wait{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.acct-wait-row{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--bg);border-radius:12px}
+.acct-wait-dot{width:28px;height:28px;border-radius:50%;background:var(--sand);border:1.5px solid rgba(26,18,9,.1);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:1px}
+.acct-wait-body{flex:1}
+.acct-wait-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.acct-wait-desc{font-size:12px;color:var(--muted);line-height:1.4}
+
 /* ── AVAILABILITY SELECTOR ── */
 .avail-days{display:flex;gap:6px;margin-bottom:18px}
 .avail-day{
@@ -1087,24 +1105,24 @@ body{
 ════════════════════════════════════════ -->
 <div class="screen" id="sc-sitter-account">
 
-  <!-- Header -->
+  <!-- Account header -->
   <div class="dash-acct">
-    <div class="dash-avatar">🐾</div>
+    <div class="acct-initials">AL</div>
     <div>
       <div class="dash-acct-label">Sitter account</div>
-      <div class="dash-acct-name">My account</div>
+      <div class="dash-acct-name">Anastasiia Liuta</div>
     </div>
     <div class="dash-acct-pill">Under review</div>
   </div>
 
   <!-- Application status -->
-  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:10px">Application status</div>
+  <div class="sec-label">Application status</div>
   <div class="tracker" style="margin-bottom:24px">
     <div class="track-step">
       <div class="t-circle done">✓</div>
       <div>
         <div class="t-label">Submitted</div>
-        <div class="t-sub">All 5 steps completed</div>
+        <div class="t-sub">All 5 steps completed successfully</div>
       </div>
     </div>
     <div class="track-step">
@@ -1118,27 +1136,57 @@ body{
       <div class="t-circle next">3</div>
       <div>
         <div class="t-label">Decision by email</div>
-        <div class="t-sub">We'll notify you as soon as we have an answer</div>
+        <div class="t-sub">We'll notify you at anasssta9@gmail.com</div>
       </div>
     </div>
   </div>
 
-  <!-- Profile card -->
-  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:10px">My profile</div>
-  <div style="display:flex;align-items:center;gap:14px;padding:14px;background:var(--bg);border-radius:14px;margin-bottom:8px">
-    <div style="width:48px;height:48px;border-radius:50%;background:var(--sand);border:2px solid rgba(26,18,9,.1);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🐾</div>
-    <div>
-      <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px">Your display name</div>
-      <div style="font-size:12px;color:var(--muted)">Your city · Boarding, Dog walking</div>
+  <!-- Profile summary -->
+  <div class="sec-label">My profile</div>
+  <div class="acct-profile">
+    <div class="acct-initials" style="width:48px;height:48px;font-size:15px">AL</div>
+    <div class="acct-info">
+      <div class="acct-name">Anastasiia Liuta</div>
+      <div class="acct-email">anasssta9@gmail.com · Amsterdam</div>
+      <div class="acct-tags">
+        <span class="acct-tag">🏠 Boarding</span>
+        <span class="acct-tag">🦮 Dog walking</span>
+        <span class="acct-tag">🚪 Drop-in visits</span>
+      </div>
     </div>
-    <button onclick="go('sc-sitter-profile')" style="margin-left:auto;background:none;border:1.5px solid rgba(26,18,9,.15);border-radius:8px;padding:6px 12px;font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer">Edit</button>
+    <button class="acct-edit" onclick="go('sc-sitter-profile')">Edit</button>
   </div>
 
-  <button class="btn btn-outline mt-4" onclick="go('sc-sitter-intro')" style="margin-bottom:8px">
-    <span class="material-symbols-rounded" style="font-size:16px">checklist</span>
-    View setup checklist
+  <!-- While you wait -->
+  <div class="sec-label">While you wait</div>
+  <div class="acct-wait">
+    <div class="acct-wait-row">
+      <div class="acct-wait-dot">📷</div>
+      <div class="acct-wait-body">
+        <div class="acct-wait-title">Add a profile photo</div>
+        <div class="acct-wait-desc">Pet owners choose sitters with photos 3× more often. Upload yours now.</div>
+      </div>
+    </div>
+    <div class="acct-wait-row">
+      <div class="acct-wait-dot">📬</div>
+      <div class="acct-wait-body">
+        <div class="acct-wait-title">Check your email</div>
+        <div class="acct-wait-desc">We'll send our decision to anasssta9@gmail.com within 1–2 business days.</div>
+      </div>
+    </div>
+    <div class="acct-wait-row">
+      <div class="acct-wait-dot">⭐</div>
+      <div class="acct-wait-body">
+        <div class="acct-wait-title">Your listing goes live once approved</div>
+        <div class="acct-wait-desc">Pet owners in Amsterdam will be able to find and book you.</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-outline" onclick="go('sc-sitter-profile')">
+    <span class="material-symbols-rounded" style="font-size:16px">edit</span>
+    Edit my profile
   </button>
-  <button class="btn btn-ghost" onclick="window.location.href='index.html'">Browse PetPals as a pet owner</button>
 </div>
 
 
