@@ -285,14 +285,49 @@ body{
 .photo-upload .pu-label{font-size:13px;font-weight:600;color:var(--muted)}
 .photo-upload .pu-sub{font-size:11px;color:var(--faint)}
 
-/* ── SITTER INTRO ── */
-.intro-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
-.intro-item{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--body);line-height:1.45}
-.intro-icon-box{
-  width:36px;height:36px;border-radius:9px;background:var(--sand);
-  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+/* ── SITTER DASHBOARD ── */
+.dash-acct{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;background:var(--sand);border-radius:14px;margin-bottom:22px;
 }
-.intro-item strong{display:block;font-weight:700;color:var(--ink);margin-bottom:1px}
+.dash-avatar{
+  width:38px;height:38px;border-radius:50%;background:var(--coral-soft);
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
+}
+.dash-acct-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:1px}
+.dash-acct-name{font-size:14px;font-weight:700;color:var(--ink)}
+.dash-acct-pill{
+  margin-left:auto;font-size:11px;font-weight:700;padding:4px 10px;
+  border-radius:99px;background:#FEF3C7;color:#92400E;white-space:nowrap;
+}
+.dash-prog-wrap{margin-bottom:20px}
+.dash-prog-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:7px}
+.dash-prog-track{height:4px;background:rgba(26,18,9,.1);border-radius:99px;overflow:hidden}
+.dash-prog-fill{height:100%;width:0%;background:var(--teal);border-radius:99px;transition:width .4s ease}
+.dash-steps{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+.dash-step{
+  display:flex;align-items:flex-start;gap:12px;padding:13px 14px;
+  border-radius:12px;border:1.5px solid transparent;
+}
+.dash-step.ds-active{background:#FEFCFA;border-color:var(--coral)}
+.dash-step.ds-done{opacity:.55}
+.dash-step.ds-locked{opacity:.38}
+.ds-num{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;
+}
+.dash-step.ds-active .ds-num{background:var(--coral);color:#fff}
+.dash-step.ds-done   .ds-num{background:var(--green-soft);color:var(--green)}
+.dash-step.ds-locked .ds-num{background:rgba(26,18,9,.08);color:var(--muted)}
+.ds-body{flex:1;min-width:0}
+.ds-title{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.ds-desc{font-size:12px;color:var(--muted);line-height:1.4}
+.ds-tag{
+  margin-left:auto;flex-shrink:0;align-self:center;
+  font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;
+}
+.dash-step.ds-active .ds-tag{background:var(--coral-soft);color:var(--coral)}
+.dash-step.ds-locked .ds-tag{background:rgba(26,18,9,.07);color:var(--faint)}
 
 
 /* ── SUCCESS / END STATES ── */
@@ -655,31 +690,75 @@ body{
      S-10  SITTER INTRO
 ════════════════════════════════════════ -->
 <div class="screen" id="sc-sitter-intro">
-  <div class="sc-heading" style="margin-bottom:36px">
-    <h1>Become a PetPals Sitter</h1>
-    <p>Join our network of verified, trusted pet carers across Europe</p>
+
+  <!-- Account header -->
+  <div class="dash-acct">
+    <div class="dash-avatar">🐾</div>
+    <div>
+      <div class="dash-acct-label">Sitter account</div>
+      <div class="dash-acct-name">Setup in progress</div>
+    </div>
+    <div class="dash-acct-pill">Not live yet</div>
   </div>
 
-  <div class="intro-list" style="margin-bottom:32px;gap:16px">
-    <div class="intro-item">
-      <div class="intro-icon-box">🪪</div>
-      <div><strong>You'll need a valid photo ID</strong>All sitters complete an identity check to build trust with pet owners.</div>
+  <!-- Progress -->
+  <div class="dash-prog-wrap">
+    <div class="dash-prog-meta">
+      <span>0 of 5 steps complete</span>
+      <span>Approx. 15 min total</span>
     </div>
-    <div class="intro-item">
-      <div class="intro-icon-box">⏱</div>
-      <div><strong>Takes about 10 minutes</strong>Complete your profile, services, and availability in one session.</div>
+    <div class="dash-prog-track"><div class="dash-prog-fill"></div></div>
+  </div>
+
+  <!-- Steps -->
+  <div class="dash-steps">
+    <div class="dash-step ds-active">
+      <div class="ds-num">1</div>
+      <div class="ds-body">
+        <div class="ds-title">Your profile</div>
+        <div class="ds-desc">Photo, bio, experience, and pet preferences</div>
+      </div>
+      <div class="ds-tag">Start</div>
     </div>
-    <div class="intro-item">
-      <div class="intro-icon-box">✅</div>
-      <div><strong>Applications reviewed in 1–2 days</strong>Our team verifies every sitter before their profile goes live.</div>
+    <div class="dash-step ds-locked">
+      <div class="ds-num">2</div>
+      <div class="ds-body">
+        <div class="ds-title">Identity verification</div>
+        <div class="ds-desc">Upload a government-issued photo ID</div>
+      </div>
+      <div class="ds-tag">2 min</div>
+    </div>
+    <div class="dash-step ds-locked">
+      <div class="ds-num">3</div>
+      <div class="ds-body">
+        <div class="ds-title">Services &amp; rates</div>
+        <div class="ds-desc">Choose what you offer and set your prices</div>
+      </div>
+      <div class="ds-tag">3 min</div>
+    </div>
+    <div class="dash-step ds-locked">
+      <div class="ds-num">4</div>
+      <div class="ds-body">
+        <div class="ds-title">Availability</div>
+        <div class="ds-desc">Set your regular schedule and capacity</div>
+      </div>
+      <div class="ds-tag">3 min</div>
+    </div>
+    <div class="dash-step ds-locked">
+      <div class="ds-num">5</div>
+      <div class="ds-body">
+        <div class="ds-title">Submit for review</div>
+        <div class="ds-desc">Our team verifies every sitter in 1–2 days</div>
+      </div>
+      <div class="ds-tag">Last step</div>
     </div>
   </div>
 
   <button class="btn btn-coral" onclick="go('sc-sitter-profile')">
-    Start my application
+    Start your profile
     <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
   </button>
-  <button class="btn btn-ghost mt-2" onclick="window.location.href='index.html'">Not now</button>
+  <button class="btn btn-ghost mt-2" onclick="window.location.href='index.html'">Do this later</button>
 </div>
 
 
