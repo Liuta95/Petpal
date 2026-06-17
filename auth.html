@@ -285,6 +285,24 @@ body{
 .photo-upload .pu-label{font-size:13px;font-weight:600;color:var(--muted)}
 .photo-upload .pu-sub{font-size:11px;color:var(--faint)}
 
+/* ── AVAILABILITY SELECTOR ── */
+.avail-days{display:flex;gap:6px;margin-bottom:18px}
+.avail-day{
+  flex:1;aspect-ratio:1;border-radius:50%;
+  border:1.5px solid rgba(26,18,9,.15);background:#fff;
+  font-family:inherit;font-size:11px;font-weight:700;color:var(--muted);
+  cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;
+}
+.avail-day:hover{border-color:var(--ink);color:var(--ink)}
+.avail-day.on{background:var(--ink);border-color:var(--ink);color:#F7F3EE}
+
+/* ── SUBMIT SUMMARY ── */
+.submit-summary{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.sum-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:var(--bg)}
+.sum-icon{width:30px;height:30px;border-radius:8px;background:var(--green-soft);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.sum-label{font-size:13px;font-weight:600;color:var(--ink);flex:1}
+.sum-check{font-size:13px;color:var(--green);font-weight:700}
+
 /* ── SITTER DASHBOARD ── */
 .dash-acct{
   display:flex;align-items:center;gap:12px;
@@ -716,25 +734,25 @@ body{
       <div class="ds-num">1</div>
       <div class="ds-body">
         <div class="ds-title">Your profile</div>
-        <div class="ds-desc">Photo, bio, experience, and pet preferences</div>
+        <div class="ds-desc">Photo, display name, location, and about you</div>
       </div>
       <div class="ds-tag">Start</div>
     </div>
     <div class="dash-step ds-locked">
       <div class="ds-num">2</div>
       <div class="ds-body">
-        <div class="ds-title">Identity verification</div>
-        <div class="ds-desc">Upload a government-issued photo ID</div>
-      </div>
-      <div class="ds-tag">2 min</div>
-    </div>
-    <div class="dash-step ds-locked">
-      <div class="ds-num">3</div>
-      <div class="ds-body">
         <div class="ds-title">Services &amp; rates</div>
         <div class="ds-desc">Choose what you offer and set your prices</div>
       </div>
       <div class="ds-tag">3 min</div>
+    </div>
+    <div class="dash-step ds-locked">
+      <div class="ds-num">3</div>
+      <div class="ds-body">
+        <div class="ds-title">Identity verification</div>
+        <div class="ds-desc">Upload a government-issued photo ID</div>
+      </div>
+      <div class="ds-tag">2 min</div>
     </div>
     <div class="dash-step ds-locked">
       <div class="ds-num">4</div>
@@ -763,13 +781,13 @@ body{
 
 
 <!-- ══════════════════════════════════════
-     S-11  SITTER — BASIC PROFILE  (Step 1/8)
+     S-11  SITTER — BASIC PROFILE  (Step 1/5)
 ════════════════════════════════════════ -->
 <div class="screen" id="sc-sitter-profile">
   <div class="prog-wrap">
-    <div class="prog-bar"><div class="prog-fill" style="width:12.5%"></div></div>
+    <div class="prog-bar"><div class="prog-fill" style="width:20%"></div></div>
     <div class="prog-meta">
-      <span class="prog-label">Step 1 of 8</span>
+      <span class="prog-label">Step 1 of 5</span>
       <button class="prog-back" onclick="go('sc-sitter-intro')">
         <span class="material-symbols-rounded" style="font-size:15px">arrow_back</span> Back
       </button>
@@ -812,13 +830,13 @@ body{
 
 
 <!-- ══════════════════════════════════════
-     S-12  SITTER — SERVICES  (Step 2/8)
+     S-12  SITTER — SERVICES  (Step 2/5)
 ════════════════════════════════════════ -->
 <div class="screen" id="sc-sitter-services">
   <div class="prog-wrap">
-    <div class="prog-bar"><div class="prog-fill" style="width:25%"></div></div>
+    <div class="prog-bar"><div class="prog-fill" style="width:40%"></div></div>
     <div class="prog-meta">
-      <span class="prog-label">Step 2 of 8</span>
+      <span class="prog-label">Step 2 of 5</span>
       <button class="prog-back" onclick="go('sc-sitter-profile')">
         <span class="material-symbols-rounded" style="font-size:15px">arrow_back</span> Back
       </button>
@@ -845,7 +863,7 @@ body{
     You can set individual prices for each service in a later step.
   </div>
 
-  <button class="btn btn-coral" id="svc-continue" onclick="go('sc-sitter-review')">
+  <button class="btn btn-coral" id="svc-continue" onclick="go('sc-sitter-id')">
     Continue
     <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
   </button>
@@ -853,21 +871,188 @@ body{
 
 
 <!-- ══════════════════════════════════════
-     S-18  SITTER — APPLICATION SUBMITTED
+     S-13  SITTER — IDENTITY  (Step 3/5)
 ════════════════════════════════════════ -->
-<div class="screen" id="sc-sitter-review">
-  <div class="success-icon teal">📋</div>
-  <div class="sc-heading">
-    <h1>Application submitted!</h1>
-    <p>Our team will review your profile and get back to you within 1–2 business days.</p>
+<div class="screen" id="sc-sitter-id">
+  <div class="prog-wrap">
+    <div class="prog-bar"><div class="prog-fill" style="width:60%"></div></div>
+    <div class="prog-meta">
+      <span class="prog-label">Step 3 of 5</span>
+      <button class="prog-back" onclick="go('sc-sitter-services')">
+        <span class="material-symbols-rounded" style="font-size:15px">arrow_back</span> Back
+      </button>
+    </div>
   </div>
 
-  <div class="tracker">
+  <div class="sc-heading" style="text-align:left;margin-bottom:20px">
+    <h1>Verify your identity</h1>
+    <p>Required for all sitters. Your ID is encrypted and never shared with pet owners.</p>
+  </div>
+
+  <div class="photo-upload" role="button" tabindex="0">
+    <div class="pu-icon">🪪</div>
+    <div class="pu-label">Upload a government-issued ID</div>
+    <div class="pu-sub">Passport · National ID · Driver's licence · Max 10 MB</div>
+  </div>
+
+  <div style="background:var(--bg);border-radius:10px;padding:12px 14px;margin-bottom:20px;font-size:13px;color:var(--muted);line-height:1.5">
+    <strong style="color:var(--ink);display:block;margin-bottom:3px">Why we need this</strong>
+    Identity checks protect pet owners and build the trust that makes our community work.
+  </div>
+
+  <button class="btn btn-coral" onclick="go('sc-sitter-avail')">
+    Continue
+    <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-14  SITTER — AVAILABILITY  (Step 4/5)
+════════════════════════════════════════ -->
+<div class="screen" id="sc-sitter-avail">
+  <div class="prog-wrap">
+    <div class="prog-bar"><div class="prog-fill" style="width:80%"></div></div>
+    <div class="prog-meta">
+      <span class="prog-label">Step 4 of 5</span>
+      <button class="prog-back" onclick="go('sc-sitter-id')">
+        <span class="material-symbols-rounded" style="font-size:15px">arrow_back</span> Back
+      </button>
+    </div>
+  </div>
+
+  <div class="sc-heading" style="text-align:left;margin-bottom:20px">
+    <h1>Your availability</h1>
+    <p>Let pet owners know when you're typically free. You can update this anytime.</p>
+  </div>
+
+  <div class="field">
+    <label>Days you're available</label>
+    <div class="avail-days">
+      <button class="avail-day" onclick="this.classList.toggle('on')">Mo</button>
+      <button class="avail-day" onclick="this.classList.toggle('on')">Tu</button>
+      <button class="avail-day" onclick="this.classList.toggle('on')">We</button>
+      <button class="avail-day" onclick="this.classList.toggle('on')">Th</button>
+      <button class="avail-day" onclick="this.classList.toggle('on')">Fr</button>
+      <button class="avail-day" onclick="this.classList.toggle('on')">Sa</button>
+      <button class="avail-day" onclick="this.classList.toggle('on')">Su</button>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Maximum pets at once</label>
+    <select style="width:100%;padding:13px 16px;border:1.5px solid var(--faint);border-radius:var(--radius);font-family:inherit;font-size:14px;color:var(--ink);background:#fff;appearance:none;cursor:pointer;outline:none">
+      <option>1 pet at a time</option>
+      <option selected>Up to 2 pets</option>
+      <option>Up to 3 pets</option>
+      <option>4 or more pets</option>
+    </select>
+  </div>
+
+  <div class="field mb-0">
+    <label>Home setup</label>
+    <div class="chip-row">
+      <button class="chip" onclick="this.classList.toggle('on')">🏡 House</button>
+      <button class="chip" onclick="this.classList.toggle('on')">🌳 Garden</button>
+      <button class="chip" onclick="this.classList.toggle('on')">🐕 Have a dog</button>
+      <button class="chip" onclick="this.classList.toggle('on')">🐱 Have a cat</button>
+      <button class="chip" onclick="this.classList.toggle('on')">🧒 Children at home</button>
+    </div>
+  </div>
+
+  <button class="btn btn-coral mt-4" onclick="go('sc-sitter-submit')">
+    Continue
+    <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-15  SITTER — REVIEW & SUBMIT  (Step 5/5)
+════════════════════════════════════════ -->
+<div class="screen" id="sc-sitter-submit">
+  <div class="prog-wrap">
+    <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+    <div class="prog-meta">
+      <span class="prog-label">Step 5 of 5</span>
+      <button class="prog-back" onclick="go('sc-sitter-avail')">
+        <span class="material-symbols-rounded" style="font-size:15px">arrow_back</span> Back
+      </button>
+    </div>
+  </div>
+
+  <div class="sc-heading" style="text-align:left;margin-bottom:20px">
+    <h1>Ready to submit?</h1>
+    <p>Review what you've completed before we send your application for review.</p>
+  </div>
+
+  <div class="submit-summary">
+    <div class="sum-row">
+      <div class="sum-icon">👤</div>
+      <div class="sum-label">Profile completed</div>
+      <div class="sum-check">✓</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-icon">🛋</div>
+      <div class="sum-label">Services selected</div>
+      <div class="sum-check">✓</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-icon">🪪</div>
+      <div class="sum-label">Identity document uploaded</div>
+      <div class="sum-check">✓</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-icon">📅</div>
+      <div class="sum-label">Availability set</div>
+      <div class="sum-check">✓</div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg);border-radius:10px;padding:12px 14px;margin-bottom:20px;font-size:13px;color:var(--muted);line-height:1.5">
+    Our team reviews every application within 1–2 business days. You'll get an email with the decision.
+  </div>
+
+  <button class="btn btn-coral" onclick="go('sc-sitter-review')">
+    Submit application
+    <span class="material-symbols-rounded" style="font-size:18px">check</span>
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     S-18  SITTER — APPLICATION STATUS
+════════════════════════════════════════ -->
+<div class="screen" id="sc-sitter-review">
+
+  <!-- Account header — under review state -->
+  <div class="dash-acct">
+    <div class="dash-avatar">🐾</div>
+    <div>
+      <div class="dash-acct-label">Sitter account</div>
+      <div class="dash-acct-name">Application submitted</div>
+    </div>
+    <div class="dash-acct-pill">Under review</div>
+  </div>
+
+  <!-- All 5 steps complete -->
+  <div class="dash-prog-wrap">
+    <div class="dash-prog-meta">
+      <span>5 of 5 steps complete</span>
+      <span style="color:var(--green);font-weight:700">Submitted ✓</span>
+    </div>
+    <div class="dash-prog-track">
+      <div class="dash-prog-fill" style="width:100%;background:var(--green)"></div>
+    </div>
+  </div>
+
+  <!-- Review status tracker -->
+  <div class="tracker" style="margin-bottom:20px">
     <div class="track-step">
       <div class="t-circle done">✓</div>
       <div>
-        <div class="t-label">Submitted</div>
-        <div class="t-sub">Your application is in — great job!</div>
+        <div class="t-label">Application submitted</div>
+        <div class="t-sub">All 5 steps completed successfully</div>
       </div>
     </div>
     <div class="track-step">
@@ -880,18 +1065,18 @@ body{
     <div class="track-step">
       <div class="t-circle next">3</div>
       <div>
-        <div class="t-label">Decision</div>
-        <div class="t-sub">You'll hear from us by email</div>
+        <div class="t-label">Decision by email</div>
+        <div class="t-sub">We'll notify you as soon as we have an answer</div>
       </div>
     </div>
   </div>
 
-  <div style="background:var(--bg);border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:13px;color:var(--body);line-height:1.6">
-    While you wait, you can still browse the platform as a pet owner and explore how bookings work.
+  <div style="background:var(--bg);border-radius:12px;padding:13px 16px;margin-bottom:20px;font-size:13px;color:var(--body);line-height:1.6">
+    You'll receive a confirmation at your registered email. While you wait, your account is active and you can explore PetPals as a pet owner.
   </div>
 
-  <a href="petpals-flow.html" class="btn btn-dark" style="text-decoration:none">
-    Explore PetPals
+  <a href="index.html" class="btn btn-dark" style="text-decoration:none">
+    Go to my account
     <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
   </a>
 </div>
@@ -951,8 +1136,10 @@ var TITLES = {
   'sc-signin':'Sign In','sc-signup':'Create Account','sc-verify':'Verify Email',
   'sc-role':'Choose your role','sc-pet':'Add your pet','sc-location':'Your location',
   'sc-owner-done':'Welcome to PetPals','sc-sitter-intro':'Become a Sitter',
-  'sc-sitter-profile':'Your profile','sc-sitter-services':'Your services',
-  'sc-sitter-review':'Application submitted','sc-forgot':'Reset password',
+  'sc-sitter-profile':'Your profile','sc-sitter-services':'Services & rates',
+  'sc-sitter-id':'Identity verification','sc-sitter-avail':'Availability',
+  'sc-sitter-submit':'Review & submit','sc-sitter-review':'Application status',
+  'sc-forgot':'Reset password',
   'sc-reset-sent':'Check your inbox'
 };
 function go(id){
