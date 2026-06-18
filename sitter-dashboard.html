@@ -109,11 +109,11 @@ body{
 .review-pill{
   display:inline-flex;align-items:center;gap:7px;
   font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px;
-  background:#FEF3C7;color:#92400E;border:1px solid rgba(245,158,11,.2);
+  background:var(--green-soft);color:var(--green);border:1px solid rgba(30,96,30,.15);
 }
 .review-dot{
-  width:6px;height:6px;border-radius:50%;background:#F59E0B;flex-shrink:0;
-  box-shadow:0 0 0 3px rgba(245,158,11,.2);
+  width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(30,96,30,.2);
 }
 
 .content{padding:28px 32px}
@@ -296,12 +296,10 @@ body{
     <a class="nav-item" href="#">
       <span class="material-symbols-rounded nav-icon">chat</span>
       Messages
-      <span class="material-symbols-rounded nav-lock" title="Available after approval">lock</span>
     </a>
     <a class="nav-item" href="#">
       <span class="material-symbols-rounded nav-icon">payments</span>
       Payouts
-      <span class="material-symbols-rounded nav-lock" title="Available after approval">lock</span>
     </a>
   </div>
 
@@ -343,7 +341,7 @@ body{
     </div>
     <div class="review-pill">
       <span class="review-dot"></span>
-      Application under review
+      Listing live
     </div>
   </div>
 
@@ -365,45 +363,45 @@ body{
               </div>
             </div>
             <div class="track-step">
-              <div class="t-circle now">→</div>
+              <div class="t-circle done">✓</div>
               <div>
-                <div class="t-label">Under review</div>
-                <div class="t-sub">Our team is checking your profile. This usually takes 1–2 business days.</div>
+                <div class="t-label">Approved</div>
+                <div class="t-sub">Your profile passed our review on 17 June 2026</div>
               </div>
             </div>
             <div class="track-step">
-              <div class="t-circle next">3</div>
+              <div class="t-circle done">✓</div>
               <div>
-                <div class="t-label">Decision by email</div>
-                <div class="t-sub">We'll notify you at anasssta9@gmail.com as soon as we have an answer.</div>
+                <div class="t-label">Listing live</div>
+                <div class="t-sub">Your profile is now visible to pet owners in Amsterdam. You can receive booking requests.</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- While you wait -->
+        <!-- Next steps -->
         <div class="card">
-          <div class="card-label">While you wait</div>
+          <div class="card-label">Next steps</div>
           <div class="wait-list">
             <div class="wait-row">
               <div class="wait-icon">📷</div>
               <div>
                 <div class="wait-title">Add a profile photo</div>
-                <div class="wait-desc">Pet owners choose sitters with photos 3× more often. Upload yours to be ready the moment your profile goes live.</div>
+                <div class="wait-desc">Sitters with a photo get 3× more booking requests. Your listing is live — a photo puts you ahead of the competition right now.</div>
               </div>
             </div>
             <div class="wait-row">
-              <div class="wait-icon">📬</div>
+              <div class="wait-icon">📅</div>
               <div>
-                <div class="wait-title">Watch your inbox</div>
-                <div class="wait-desc">Our decision will arrive at anasssta9@gmail.com. Check spam if you don't hear from us within 2 business days.</div>
+                <div class="wait-title">Keep your availability up to date</div>
+                <div class="wait-desc">Pet owners can only send requests for days you've marked as available. Review your calendar so you don't miss bookings.</div>
               </div>
             </div>
             <div class="wait-row">
-              <div class="wait-icon">⭐</div>
+              <div class="wait-icon">📖</div>
               <div>
-                <div class="wait-title">Your listing goes live once approved</div>
-                <div class="wait-desc">Pet owners in Amsterdam will be able to find and book you. You set your own rates and schedule.</div>
+                <div class="wait-title">Understand how bookings work</div>
+                <div class="wait-desc">When a pet owner sends a request, you have 24 hours to accept or decline. We'll notify you by email and in-app.</div>
               </div>
             </div>
           </div>
@@ -454,7 +452,7 @@ body{
             <div class="nudge-icon">📷</div>
             <div>
               <div class="nudge-title">No profile photo yet</div>
-              <div class="nudge-desc">Add one before your listing goes live</div>
+              <div class="nudge-desc">Your listing is live — add a photo to get 3× more requests</div>
             </div>
           </div>
 
@@ -490,6 +488,10 @@ body{
         <!-- Account info -->
         <div class="card">
           <div class="card-label">Account</div>
+          <div class="meta-row" style="margin-bottom:10px">
+            <span class="material-symbols-rounded meta-icon" style="color:var(--green)">check_circle</span>
+            <span style="font-weight:700;color:var(--green)">Status: Listing live</span>
+          </div>
           <div class="meta-row" style="margin-bottom:10px">
             <span class="material-symbols-rounded meta-icon">mail</span>
             anasssta9@gmail.com
