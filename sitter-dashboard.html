@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetPals — Sitter Dashboard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#1A1209;--body:#4A3728;--muted:#6B5744;--faint:#8A7060;
+  --bg:#F7F3EE;--sand:#EDE5DA;--surface:#fff;
+  --coral:#A3440F;--coral-soft:#FDE8D8;
+  --teal:#005F5F;--teal-soft:#E0F2F2;
+  --green:#1E601E;--green-soft:#E8F5E8;
+  --sidebar:#1A1209;--sidebar-w:224px;
+  --font-body:"Instrument Sans",system-ui,sans-serif;
+  --font-display:"Cormorant Garamond",Georgia,serif;
+  --radius:12px;--shadow:0 2px 20px rgba(26,18,9,.07);
+}
+
+body{
+  font-family:var(--font-body);background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;display:flex;min-height:100dvh;
+}
+
+/* ══════════════════════════════════════
+   SIDEBAR
+══════════════════════════════════════ */
+.sidebar{
+  width:var(--sidebar-w);flex-shrink:0;background:var(--sidebar);
+  display:flex;flex-direction:column;
+  position:sticky;top:0;height:100dvh;overflow-y:auto;
+}
+
+.sb-logo{
+  padding:24px 20px 18px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  margin-bottom:6px;
+}
+.sb-wordmark{
+  font-family:var(--font-display);font-size:21px;font-weight:600;
+  color:#F7F3EE;letter-spacing:-.02em;
+}
+.sb-wordmark em{color:var(--coral);font-style:normal}
+
+.sb-section{padding:0 10px;margin-bottom:2px}
+
+.sb-section-label{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:rgba(247,243,238,.28);padding:14px 8px 5px;
+}
+
+.nav-item{
+  display:flex;align-items:center;gap:9px;padding:9px 10px;
+  border-radius:9px;margin-bottom:1px;cursor:pointer;
+  font-size:13px;font-weight:600;color:rgba(247,243,238,.55);
+  text-decoration:none;transition:all .15s;border:none;background:none;
+  font-family:inherit;width:100%;
+}
+.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(247,243,238,.9)}
+.nav-item.active{background:rgba(163,68,15,.22);color:#F7F3EE}
+.nav-icon{
+  font-size:18px;flex-shrink:0;color:rgba(247,243,238,.4);
+  transition:color .15s;
+}
+.nav-item:hover .nav-icon{color:rgba(247,243,238,.75)}
+.nav-item.active .nav-icon{color:var(--coral)}
+.nav-badge{
+  margin-left:auto;font-size:10px;font-weight:700;
+  padding:2px 6px;border-radius:99px;
+  background:var(--coral);color:#fff;line-height:1.4;
+}
+.nav-lock{margin-left:auto;font-size:14px;color:rgba(247,243,238,.2)}
+
+.sb-footer{
+  margin-top:auto;padding:14px 10px 18px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.sb-user{
+  display:flex;align-items:center;gap:10px;padding:8px 8px;
+  border-radius:10px;cursor:pointer;transition:background .15s;
+}
+.sb-user:hover{background:rgba(255,255,255,.07)}
+.sb-av{
+  width:32px;height:32px;border-radius:50%;background:var(--coral-soft);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:var(--coral);flex-shrink:0;letter-spacing:-.01em;
+}
+.sb-user-name{font-size:12.5px;font-weight:700;color:#F7F3EE;margin-bottom:1px;line-height:1.2}
+.sb-user-email{font-size:10.5px;color:rgba(247,243,238,.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px}
+
+/* ══════════════════════════════════════
+   MAIN
+══════════════════════════════════════ */
+.main{flex:1;min-width:0;overflow-y:auto}
+
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 32px;border-bottom:1px solid rgba(26,18,9,.07);
+  background:rgba(247,243,238,.85);backdrop-filter:blur(10px);
+  position:sticky;top:0;z-index:10;
+}
+.topbar-left{display:flex;align-items:center;gap:16px}
+.topbar-title{font-size:15px;font-weight:700;color:var(--ink)}
+.topbar-sub{font-size:13px;color:var(--muted)}
+.review-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px;
+  background:#FEF3C7;color:#92400E;border:1px solid rgba(245,158,11,.2);
+}
+.review-dot{
+  width:6px;height:6px;border-radius:50%;background:#F59E0B;flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(245,158,11,.2);
+}
+
+.content{padding:28px 32px}
+
+/* ══════════════════════════════════════
+   LAYOUT GRID
+══════════════════════════════════════ */
+.dash-grid{
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:18px;
+  align-items:start;
+}
+
+/* ══════════════════════════════════════
+   CARDS
+══════════════════════════════════════ */
+.card{
+  background:var(--surface);border-radius:16px;
+  padding:22px 24px;box-shadow:var(--shadow);
+  border:1px solid rgba(26,18,9,.05);
+}
+.card+.card{margin-top:18px}
+
+.card-label{
+  font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--muted);margin-bottom:16px;
+}
+
+/* ══════════════════════════════════════
+   TRACKER
+══════════════════════════════════════ */
+.tracker{display:flex;flex-direction:column}
+.track-step{display:flex;gap:14px;padding-bottom:20px;position:relative}
+.track-step:last-child{padding-bottom:0}
+.track-step:not(:last-child)::before{
+  content:'';position:absolute;left:14px;top:30px;bottom:0;
+  width:1.5px;background:rgba(26,18,9,.09);
+}
+.t-circle{
+  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;
+}
+.t-circle.done{background:var(--green-soft);color:var(--green)}
+.t-circle.now{background:var(--coral-soft);color:var(--coral)}
+.t-circle.next{background:rgba(26,18,9,.07);color:var(--muted);font-size:13px}
+.t-label{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:3px;line-height:1.2}
+.t-sub{font-size:12.5px;color:var(--muted);line-height:1.45}
+
+/* ══════════════════════════════════════
+   CHECKLIST
+══════════════════════════════════════ */
+.checklist{display:flex;flex-direction:column;gap:7px}
+.cl-row{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:10px;background:var(--bg);
+}
+.cl-check{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;background:var(--green-soft);color:var(--green);
+}
+.cl-label{font-size:13px;font-weight:600;color:var(--ink);flex:1}
+.cl-time{font-size:11px;color:var(--muted)}
+
+/* ══════════════════════════════════════
+   WHILE YOU WAIT
+══════════════════════════════════════ */
+.wait-list{display:flex;flex-direction:column;gap:12px}
+.wait-row{display:flex;gap:14px;align-items:flex-start}
+.wait-icon{
+  width:36px;height:36px;border-radius:10px;background:var(--sand);
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
+}
+.wait-title{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.wait-desc{font-size:12.5px;color:var(--muted);line-height:1.45}
+
+/* ══════════════════════════════════════
+   PROFILE CARD
+══════════════════════════════════════ */
+.profile-av{
+  width:52px;height:52px;border-radius:50%;background:var(--coral-soft);
+  border:2px solid rgba(163,68,15,.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;color:var(--coral);flex-shrink:0;letter-spacing:-.01em;
+}
+.profile-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+.profile-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.profile-email{font-size:12px;color:var(--muted)}
+
+.meta-row{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--body);margin-bottom:7px;
+}
+.meta-icon{font-size:16px;color:var(--faint)}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin:14px 0 18px}
+.tag{
+  font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:99px;
+  background:rgba(26,18,9,.07);color:var(--body);
+}
+
+.photo-nudge{
+  display:flex;align-items:flex-start;gap:11px;padding:12px 14px;
+  background:var(--coral-soft);border-radius:11px;margin-bottom:16px;
+  border:1px solid rgba(163,68,15,.14);
+}
+.nudge-icon{font-size:18px;flex-shrink:0;line-height:1.2}
+.nudge-title{font-size:12.5px;font-weight:700;color:var(--coral);margin-bottom:2px}
+.nudge-desc{font-size:12px;color:rgba(163,68,15,.75);line-height:1.4}
+
+.btn-sm{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 16px;border:1.5px solid rgba(26,18,9,.16);border-radius:10px;
+  font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);
+  background:#fff;cursor:pointer;transition:all .15s;width:100%;
+}
+.btn-sm:hover{border-color:var(--ink);background:var(--bg)}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — mobile bottom nav
+══════════════════════════════════════ */
+@media(max-width:860px){
+  .sidebar{
+    position:fixed;bottom:0;left:0;right:0;top:auto;
+    width:100%;height:60px;flex-direction:row;z-index:100;
+    border-top:1px solid rgba(255,255,255,.1);overflow:hidden;
+  }
+  .sb-logo,.sb-footer,.sb-section-label{display:none}
+  .sb-section{
+    display:flex;flex:1;padding:0;gap:0;margin:0;
+  }
+  .sb-section:last-of-type{display:none}
+  .nav-item{
+    flex-direction:column;gap:2px;padding:6px 2px 4px;
+    font-size:9.5px;flex:1;border-radius:0;margin:0;
+    justify-content:center;text-align:center;color:rgba(247,243,238,.45);
+  }
+  .nav-icon{font-size:20px}
+  .nav-item.active{background:rgba(163,68,15,.28);color:#F7F3EE}
+  .nav-badge,.nav-lock{display:none}
+  .main{padding-bottom:60px}
+  .content{padding:20px 16px}
+  .topbar{padding:14px 16px}
+  .dash-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-wordmark">Pet<em>Pals</em></div>
+  </div>
+
+  <div class="sb-section">
+    <a class="nav-item active" href="#">
+      <span class="material-symbols-rounded nav-icon">grid_view</span>
+      Dashboard
+    </a>
+    <a class="nav-item" href="auth.html?flow=sitter-profile">
+      <span class="material-symbols-rounded nav-icon">person</span>
+      Profile
+    </a>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">room_service</span>
+      Services &amp; rates
+    </a>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">calendar_month</span>
+      Availability
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">Activity</div>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">chat</span>
+      Messages
+      <span class="material-symbols-rounded nav-lock" title="Available after approval">lock</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">payments</span>
+      Payouts
+      <span class="material-symbols-rounded nav-lock" title="Available after approval">lock</span>
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">Account</div>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">settings</span>
+      Settings
+    </a>
+    <a class="nav-item" href="index.html" style="margin-top:4px">
+      <span class="material-symbols-rounded nav-icon">logout</span>
+      Sign out
+    </a>
+  </div>
+
+  <div class="sb-footer">
+    <div class="sb-user">
+      <div class="sb-av">AL</div>
+      <div style="min-width:0">
+        <div class="sb-user-name">Anastasiia Liuta</div>
+        <div class="sb-user-email">anasssta9@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════ -->
+<main class="main">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div>
+        <div class="topbar-title">Dashboard</div>
+        <div class="topbar-sub">Welcome back, Anastasiia</div>
+      </div>
+    </div>
+    <div class="review-pill">
+      <span class="review-dot"></span>
+      Application under review
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="dash-grid">
+
+      <!-- ── LEFT COLUMN ── -->
+      <div>
+
+        <!-- Application status -->
+        <div class="card">
+          <div class="card-label">Application status</div>
+          <div class="tracker">
+            <div class="track-step">
+              <div class="t-circle done">✓</div>
+              <div>
+                <div class="t-label">Submitted</div>
+                <div class="t-sub">All 5 steps completed successfully</div>
+              </div>
+            </div>
+            <div class="track-step">
+              <div class="t-circle now">→</div>
+              <div>
+                <div class="t-label">Under review</div>
+                <div class="t-sub">Our team is checking your profile. This usually takes 1–2 business days.</div>
+              </div>
+            </div>
+            <div class="track-step">
+              <div class="t-circle next">3</div>
+              <div>
+                <div class="t-label">Decision by email</div>
+                <div class="t-sub">We'll notify you at anasssta9@gmail.com as soon as we have an answer.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- While you wait -->
+        <div class="card">
+          <div class="card-label">While you wait</div>
+          <div class="wait-list">
+            <div class="wait-row">
+              <div class="wait-icon">📷</div>
+              <div>
+                <div class="wait-title">Add a profile photo</div>
+                <div class="wait-desc">Pet owners choose sitters with photos 3× more often. Upload yours to be ready the moment your profile goes live.</div>
+              </div>
+            </div>
+            <div class="wait-row">
+              <div class="wait-icon">📬</div>
+              <div>
+                <div class="wait-title">Watch your inbox</div>
+                <div class="wait-desc">Our decision will arrive at anasssta9@gmail.com. Check spam if you don't hear from us within 2 business days.</div>
+              </div>
+            </div>
+            <div class="wait-row">
+              <div class="wait-icon">⭐</div>
+              <div>
+                <div class="wait-title">Your listing goes live once approved</div>
+                <div class="wait-desc">Pet owners in Amsterdam will be able to find and book you. You set your own rates and schedule.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Setup checklist -->
+        <div class="card">
+          <div class="card-label">Setup checklist</div>
+          <div class="checklist">
+            <div class="cl-row">
+              <div class="cl-check">✓</div>
+              <div class="cl-label">Your profile</div>
+              <div class="cl-time">Done</div>
+            </div>
+            <div class="cl-row">
+              <div class="cl-check">✓</div>
+              <div class="cl-label">Services &amp; rates</div>
+              <div class="cl-time">Done</div>
+            </div>
+            <div class="cl-row">
+              <div class="cl-check">✓</div>
+              <div class="cl-label">Identity verification</div>
+              <div class="cl-time">Done</div>
+            </div>
+            <div class="cl-row">
+              <div class="cl-check">✓</div>
+              <div class="cl-label">Availability</div>
+              <div class="cl-time">Done</div>
+            </div>
+            <div class="cl-row">
+              <div class="cl-check">✓</div>
+              <div class="cl-label">Application submitted</div>
+              <div class="cl-time">Done</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT COLUMN ── -->
+      <div>
+
+        <!-- Profile card -->
+        <div class="card">
+          <div class="card-label">My profile</div>
+
+          <div class="photo-nudge">
+            <div class="nudge-icon">📷</div>
+            <div>
+              <div class="nudge-title">No profile photo yet</div>
+              <div class="nudge-desc">Add one before your listing goes live</div>
+            </div>
+          </div>
+
+          <div class="profile-head">
+            <div class="profile-av">AL</div>
+            <div>
+              <div class="profile-name">Anastasiia Liuta</div>
+              <div class="profile-email">anasssta9@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="meta-row">
+            <span class="material-symbols-rounded meta-icon">location_on</span>
+            Amsterdam, Netherlands
+          </div>
+          <div class="meta-row">
+            <span class="material-symbols-rounded meta-icon">pets</span>
+            Dogs · Medium breeds
+          </div>
+
+          <div class="tag-row">
+            <span class="tag">🏠 Boarding</span>
+            <span class="tag">🦮 Dog walking</span>
+            <span class="tag">🚪 Drop-in visits</span>
+          </div>
+
+          <button class="btn-sm" onclick="window.location.href='auth.html'">
+            <span class="material-symbols-rounded" style="font-size:16px">edit</span>
+            Edit profile
+          </button>
+        </div>
+
+        <!-- Account info -->
+        <div class="card">
+          <div class="card-label">Account</div>
+          <div class="meta-row" style="margin-bottom:10px">
+            <span class="material-symbols-rounded meta-icon">mail</span>
+            anasssta9@gmail.com
+          </div>
+          <div class="meta-row" style="margin-bottom:10px">
+            <span class="material-symbols-rounded meta-icon">verified_user</span>
+            Identity verified
+          </div>
+          <div class="meta-row" style="margin-bottom:0">
+            <span class="material-symbols-rounded meta-icon">schedule</span>
+            Member since June 2026
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+</body>
+</html>
