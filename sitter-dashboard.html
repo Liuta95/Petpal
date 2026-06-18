@@ -144,52 +144,92 @@ body{
 }
 
 /* ══════════════════════════════════════
-   TRACKER
+   KPI ROW
 ══════════════════════════════════════ */
-.tracker{display:flex;flex-direction:column}
-.track-step{display:flex;gap:14px;padding-bottom:20px;position:relative}
-.track-step:last-child{padding-bottom:0}
-.track-step:not(:last-child)::before{
-  content:'';position:absolute;left:14px;top:30px;bottom:0;
-  width:1.5px;background:rgba(26,18,9,.09);
+.kpi-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:14px;margin-bottom:18px;
 }
-.t-circle{
-  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;
+.kpi-card{
+  background:var(--surface);border-radius:14px;
+  padding:18px 20px;box-shadow:var(--shadow);
+  border:1px solid rgba(26,18,9,.05);
 }
-.t-circle.done{background:var(--green-soft);color:var(--green)}
-.t-circle.now{background:var(--coral-soft);color:var(--coral)}
-.t-circle.next{background:rgba(26,18,9,.07);color:var(--muted);font-size:13px}
-.t-label{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:3px;line-height:1.2}
-.t-sub{font-size:12.5px;color:var(--muted);line-height:1.45}
+.kpi-label{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:7px;
+}
+.kpi-action-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--coral);flex-shrink:0;
+  box-shadow:0 0 0 2px var(--coral-soft);
+}
+.kpi-value{
+  font-size:30px;font-weight:600;color:var(--ink);
+  font-family:var(--font-display);line-height:1;letter-spacing:-.02em;
+}
+.kpi-delta{font-size:11.5px;color:var(--muted);margin-top:5px}
+.kpi-delta.pos{color:var(--green)}
 
 /* ══════════════════════════════════════
-   CHECKLIST
+   BOOKINGS LIST
 ══════════════════════════════════════ */
-.checklist{display:flex;flex-direction:column;gap:7px}
-.cl-row{
-  display:flex;align-items:center;gap:10px;
-  padding:9px 12px;border-radius:10px;background:var(--bg);
+.booking-list{display:flex;flex-direction:column}
+.booking-row{
+  display:flex;align-items:center;gap:13px;
+  padding:13px 0;border-bottom:1px solid rgba(26,18,9,.06);
 }
-.cl-check{
-  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+.booking-row:last-of-type{border-bottom:none;padding-bottom:0}
+.booking-av{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;background:var(--green-soft);color:var(--green);
+  font-size:12px;font-weight:800;letter-spacing:-.01em;
+  background:var(--sand);color:var(--body);
 }
-.cl-label{font-size:13px;font-weight:600;color:var(--ink);flex:1}
-.cl-time{font-size:11px;color:var(--muted)}
+.booking-info{flex:1;min-width:0}
+.booking-name{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.booking-meta{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{
+  font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;flex-shrink:0;
+}
+.badge-confirmed{background:var(--green-soft);color:var(--green)}
+.badge-pending{background:var(--coral-soft);color:var(--coral)}
 
 /* ══════════════════════════════════════
-   WHILE YOU WAIT
+   MESSAGES LIST
 ══════════════════════════════════════ */
-.wait-list{display:flex;flex-direction:column;gap:12px}
-.wait-row{display:flex;gap:14px;align-items:flex-start}
-.wait-icon{
-  width:36px;height:36px;border-radius:10px;background:var(--sand);
-  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
+.msg-list{display:flex;flex-direction:column}
+.msg-row{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 0;border-bottom:1px solid rgba(26,18,9,.06);
 }
-.wait-title{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
-.wait-desc{font-size:12.5px;color:var(--muted);line-height:1.45}
+.msg-row:last-of-type{border-bottom:none;padding-bottom:0}
+.msg-av{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;letter-spacing:-.01em;
+  background:var(--teal-soft);color:var(--teal);
+}
+.msg-info{flex:1;min-width:0}
+.msg-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:3px}
+.msg-name{font-size:13px;font-weight:700;color:var(--ink)}
+.msg-time{font-size:11px;color:var(--faint);flex-shrink:0}
+.msg-preview{font-size:12.5px;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msg-unread .msg-name{color:var(--coral)}
+.msg-unread .msg-preview{color:var(--body);font-weight:500}
+
+/* ══════════════════════════════════════
+   CARD FOOTER LINK
+══════════════════════════════════════ */
+.card-footer{
+  display:flex;justify-content:flex-end;
+  padding-top:14px;margin-top:2px;
+  border-top:1px solid rgba(26,18,9,.06);
+}
+.card-link{
+  font-size:12.5px;font-weight:700;color:var(--coral);
+  text-decoration:none;display:inline-flex;align-items:center;gap:4px;
+}
+.card-link:hover{text-decoration:underline}
 
 /* ══════════════════════════════════════
    PROFILE CARD
@@ -258,6 +298,7 @@ body{
   .main{padding-bottom:60px}
   .content{padding:20px 16px}
   .topbar{padding:14px 16px}
+  .kpi-row{grid-template-columns:repeat(2,1fr)}
   .dash-grid{grid-template-columns:1fr}
 }
 </style>
@@ -346,96 +387,107 @@ body{
   </div>
 
   <div class="content">
+
+    <!-- KPI ROW -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-label">
+          <span class="kpi-action-dot"></span>
+          New requests
+        </div>
+        <div class="kpi-value">2</div>
+        <div class="kpi-delta">Awaiting your response</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Bookings this month</div>
+        <div class="kpi-value">5</div>
+        <div class="kpi-delta pos">↑ 2 vs last month</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Earnings this month</div>
+        <div class="kpi-value">€340</div>
+        <div class="kpi-delta pos">↑ €80 vs last month</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Response rate</div>
+        <div class="kpi-value">94%</div>
+        <div class="kpi-delta">Last 30 days</div>
+      </div>
+    </div>
+
     <div class="dash-grid">
 
       <!-- ── LEFT COLUMN ── -->
       <div>
 
-        <!-- Application status -->
+        <!-- Upcoming bookings -->
         <div class="card">
-          <div class="card-label">Application status</div>
-          <div class="tracker">
-            <div class="track-step">
-              <div class="t-circle done">✓</div>
-              <div>
-                <div class="t-label">Submitted</div>
-                <div class="t-sub">All 5 steps completed successfully</div>
+          <div class="card-label">Upcoming bookings</div>
+          <div class="booking-list">
+
+            <div class="booking-row">
+              <div class="booking-av">SV</div>
+              <div class="booking-info">
+                <div class="booking-name">Sophie van den Berg</div>
+                <div class="booking-meta">Buddy · Golden Retriever · Dog walking · Jun 20–21</div>
               </div>
+              <span class="badge badge-confirmed">Confirmed</span>
             </div>
-            <div class="track-step">
-              <div class="t-circle done">✓</div>
-              <div>
-                <div class="t-label">Approved</div>
-                <div class="t-sub">Your profile passed our review on 17 June 2026</div>
+
+            <div class="booking-row">
+              <div class="booking-av">TB</div>
+              <div class="booking-info">
+                <div class="booking-name">Thomas Bakker</div>
+                <div class="booking-meta">Luna · Beagle · Boarding · Jun 25–28</div>
               </div>
+              <span class="badge badge-pending">Pending</span>
             </div>
-            <div class="track-step">
-              <div class="t-circle done">✓</div>
-              <div>
-                <div class="t-label">Listing live</div>
-                <div class="t-sub">Your profile is now visible to pet owners in Amsterdam. You can receive booking requests.</div>
+
+            <div class="booking-row">
+              <div class="booking-av">ED</div>
+              <div class="booking-info">
+                <div class="booking-name">Emma de Vries</div>
+                <div class="booking-meta">Max · Border Collie · Drop-in visit · Jun 30</div>
               </div>
+              <span class="badge badge-confirmed">Confirmed</span>
             </div>
+
+          </div>
+          <div class="card-footer">
+            <a href="#" class="card-link">View all bookings →</a>
           </div>
         </div>
 
-        <!-- Next steps -->
+        <!-- Recent messages -->
         <div class="card">
-          <div class="card-label">Next steps</div>
-          <div class="wait-list">
-            <div class="wait-row">
-              <div class="wait-icon">📷</div>
-              <div>
-                <div class="wait-title">Add a profile photo</div>
-                <div class="wait-desc">Sitters with a photo get 3× more booking requests. Your listing is live — a photo puts you ahead of the competition right now.</div>
-              </div>
-            </div>
-            <div class="wait-row">
-              <div class="wait-icon">📅</div>
-              <div>
-                <div class="wait-title">Keep your availability up to date</div>
-                <div class="wait-desc">Pet owners can only send requests for days you've marked as available. Review your calendar so you don't miss bookings.</div>
-              </div>
-            </div>
-            <div class="wait-row">
-              <div class="wait-icon">📖</div>
-              <div>
-                <div class="wait-title">Understand how bookings work</div>
-                <div class="wait-desc">When a pet owner sends a request, you have 24 hours to accept or decline. We'll notify you by email and in-app.</div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <div class="card-label">Recent messages</div>
+          <div class="msg-list">
 
-        <!-- Setup checklist -->
-        <div class="card">
-          <div class="card-label">Setup checklist</div>
-          <div class="checklist">
-            <div class="cl-row">
-              <div class="cl-check">✓</div>
-              <div class="cl-label">Your profile</div>
-              <div class="cl-time">Done</div>
+            <div class="msg-row msg-unread">
+              <div class="msg-av">SV</div>
+              <div class="msg-info">
+                <div class="msg-top">
+                  <span class="msg-name">Sophie van den Berg</span>
+                  <span class="msg-time">2h ago</span>
+                </div>
+                <div class="msg-preview">Hi! I just sent you a booking request for next week — does the time work for you?</div>
+              </div>
             </div>
-            <div class="cl-row">
-              <div class="cl-check">✓</div>
-              <div class="cl-label">Services &amp; rates</div>
-              <div class="cl-time">Done</div>
+
+            <div class="msg-row">
+              <div class="msg-av">TB</div>
+              <div class="msg-info">
+                <div class="msg-top">
+                  <span class="msg-name">Thomas Bakker</span>
+                  <span class="msg-time">Yesterday</span>
+                </div>
+                <div class="msg-preview">Thanks for accepting! Could we do a quick meet-and-greet before the boarding stay?</div>
+              </div>
             </div>
-            <div class="cl-row">
-              <div class="cl-check">✓</div>
-              <div class="cl-label">Identity verification</div>
-              <div class="cl-time">Done</div>
-            </div>
-            <div class="cl-row">
-              <div class="cl-check">✓</div>
-              <div class="cl-label">Availability</div>
-              <div class="cl-time">Done</div>
-            </div>
-            <div class="cl-row">
-              <div class="cl-check">✓</div>
-              <div class="cl-label">Application submitted</div>
-              <div class="cl-time">Done</div>
-            </div>
+
+          </div>
+          <div class="card-footer">
+            <a href="#" class="card-link">Go to Messages →</a>
           </div>
         </div>
 
