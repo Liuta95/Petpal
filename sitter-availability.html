@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetPals — Availability</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#1A1209;--body:#4A3728;--muted:#6B5744;--faint:#8A7060;
+  --bg:#F7F3EE;--sand:#EDE5DA;--surface:#fff;
+  --coral:#A3440F;--coral-soft:#FDE8D8;
+  --teal:#005F5F;--teal-soft:#E0F2F2;
+  --green:#1E601E;--green-soft:#E8F5E8;
+  --amber:#92400E;--amber-soft:#FEF3C7;
+  --sidebar:#1A1209;--sidebar-w:224px;
+  --font-body:"Instrument Sans",system-ui,sans-serif;
+  --font-display:"Cormorant Garamond",Georgia,serif;
+  --shadow:0 2px 20px rgba(26,18,9,.07);
+}
+
+body{font-family:var(--font-body);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;display:flex;min-height:100dvh}
+
+/* ── SIDEBAR ─────────────────────────── */
+.sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--sidebar);display:flex;flex-direction:column;position:sticky;top:0;height:100dvh;overflow-y:auto}
+.sb-logo{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:6px}
+.sb-wordmark{font-family:var(--font-display);font-size:21px;font-weight:600;color:#F7F3EE;letter-spacing:-.02em}
+.sb-wordmark em{color:var(--coral);font-style:normal}
+.sb-section{padding:0 10px;margin-bottom:2px}
+.sb-section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(247,243,238,.28);padding:14px 8px 5px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;margin-bottom:1px;cursor:pointer;font-size:13px;font-weight:600;color:rgba(247,243,238,.55);text-decoration:none;transition:all .15s;border:none;background:none;font-family:inherit;width:100%}
+.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(247,243,238,.9)}
+.nav-item.active{background:rgba(163,68,15,.22);color:#F7F3EE}
+.nav-icon{font-size:18px;flex-shrink:0;color:rgba(247,243,238,.4);transition:color .15s}
+.nav-item:hover .nav-icon,.nav-item.active .nav-icon{color:var(--coral)}
+.nav-item.active .nav-icon{color:var(--coral)}
+.sb-footer{margin-top:auto;padding:14px 10px 18px;border-top:1px solid rgba(255,255,255,.07)}
+.sb-user{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;cursor:pointer;transition:background .15s}
+.sb-user:hover{background:rgba(255,255,255,.07)}
+.sb-av{width:32px;height:32px;border-radius:50%;background:var(--coral-soft);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--coral);flex-shrink:0}
+.sb-name{font-size:12.5px;font-weight:700;color:#F7F3EE;margin-bottom:1px;line-height:1.2}
+.sb-email{font-size:10.5px;color:rgba(247,243,238,.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px}
+
+/* ── MAIN ────────────────────────────── */
+.main{flex:1;min-width:0;overflow-y:auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;border-bottom:1px solid rgba(26,18,9,.07);background:rgba(247,243,238,.88);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10}
+.topbar-title{font-size:15px;font-weight:700;color:var(--ink)}
+.topbar-sub{font-size:13px;color:var(--muted)}
+.topbar-actions{display:flex;align-items:center;gap:10px}
+.save-state{font-size:12.5px;font-weight:600;display:none;align-items:center;gap:5px}
+.save-state.show{display:inline-flex}
+.save-state.ok{color:var(--green)}
+.save-state.warn{color:var(--coral)}
+.btn-save{display:inline-flex;align-items:center;gap:6px;padding:7px 18px;border-radius:10px;border:none;font-family:inherit;font-size:13px;font-weight:700;background:var(--coral);color:#fff;cursor:pointer;transition:background .15s}
+.btn-save:hover{background:#8a380c}
+.live-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px;background:var(--green-soft);color:var(--green);border:1px solid rgba(30,96,30,.15)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 0 3px rgba(30,96,30,.2)}
+
+.content{padding:28px 32px}
+.dash-grid{display:grid;grid-template-columns:1fr 268px;gap:18px;align-items:start}
+
+/* ── CARDS ───────────────────────────── */
+.card{background:var(--surface);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);border:1px solid rgba(26,18,9,.05)}
+.card+.card{margin-top:18px}
+.card-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
+.card-desc{font-size:12.5px;color:var(--faint);margin-bottom:18px;line-height:1.45}
+.card-divider{height:1px;background:rgba(26,18,9,.06);margin:18px 0}
+
+/* ── AVAILABILITY OVERVIEW ───────────── */
+.avail-overview{padding:18px 22px}
+.avail-status-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.avail-status-dot{
+  width:9px;height:9px;border-radius:50%;background:var(--green);
+  flex-shrink:0;margin-top:4px;box-shadow:0 0 0 3px rgba(30,96,30,.18);
+}
+.avail-status-text{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.avail-status-hint{font-size:12.5px;color:var(--muted)}
+.avail-actions{display:flex;gap:8px;flex-shrink:0}
+.btn-avail-primary{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:7px 14px;border-radius:9px;border:none;
+  font-family:inherit;font-size:12.5px;font-weight:700;
+  background:var(--coral);color:#fff;cursor:pointer;transition:background .15s;
+}
+.btn-avail-primary:hover{background:#8a380c}
+.btn-avail-secondary{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:7px 14px;border-radius:9px;
+  border:1.5px solid rgba(26,18,9,.15);background:#fff;
+  font-family:inherit;font-size:12.5px;font-weight:700;
+  color:var(--ink);cursor:pointer;transition:all .15s;
+}
+.btn-avail-secondary:hover{border-color:var(--ink)}
+
+/* ── CALENDAR ────────────────────────── */
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.cal-month{font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.cal-nav{
+  width:30px;height:30px;border-radius:8px;border:1.5px solid rgba(26,18,9,.13);
+  background:#fff;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .12s;color:var(--muted);font-size:14px;font-weight:700;
+}
+.cal-nav:hover{border-color:var(--ink);color:var(--ink)}
+
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{
+  text-align:center;font-size:10.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--faint);padding:0 0 9px;
+}
+.cal-day{
+  aspect-ratio:1;border-radius:9px;display:flex;align-items:center;
+  justify-content:center;font-size:13px;font-weight:600;cursor:pointer;
+  transition:all .12s;position:relative;
+}
+.cal-day.avail{background:var(--green-soft);color:var(--green)}
+.cal-day.avail:hover{filter:brightness(.94)}
+.cal-day.blocked{background:rgba(26,18,9,.07);color:var(--faint);text-decoration:line-through;text-decoration-color:rgba(138,112,96,.4)}
+.cal-day.blocked:hover{background:rgba(26,18,9,.11)}
+.cal-day.partial{
+  background:repeating-linear-gradient(-45deg,var(--teal-soft),var(--teal-soft) 4px,rgba(224,242,242,.3) 4px,rgba(224,242,242,.3) 8px);
+  color:var(--teal);
+}
+.cal-day.partial:hover{filter:brightness(.94)}
+.cal-day.today{box-shadow:0 0 0 2px var(--coral);z-index:1}
+.cal-day.today::after{
+  content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:var(--coral);
+}
+.cal-day.empty{cursor:default;background:none!important}
+.cal-day.past{opacity:.45;cursor:default}
+
+.cal-legend{display:flex;align-items:center;gap:16px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(26,18,9,.06)}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);font-weight:600}
+.legend-swatch{width:14px;height:14px;border-radius:4px;flex-shrink:0}
+.legend-swatch.avail{background:var(--green-soft)}
+.legend-swatch.partial{background:repeating-linear-gradient(-45deg,var(--teal-soft),var(--teal-soft) 3px,rgba(224,242,242,.3) 3px,rgba(224,242,242,.3) 6px)}
+.legend-swatch.blocked{background:rgba(26,18,9,.08)}
+
+/* date-range tooltip */
+.cal-tooltip{
+  position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#fff;font-size:11px;font-weight:600;
+  padding:5px 10px;border-radius:7px;white-space:nowrap;z-index:20;
+  pointer-events:none;opacity:0;transition:opacity .15s;
+}
+.cal-day:hover .cal-tooltip{opacity:1}
+
+/* ── WEEKLY SCHEDULE ─────────────────── */
+.week-table{display:flex;flex-direction:column;gap:0}
+.week-row{
+  display:grid;grid-template-columns:48px 1fr auto;
+  gap:12px;align-items:center;
+  padding:11px 0;border-bottom:1px solid rgba(26,18,9,.06);
+}
+.week-row:last-child{border-bottom:none;padding-bottom:0}
+.week-day{font-size:13px;font-weight:700;color:var(--ink)}
+.week-status{display:flex;gap:5px}
+.status-pill{
+  display:inline-flex;align-items:center;gap:0;
+  padding:5px 12px;border-radius:99px;cursor:pointer;
+  font-family:inherit;font-size:12px;font-weight:600;
+  border:1.5px solid rgba(26,18,9,.12);color:var(--muted);
+  background:#fff;transition:all .13s;user-select:none;
+}
+.status-pill input{position:absolute;opacity:0;width:0;height:0}
+.status-avail:has(input:checked){background:var(--green-soft);color:var(--green);border-color:rgba(30,96,30,.2)}
+.status-limited:has(input:checked){background:var(--amber-soft);color:var(--amber);border-color:rgba(245,158,11,.2)}
+.status-off:has(input:checked){background:rgba(26,18,9,.07);color:var(--muted);border-color:rgba(26,18,9,.14)}
+.week-time{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.time-input{
+  width:70px;padding:5px 7px;border-radius:7px;
+  border:1.5px solid rgba(26,18,9,.12);background:#fff;
+  font-family:inherit;font-size:12px;color:var(--ink);outline:none;
+  transition:border-color .15s;
+}
+.time-input:focus{border-color:var(--coral)}
+.time-sep{font-size:12px;color:var(--muted);font-weight:600}
+.week-unavail .week-time{visibility:hidden}
+
+/* ── CAPACITY ────────────────────────── */
+.capacity-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.cap-item{
+  display:flex;flex-direction:column;align-items:center;
+  padding:16px 12px;background:var(--bg);border-radius:12px;gap:8px;
+}
+.cap-label{font-size:12px;font-weight:700;color:var(--ink);text-align:center;line-height:1.3}
+.cap-sub{font-size:11px;color:var(--faint);text-align:center;line-height:1.3;margin-top:-4px}
+.cap-control{display:flex;align-items:center;gap:8px}
+.cap-btn{
+  width:28px;height:28px;border-radius:7px;border:1.5px solid rgba(26,18,9,.14);
+  background:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;color:var(--muted);cursor:pointer;
+  transition:all .12s;line-height:1;
+}
+.cap-btn:hover{border-color:var(--coral);color:var(--coral)}
+.cap-val{font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--ink);width:28px;text-align:center;line-height:1}
+.cap-note{font-size:12px;color:var(--faint);line-height:1.45;margin-top:6px;display:flex;gap:7px;align-items:flex-start}
+
+/* ── SAVE ROW ────────────────────────── */
+.save-row{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;margin-top:18px;background:var(--surface);border-radius:14px;box-shadow:var(--shadow);border:1px solid rgba(26,18,9,.05)}
+.save-row-note{font-size:12.5px;color:var(--muted)}
+.btn-save-lg{display:inline-flex;align-items:center;gap:7px;padding:11px 26px;border-radius:11px;border:none;font-family:inherit;font-size:13.5px;font-weight:700;background:var(--coral);color:#fff;cursor:pointer;transition:background .15s}
+.btn-save-lg:hover{background:#8a380c}
+
+/* ── RIGHT COLUMN ────────────────────── */
+.stat-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(26,18,9,.06)}
+.stat-row:first-child{padding-top:0}
+.stat-row:last-child{border-bottom:none;padding-bottom:0}
+.stat-label{font-size:13px;color:var(--muted)}
+.stat-val{font-size:13.5px;font-weight:700;color:var(--ink)}
+.stat-val.green{color:var(--green)}
+.stat-val.coral{color:var(--coral)}
+
+.action-btn{
+  display:flex;align-items:center;gap:9px;width:100%;
+  padding:10px 13px;border-radius:10px;border:1.5px solid rgba(26,18,9,.12);
+  background:#fff;font-family:inherit;font-size:13px;font-weight:600;
+  color:var(--ink);cursor:pointer;transition:all .13s;margin-bottom:8px;
+  text-align:left;
+}
+.action-btn:last-child{margin-bottom:0}
+.action-btn:hover{border-color:var(--ink);background:var(--bg)}
+.action-icon{font-size:17px;color:var(--muted);flex-shrink:0}
+
+.tip-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.tip-row:last-child{margin-bottom:0}
+.tip-icon{font-size:15px;color:var(--coral);flex-shrink:0;margin-top:1px}
+.tip-text{font-size:12.5px;color:var(--muted);line-height:1.45}
+.tip-text strong{color:var(--ink)}
+
+/* ── RESPONSIVE ──────────────────────── */
+@media(max-width:900px){
+  .sidebar{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;height:60px;flex-direction:row;z-index:100;border-top:1px solid rgba(255,255,255,.1);overflow:hidden}
+  .sb-logo,.sb-footer,.sb-section-label{display:none}
+  .sb-section{display:flex;flex:1;padding:0;gap:0;margin:0}
+  .sb-section:last-of-type{display:none}
+  .nav-item{flex-direction:column;gap:2px;padding:6px 2px 4px;font-size:9.5px;flex:1;border-radius:0;margin:0;justify-content:center;text-align:center;color:rgba(247,243,238,.45)}
+  .nav-icon{font-size:20px}
+  .nav-item.active{background:rgba(163,68,15,.28);color:#F7F3EE}
+  .main{padding-bottom:60px}
+  .content{padding:20px 16px}
+  .topbar{padding:14px 16px}
+  .dash-grid{grid-template-columns:1fr}
+  .avail-actions{flex-direction:column}
+  .capacity-grid{grid-template-columns:1fr 1fr}
+  .week-row{grid-template-columns:44px 1fr}
+  .week-time{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR ══════════════════════════ -->
+<nav class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-wordmark">Pet<em>Pals</em></div>
+  </div>
+
+  <div class="sb-section">
+    <a class="nav-item" href="sitter-dashboard.html">
+      <span class="material-symbols-rounded nav-icon">grid_view</span>
+      Dashboard
+    </a>
+    <a class="nav-item" href="sitter-profile.html">
+      <span class="material-symbols-rounded nav-icon">person</span>
+      Profile
+    </a>
+    <a class="nav-item active" href="#">
+      <span class="material-symbols-rounded nav-icon">calendar_month</span>
+      Availability
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">Activity</div>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">chat</span>
+      Messages
+    </a>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">payments</span>
+      Payouts
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">Account</div>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">settings</span>
+      Settings
+    </a>
+    <a class="nav-item" href="index.html" style="margin-top:4px">
+      <span class="material-symbols-rounded nav-icon">logout</span>
+      Sign out
+    </a>
+  </div>
+
+  <div class="sb-footer">
+    <div class="sb-user">
+      <div class="sb-av">AL</div>
+      <div style="min-width:0">
+        <div class="sb-name">Anastasiia Liuta</div>
+        <div class="sb-email">anasssta9@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MAIN ══════════════════════════════ -->
+<main class="main">
+
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">Availability</div>
+      <div class="topbar-sub">Set when you're open to bookings</div>
+    </div>
+    <div class="topbar-actions">
+      <span id="save-saved" class="save-state ok">
+        <span class="material-symbols-rounded" style="font-size:15px">check_circle</span>
+        All changes saved
+      </span>
+      <span id="save-unsaved" class="save-state warn">
+        <span class="material-symbols-rounded" style="font-size:15px">edit</span>
+        Unsaved changes
+      </span>
+      <button class="btn-save" onclick="handleSave()">
+        <span class="material-symbols-rounded" style="font-size:16px">save</span>
+        Save
+      </button>
+      <div class="live-pill">
+        <span class="live-dot"></span>
+        Listing live
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="dash-grid">
+
+      <!-- ══ LEFT COLUMN ══════════════════ -->
+      <div>
+
+        <!-- ① AVAILABILITY OVERVIEW ──────── -->
+        <div class="card avail-overview">
+          <div class="avail-status-row">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span class="avail-status-dot" style="margin-top:5px"></span>
+              <div>
+                <div class="avail-status-text">You're available on most weekdays</div>
+                <div class="avail-status-hint">Next blocked period: Jun 25–28 · Thomas Bakker boarding stay</div>
+              </div>
+            </div>
+            <div class="avail-actions">
+              <button class="btn-avail-primary" onclick="markDirty()">
+                <span class="material-symbols-rounded" style="font-size:15px">block</span>
+                Block dates
+              </button>
+              <button class="btn-avail-secondary" onclick="markDirty()">
+                <span class="material-symbols-rounded" style="font-size:15px">event_available</span>
+                Open all weekends
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ② MONTHLY CALENDAR ───────────── -->
+        <div class="card">
+          <div class="cal-header">
+            <button class="cal-nav" onclick="this.blur()">‹</button>
+            <span class="cal-month">June 2026</span>
+            <button class="cal-nav" onclick="this.blur()">›</button>
+          </div>
+
+          <div class="cal-grid">
+            <!-- Day-of-week headers -->
+            <div class="cal-dow">Mon</div>
+            <div class="cal-dow">Tue</div>
+            <div class="cal-dow">Wed</div>
+            <div class="cal-dow">Thu</div>
+            <div class="cal-dow">Fri</div>
+            <div class="cal-dow">Sat</div>
+            <div class="cal-dow">Sun</div>
+
+            <!-- Week 1 -->
+            <div class="cal-day avail past" title="Available">1</div>
+            <div class="cal-day avail past" title="Available">2</div>
+            <div class="cal-day avail past" title="Available">3</div>
+            <div class="cal-day avail past" title="Available">4</div>
+            <div class="cal-day avail past" title="Available">5</div>
+            <div class="cal-day blocked past" title="Blocked">6</div>
+            <div class="cal-day blocked past" title="Blocked">7</div>
+
+            <!-- Week 2 -->
+            <div class="cal-day avail past" title="Available">8</div>
+            <div class="cal-day avail past" title="Available">9</div>
+            <div class="cal-day avail past" title="Available">10</div>
+            <div class="cal-day avail past" title="Available">11</div>
+            <div class="cal-day avail past" title="Available">12</div>
+            <div class="cal-day partial past" title="Limited — morning only">13</div>
+            <div class="cal-day blocked past" title="Blocked">14</div>
+
+            <!-- Week 3 -->
+            <div class="cal-day avail past" title="Available">15</div>
+            <div class="cal-day avail past" title="Available">16</div>
+            <div class="cal-day avail past" title="Available">17</div>
+            <div class="cal-day avail past" title="Available">18</div>
+            <div class="cal-day avail past" title="Available">19</div>
+            <div class="cal-day partial past" title="Limited — Sophie van den Berg · Dog walking">20</div>
+            <div class="cal-day blocked past" title="Blocked">21</div>
+
+            <!-- Week 4 — today is Jun 22 -->
+            <div class="cal-day avail today" title="Available · Today">22</div>
+            <div class="cal-day avail" title="Available">23</div>
+            <div class="cal-day avail" title="Available">24</div>
+            <div class="cal-day blocked" title="Blocked · Thomas Bakker boarding">25</div>
+            <div class="cal-day blocked" title="Blocked · Thomas Bakker boarding">26</div>
+            <div class="cal-day blocked" title="Blocked · Thomas Bakker boarding">27</div>
+            <div class="cal-day blocked" title="Blocked · Thomas Bakker boarding">28</div>
+
+            <!-- Week 5 -->
+            <div class="cal-day avail" title="Available">29</div>
+            <div class="cal-day avail" title="Available">30</div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+          </div>
+
+          <div class="cal-legend">
+            <span class="legend-item"><span class="legend-swatch avail"></span>Available</span>
+            <span class="legend-item"><span class="legend-swatch partial"></span>Limited</span>
+            <span class="legend-item"><span class="legend-swatch blocked"></span>Blocked</span>
+            <span style="margin-left:auto;font-size:11.5px;color:var(--faint)">Click any date to edit</span>
+          </div>
+        </div>
+
+        <!-- ③ WEEKLY RECURRING SCHEDULE ──── -->
+        <div class="card">
+          <div class="card-label">Weekly recurring schedule</div>
+          <div class="card-desc">Your default availability each week. Specific calendar dates above will override these settings.</div>
+
+          <div class="week-table">
+
+            <div class="week-row">
+              <div class="week-day">Mon</div>
+              <div class="week-status">
+                <label class="status-pill status-avail"><input type="radio" name="mon" checked onclick="markDirty()">Available</label>
+                <label class="status-pill status-limited"><input type="radio" name="mon" onclick="markDirty()">Limited</label>
+                <label class="status-pill status-off"><input type="radio" name="mon" onclick="markDirty()">Off</label>
+              </div>
+              <div class="week-time">
+                <input class="time-input" type="time" value="08:00" onchange="markDirty()">
+                <span class="time-sep">→</span>
+                <input class="time-input" type="time" value="20:00" onchange="markDirty()">
+              </div>
+            </div>
+
+            <div class="week-row">
+              <div class="week-day">Tue</div>
+              <div class="week-status">
+                <label class="status-pill status-avail"><input type="radio" name="tue" checked onclick="markDirty()">Available</label>
+                <label class="status-pill status-limited"><input type="radio" name="tue" onclick="markDirty()">Limited</label>
+                <label class="status-pill status-off"><input type="radio" name="tue" onclick="markDirty()">Off</label>
+              </div>
+              <div class="week-time">
+                <input class="time-input" type="time" value="08:00" onchange="markDirty()">
+                <span class="time-sep">→</span>
+                <input class="time-input" type="time" value="20:00" onchange="markDirty()">
+              </div>
+            </div>
+
+            <div class="week-row">
+              <div class="week-day">Wed</div>
+              <div class="week-status">
+                <label class="status-pill status-avail"><input type="radio" name="wed" checked onclick="markDirty()">Available</label>
+                <label class="status-pill status-limited"><input type="radio" name="wed" onclick="markDirty()">Limited</label>
+                <label class="status-pill status-off"><input type="radio" name="wed" onclick="markDirty()">Off</label>
+              </div>
+              <div class="week-time">
+                <input class="time-input" type="time" value="08:00" onchange="markDirty()">
+                <span class="time-sep">→</span>
+                <input class="time-input" type="time" value="20:00" onchange="markDirty()">
+              </div>
+            </div>
+
+            <div class="week-row">
+              <div class="week-day">Thu</div>
+              <div class="week-status">
+                <label class="status-pill status-avail"><input type="radio" name="thu" onclick="markDirty()">Available</label>
+                <label class="status-pill status-limited"><input type="radio" name="thu" checked onclick="markDirty()">Limited</label>
+                <label class="status-pill status-off"><input type="radio" name="thu" onclick="markDirty()">Off</label>
+              </div>
+              <div class="week-time">
+                <input class="time-input" type="time" value="10:00" onchange="markDirty()">
+                <span class="time-sep">→</span>
+                <input class="time-input" type="time" value="16:00" onchange="markDirty()">
+              </div>
+            </div>
+
+            <div class="week-row">
+              <div class="week-day">Fri</div>
+              <div class="week-status">
+                <label class="status-pill status-avail"><input type="radio" name="fri" checked onclick="markDirty()">Available</label>
+                <label class="status-pill status-limited"><input type="radio" name="fri" onclick="markDirty()">Limited</label>
+                <label class="status-pill status-off"><input type="radio" name="fri" onclick="markDirty()">Off</label>
+              </div>
+              <div class="week-time">
+                <input class="time-input" type="time" value="08:00" onchange="markDirty()">
+                <span class="time-sep">→</span>
+                <input class="time-input" type="time" value="18:00" onchange="markDirty()">
+              </div>
+            </div>
+
+            <div class="week-row">
+              <div class="week-day">Sat</div>
+              <div class="week-status">
+                <label class="status-pill status-avail"><input type="radio" name="sat" onclick="markDirty()">Available</label>
+                <label class="status-pill status-limited"><input type="radio" name="sat" checked onclick="markDirty()">Limited</label>
+                <label class="status-pill status-off"><input type="radio" name="sat" onclick="markDirty()">Off</label>
+              </div>
+              <div class="week-time">
+                <input class="time-input" type="time" value="09:00" onchange="markDirty()">
+                <span class="time-sep">→</span>
+                <input class="time-input" type="time" value="13:00" onchange="markDirty()">
+              </div>
+            </div>
+
+            <div class="week-row week-unavail">
+              <div class="week-day">Sun</div>
+              <div class="week-status">
+                <label class="status-pill status-avail"><input type="radio" name="sun" onclick="markDirty()">Available</label>
+                <label class="status-pill status-limited"><input type="radio" name="sun" onclick="markDirty()">Limited</label>
+                <label class="status-pill status-off"><input type="radio" name="sun" checked onclick="markDirty()">Off</label>
+              </div>
+              <div class="week-time">
+                <input class="time-input" type="time" value="09:00" disabled>
+                <span class="time-sep">→</span>
+                <input class="time-input" type="time" value="13:00" disabled>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ④ CAPACITY ────────────────────── -->
+        <div class="card">
+          <div class="card-label">Capacity per day</div>
+          <div class="card-desc">How many pets you can comfortably host at the same time.</div>
+
+          <div class="capacity-grid">
+            <div class="cap-item">
+              <div class="cap-label">Overall limit</div>
+              <div class="cap-sub">Total pets at once</div>
+              <div class="cap-control">
+                <button class="cap-btn" onclick="adjustCap('cap-total',-1);markDirty()">−</button>
+                <div class="cap-val" id="cap-total">2</div>
+                <button class="cap-btn" onclick="adjustCap('cap-total',1);markDirty()">+</button>
+              </div>
+            </div>
+            <div class="cap-item">
+              <div class="cap-label">Boarding guests</div>
+              <div class="cap-sub">Overnight stays</div>
+              <div class="cap-control">
+                <button class="cap-btn" onclick="adjustCap('cap-boarding',-1);markDirty()">−</button>
+                <div class="cap-val" id="cap-boarding">1</div>
+                <button class="cap-btn" onclick="adjustCap('cap-boarding',1);markDirty()">+</button>
+              </div>
+            </div>
+            <div class="cap-item">
+              <div class="cap-label">Day visits</div>
+              <div class="cap-sub">Drop-ins &amp; walks</div>
+              <div class="cap-control">
+                <button class="cap-btn" onclick="adjustCap('cap-dayvisit',-1);markDirty()">−</button>
+                <div class="cap-val" id="cap-dayvisit">2</div>
+                <button class="cap-btn" onclick="adjustCap('cap-dayvisit',1);markDirty()">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cap-note" style="margin-top:14px">
+            <span class="material-symbols-rounded" style="font-size:15px;color:var(--faint);flex-shrink:0;margin-top:1px">info</span>
+            Capacity changes apply to new booking requests only and won't affect confirmed bookings.
+          </div>
+        </div>
+
+        <!-- SAVE ROW ──────────────────────── -->
+        <div class="save-row">
+          <div class="save-row-note">Calendar and schedule changes go live as soon as you save.</div>
+          <button class="btn-save-lg" onclick="handleSave()">
+            <span class="material-symbols-rounded" style="font-size:17px">save</span>
+            Save availability
+          </button>
+        </div>
+
+      </div><!-- /left column -->
+
+      <!-- ══ RIGHT COLUMN ══════════════════ -->
+      <div>
+
+        <!-- This month -->
+        <div class="card">
+          <div class="card-label" style="margin-bottom:14px">June at a glance</div>
+          <div class="stat-row">
+            <span class="stat-label">Available days</span>
+            <span class="stat-val green">18</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Blocked days</span>
+            <span class="stat-val coral">8</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Limited days</span>
+            <span class="stat-val" style="color:var(--amber)">4</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Bookings this month</span>
+            <span class="stat-val">5</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Days remaining</span>
+            <span class="stat-val">8</span>
+          </div>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="card">
+          <div class="card-label" style="margin-bottom:14px">Quick actions</div>
+          <button class="action-btn" onclick="markDirty()">
+            <span class="material-symbols-rounded action-icon">event_busy</span>
+            Block all past dates
+          </button>
+          <button class="action-btn" onclick="markDirty()">
+            <span class="material-symbols-rounded action-icon">weekend</span>
+            Open all remaining weekends
+          </button>
+          <button class="action-btn" onclick="markDirty()">
+            <span class="material-symbols-rounded action-icon">calendar_add_on</span>
+            Sync with Google Calendar
+          </button>
+          <button class="action-btn" onclick="markDirty()">
+            <span class="material-symbols-rounded action-icon">content_copy</span>
+            Copy this month's schedule
+          </button>
+        </div>
+
+        <!-- Tips -->
+        <div class="card">
+          <div class="card-label" style="margin-bottom:14px">Tips</div>
+          <div class="tip-row">
+            <span class="material-symbols-rounded tip-icon">trending_up</span>
+            <div class="tip-text"><strong>Keep your calendar current.</strong> Sitters who update availability weekly get 40% more booking requests.</div>
+          </div>
+          <div class="tip-row">
+            <span class="material-symbols-rounded tip-icon">weekend</span>
+            <div class="tip-text"><strong>Weekend availability matters.</strong> Most pet owners book boarding for Fri–Sun. Opening even one weekend a month can double enquiries.</div>
+          </div>
+          <div class="tip-row">
+            <span class="material-symbols-rounded tip-icon">notifications_active</span>
+            <div class="tip-text"><strong>Respond within 24 hours.</strong> Fast responses keep your response rate high and move you up in search.</div>
+          </div>
+        </div>
+
+        <!-- Upcoming blocked -->
+        <div class="card">
+          <div class="card-label" style="margin-bottom:14px">Upcoming blocked periods</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg);border-radius:10px">
+              <span class="material-symbols-rounded" style="font-size:16px;color:var(--faint)">block</span>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:12.5px;font-weight:700;color:var(--ink)">Jun 25–28</div>
+                <div style="font-size:11.5px;color:var(--muted)">Thomas Bakker · Boarding</div>
+              </div>
+              <button style="font-size:11px;font-weight:700;color:var(--coral);background:none;border:none;cursor:pointer;padding:0">Edit</button>
+            </div>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:var(--faint)">No other blocked periods in June.</div>
+        </div>
+
+      </div><!-- /right column -->
+
+    </div>
+  </div>
+
+</main>
+
+<script>
+var isDirty = false;
+
+function markDirty() {
+  if (isDirty) return;
+  isDirty = true;
+  showState('unsaved');
+}
+
+function handleSave() {
+  isDirty = false;
+  showState('saved');
+  setTimeout(function() { showState('none'); }, 2500);
+}
+
+function showState(s) {
+  document.getElementById('save-saved').classList.toggle('show', s === 'saved');
+  document.getElementById('save-unsaved').classList.toggle('show', s === 'unsaved');
+}
+
+function adjustCap(id, delta) {
+  var el = document.getElementById(id);
+  var val = parseInt(el.textContent) + delta;
+  if (val < 1) val = 1;
+  if (val > 9) val = 9;
+  el.textContent = val;
+}
+
+// Show tooltip on calendar day hover via title attr — native browser handles it.
+// Wire calendar day clicks to show quick-edit feedback
+document.querySelectorAll('.cal-day:not(.empty):not(.past)').forEach(function(day) {
+  day.addEventListener('click', function() {
+    var prev = document.querySelector('.cal-day.selected');
+    if (prev) prev.classList.remove('selected');
+    this.classList.add('selected');
+    markDirty();
+  });
+});
+</script>
+
+</body>
+</html>
