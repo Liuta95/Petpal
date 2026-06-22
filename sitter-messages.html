@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetPals — Messages</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#1A1209;--body:#4A3728;--muted:#6B5744;--faint:#8A7060;
+  --bg:#F7F3EE;--sand:#EDE5DA;--surface:#fff;
+  --coral:#A3440F;--coral-soft:#FDE8D8;
+  --teal:#005F5F;--teal-soft:#E0F2F2;
+  --green:#1E601E;--green-soft:#E8F5E8;
+  --amber:#92400E;--amber-soft:#FEF3C7;
+  --sidebar:#1A1209;--sidebar-w:224px;
+  --font-body:"Instrument Sans",system-ui,sans-serif;
+  --font-display:"Cormorant Garamond",Georgia,serif;
+  --shadow:0 2px 20px rgba(26,18,9,.07);
+}
+
+html,body{height:100dvh;overflow:hidden}
+body{font-family:var(--font-body);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;display:flex}
+
+/* ── SIDEBAR ─────────────────────────── */
+.sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--sidebar);display:flex;flex-direction:column;height:100dvh;overflow-y:auto}
+.sb-logo{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:6px}
+.sb-wordmark{font-family:var(--font-display);font-size:21px;font-weight:600;color:#F7F3EE;letter-spacing:-.02em}
+.sb-wordmark em{color:var(--coral);font-style:normal}
+.sb-section{padding:0 10px;margin-bottom:2px}
+.sb-section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(247,243,238,.28);padding:14px 8px 5px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;margin-bottom:1px;cursor:pointer;font-size:13px;font-weight:600;color:rgba(247,243,238,.55);text-decoration:none;transition:all .15s;border:none;background:none;font-family:inherit;width:100%;position:relative}
+.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(247,243,238,.9)}
+.nav-item.active{background:rgba(163,68,15,.22);color:#F7F3EE}
+.nav-icon{font-size:18px;flex-shrink:0;color:rgba(247,243,238,.4);transition:color .15s}
+.nav-item:hover .nav-icon,.nav-item.active .nav-icon{color:var(--coral)}
+.nav-badge{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;background:var(--coral);border-radius:50%;font-size:10px;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center}
+.sb-footer{margin-top:auto;padding:14px 10px 18px;border-top:1px solid rgba(255,255,255,.07)}
+.sb-user{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;cursor:pointer;transition:background .15s}
+.sb-user:hover{background:rgba(255,255,255,.07)}
+.sb-av{width:32px;height:32px;border-radius:50%;background:var(--coral-soft);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--coral);flex-shrink:0}
+.sb-name{font-size:12.5px;font-weight:700;color:#F7F3EE;margin-bottom:1px;line-height:1.2}
+.sb-email{font-size:10.5px;color:rgba(247,243,238,.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px}
+
+/* ── MAIN ────────────────────────────── */
+.main{flex:1;display:flex;flex-direction:column;height:100dvh;overflow:hidden;min-width:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid rgba(26,18,9,.07);background:rgba(247,243,238,.92);backdrop-filter:blur(10px);flex-shrink:0}
+.topbar-title{font-size:15px;font-weight:700;color:var(--ink)}
+.topbar-sub{font-size:13px;color:var(--muted);margin-top:1px}
+.live-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px;background:var(--green-soft);color:var(--green);border:1px solid rgba(30,96,30,.15)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 0 3px rgba(30,96,30,.2)}
+
+/* ── MSG BODY ────────────────────────── */
+.msg-body{flex:1;display:flex;overflow:hidden;min-height:0}
+
+/* ── INBOX PANEL ─────────────────────── */
+.inbox-panel{width:318px;flex-shrink:0;border-right:1px solid rgba(26,18,9,.08);display:flex;flex-direction:column;background:var(--surface)}
+
+.inbox-hdr{padding:18px 18px 0;flex-shrink:0}
+.inbox-title{font-size:15px;font-weight:700;color:var(--ink)}
+.inbox-sub{font-size:12px;color:var(--muted);margin-top:3px;margin-bottom:14px}
+.inbox-sub em{color:var(--coral);font-style:normal;font-weight:700}
+
+.inbox-search{display:flex;align-items:center;gap:7px;padding:8px 12px;background:var(--bg);border-radius:10px;margin-bottom:14px;cursor:text}
+.inbox-search-icon{font-size:16px;color:var(--faint)}
+.inbox-search-placeholder{font-size:13px;color:var(--faint)}
+
+.tabs-row{display:flex;border-bottom:1px solid rgba(26,18,9,.08);flex-shrink:0;padding:0 14px}
+.tab{padding:9px 10px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:5px;transition:color .13s;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--coral);border-bottom-color:var(--coral)}
+.tab-ct{background:rgba(26,18,9,.07);color:var(--muted);border-radius:99px;font-size:10px;font-weight:800;padding:1px 6px;line-height:1.6}
+.tab.active .tab-ct{background:var(--coral);color:#fff}
+
+.inbox-list{flex:1;overflow-y:auto}
+
+/* conv items */
+.conv-item{display:flex;align-items:flex-start;gap:10px;padding:13px 16px 12px;cursor:pointer;transition:background .12s;border-bottom:1px solid rgba(26,18,9,.05);border-left:3px solid transparent}
+.conv-item:hover{background:rgba(26,18,9,.025)}
+.conv-item.active{background:rgba(163,68,15,.05);border-left-color:var(--coral)}
+.conv-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;letter-spacing:-.01em}
+.av-teal{background:var(--teal-soft);color:var(--teal)}
+.av-amber{background:var(--amber-soft);color:var(--amber)}
+.av-green{background:var(--green-soft);color:var(--green)}
+.conv-main{flex:1;min-width:0}
+.conv-top{display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin-bottom:2px}
+.conv-name{font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv-time{font-size:11px;color:var(--faint);flex-shrink:0;font-weight:500}
+.conv-pet{font-size:12px;color:var(--muted);margin-bottom:3px}
+.conv-preview{font-size:12px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4;margin-bottom:5px}
+.conv-item.unread .conv-name{font-weight:700}
+.conv-item.unread .conv-preview{color:var(--body);font-weight:500}
+.conv-badge{display:inline-flex;font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;letter-spacing:.01em}
+.badge-req{background:var(--coral-soft);color:var(--coral)}
+.badge-confirmed{background:var(--green-soft);color:var(--green)}
+.badge-done{background:rgba(26,18,9,.07);color:var(--muted)}
+.unread-dot{width:8px;height:8px;border-radius:50%;background:var(--coral);flex-shrink:0;margin-top:7px}
+
+/* ── CHAT PANEL ──────────────────────── */
+.chat-panel{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--bg)}
+
+/* chat header */
+.chat-hdr{display:flex;align-items:center;gap:12px;padding:14px 22px;background:var(--surface);border-bottom:1px solid rgba(26,18,9,.07);flex-shrink:0}
+.chat-hdr-av{width:40px;height:40px;border-radius:50%;background:var(--teal-soft);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;letter-spacing:-.01em}
+.chat-hdr-meta{flex:1;min-width:0}
+.chat-hdr-name{font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.chat-hdr-sub{font-size:12px;color:var(--muted)}
+.chat-hdr-right{display:flex;gap:6px;flex-shrink:0}
+.icon-btn{width:33px;height:33px;border-radius:9px;border:1.5px solid rgba(26,18,9,.12);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .13s;color:var(--muted)}
+.icon-btn .material-symbols-rounded{font-size:17px}
+.icon-btn:hover{border-color:var(--ink);color:var(--ink)}
+
+/* pending banner */
+.pending-banner{display:flex;align-items:center;gap:10px;padding:9px 22px;background:var(--amber-soft);border-bottom:1px solid rgba(146,64,14,.15);flex-shrink:0}
+.pending-banner-icon{font-size:16px;color:var(--amber);flex-shrink:0}
+.pending-banner-text{font-size:12.5px;font-weight:600;color:var(--amber);flex:1}
+.pending-banner-timer{font-size:12px;font-weight:700;color:var(--amber);background:rgba(146,64,14,.12);padding:3px 8px;border-radius:6px;flex-shrink:0}
+
+/* thread */
+.chat-thread{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:4px}
+
+.date-sep{display:flex;align-items:center;gap:10px;margin:10px 0 6px;color:var(--faint);font-size:11.5px;font-weight:600}
+.date-sep::before,.date-sep::after{content:'';flex:1;height:1px;background:rgba(26,18,9,.07)}
+
+/* message groups */
+.msg-grp{margin-bottom:8px}
+.msg-row{display:flex;align-items:flex-end;gap:8px}
+.msg-row.sitter{flex-direction:row-reverse}
+.msg-row+.msg-row{margin-top:3px}
+
+.msg-av-sm{width:28px;height:28px;border-radius:50%;background:var(--teal-soft);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:800;flex-shrink:0;letter-spacing:0}
+.msg-av-sm.hidden{visibility:hidden}
+
+.msg-bubble{max-width:62%;padding:10px 14px;font-size:13.5px;line-height:1.5;color:var(--ink);word-break:break-word}
+.msg-bubble.owner{background:#fff;border:1px solid rgba(26,18,9,.08);border-radius:16px 16px 16px 4px}
+.msg-bubble.sitter{background:var(--teal);color:#fff;border-radius:16px 16px 4px 16px}
+.msg-time{font-size:10.5px;color:var(--faint);margin-top:4px}
+.msg-bubble.sitter .msg-time{color:rgba(255,255,255,.5);text-align:right}
+.msg-spacer{width:28px;flex-shrink:0}
+
+/* booking request card */
+.req-wrap{align-self:center;width:100%;max-width:430px;margin:10px auto}
+.booking-req{background:#fff;border:1.5px solid rgba(26,18,9,.08);border-left:3px solid var(--coral);border-radius:14px;padding:18px 20px;box-shadow:0 2px 18px rgba(26,18,9,.07)}
+.req-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.req-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--coral);display:flex;align-items:center;gap:6px}
+.req-label .material-symbols-rounded{font-size:16px}
+.req-pending-pill{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--amber-soft);color:var(--amber)}
+.req-rows{display:flex;flex-direction:column;gap:0;margin-bottom:14px;border:1px solid rgba(26,18,9,.07);border-radius:10px;overflow:hidden}
+.req-row{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:#fff;border-bottom:1px solid rgba(26,18,9,.05);font-size:13px}
+.req-row:last-child{border-bottom:none}
+.req-key{color:var(--muted);font-weight:500}
+.req-val{color:var(--ink);font-weight:600}
+.req-val.total{color:var(--ink);font-size:14px}
+.req-timer{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:9px 13px;border-radius:9px;margin-bottom:13px}
+.req-timer .material-symbols-rounded{font-size:16px;flex-shrink:0}
+.req-btns{display:flex;gap:8px;margin-bottom:10px}
+.btn-accept{flex:1;padding:11px;border-radius:10px;border:none;font-family:inherit;font-size:13.5px;font-weight:700;background:var(--green);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .13s}
+.btn-accept:hover{background:#175217}
+.btn-accept .material-symbols-rounded{font-size:17px}
+.btn-decline{padding:11px 18px;border-radius:10px;border:1.5px solid rgba(26,18,9,.14);background:#fff;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .13s;white-space:nowrap}
+.btn-decline:hover{border-color:var(--ink);color:var(--ink)}
+.req-note{font-size:11.5px;color:var(--faint);text-align:center;line-height:1.4}
+
+/* composer */
+.composer{flex-shrink:0;border-top:1px solid rgba(26,18,9,.07);background:var(--surface);padding:12px 20px 16px}
+.composer-toolbar{display:flex;gap:5px;margin-bottom:10px}
+.comp-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:8px;border:1.5px solid rgba(26,18,9,.11);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .13s}
+.comp-btn:hover{border-color:var(--ink);color:var(--ink)}
+.comp-btn .material-symbols-rounded{font-size:15px}
+.composer-input-row{display:flex;align-items:flex-end;gap:9px}
+.composer-input{flex:1;resize:none;border:1.5px solid rgba(26,18,9,.12);border-radius:12px;padding:10px 14px;font-family:inherit;font-size:13.5px;color:var(--ink);background:var(--bg);outline:none;line-height:1.45;transition:border-color .15s;min-height:42px}
+.composer-input:focus{border-color:var(--coral);background:#fff}
+.composer-input::placeholder{color:var(--faint)}
+.send-btn{width:42px;height:42px;border-radius:11px;border:none;background:var(--coral);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .13s}
+.send-btn:hover{background:#8a380c}
+.send-btn .material-symbols-rounded{font-size:19px}
+</style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR ══════════════════════════ -->
+<nav class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-wordmark">Pet<em>Pals</em></div>
+  </div>
+
+  <div class="sb-section">
+    <a class="nav-item" href="sitter-dashboard.html">
+      <span class="material-symbols-rounded nav-icon">grid_view</span>
+      Dashboard
+    </a>
+    <a class="nav-item" href="sitter-profile.html">
+      <span class="material-symbols-rounded nav-icon">person</span>
+      Profile
+    </a>
+    <a class="nav-item" href="sitter-availability.html">
+      <span class="material-symbols-rounded nav-icon">calendar_month</span>
+      Availability
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">Activity</div>
+    <a class="nav-item active" href="#">
+      <span class="material-symbols-rounded nav-icon">chat</span>
+      Messages
+      <span class="nav-badge">2</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">payments</span>
+      Payouts
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">Account</div>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">settings</span>
+      Settings
+    </a>
+    <a class="nav-item" href="index.html" style="margin-top:4px">
+      <span class="material-symbols-rounded nav-icon">logout</span>
+      Sign out
+    </a>
+  </div>
+
+  <div class="sb-footer">
+    <div class="sb-user">
+      <div class="sb-av">AL</div>
+      <div style="min-width:0">
+        <div class="sb-name">Anastasiia Liuta</div>
+        <div class="sb-email">anasssta9@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MAIN ══════════════════════════════ -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">Messages</div>
+      <div class="topbar-sub">Respond quickly to keep your response rate high</div>
+    </div>
+    <div class="live-pill">
+      <span class="live-dot"></span>
+      Listing live
+    </div>
+  </div>
+
+  <!-- MSG BODY -->
+  <div class="msg-body">
+
+    <!-- ══ INBOX PANEL ══════════════════════ -->
+    <div class="inbox-panel">
+
+      <div class="inbox-hdr">
+        <div class="inbox-title">Inbox</div>
+        <div class="inbox-sub"><em>2 new requests</em> awaiting your reply</div>
+        <div class="inbox-search">
+          <span class="material-symbols-rounded inbox-search-icon">search</span>
+          <span class="inbox-search-placeholder">Search messages…</span>
+        </div>
+      </div>
+
+      <div class="tabs-row">
+        <div class="tab active">All <span class="tab-ct">3</span></div>
+        <div class="tab">Requests <span class="tab-ct">1</span></div>
+        <div class="tab">Booked <span class="tab-ct">1</span></div>
+        <div class="tab">Archived</div>
+      </div>
+
+      <div class="inbox-list">
+
+        <!-- Sophie — unread, active, new request -->
+        <div class="conv-item unread active">
+          <div class="conv-av av-teal">SV</div>
+          <div class="conv-main">
+            <div class="conv-top">
+              <span class="conv-name">Sophie van den Berg</span>
+              <span class="conv-time">2h ago</span>
+            </div>
+            <div class="conv-pet">Buddy · Golden Retriever</div>
+            <div class="conv-preview">He's great on the lead! And yes, he's lived with a cat before…</div>
+            <span class="conv-badge badge-req">New request</span>
+          </div>
+          <div class="unread-dot"></div>
+        </div>
+
+        <!-- Thomas — confirmed booking -->
+        <div class="conv-item">
+          <div class="conv-av av-amber">TB</div>
+          <div class="conv-main">
+            <div class="conv-top">
+              <span class="conv-name">Thomas Bakker</span>
+              <span class="conv-time">Yesterday</span>
+            </div>
+            <div class="conv-pet">Luna · Labrador Mix</div>
+            <div class="conv-preview">Thanks, see you on the 25th! Luna gets a bit anxious…</div>
+            <span class="conv-badge badge-confirmed">Confirmed booking</span>
+          </div>
+        </div>
+
+        <!-- Emma — completed -->
+        <div class="conv-item">
+          <div class="conv-av av-green">ED</div>
+          <div class="conv-main">
+            <div class="conv-top">
+              <span class="conv-name">Emma de Vries</span>
+              <span class="conv-time">Jun 18</span>
+            </div>
+            <div class="conv-pet">Max · Beagle</div>
+            <div class="conv-preview">Thank you so much Anastasiia! Max had the best time…</div>
+            <span class="conv-badge badge-done">Completed</span>
+          </div>
+        </div>
+
+      </div><!-- /inbox-list -->
+    </div><!-- /inbox-panel -->
+
+    <!-- ══ CHAT PANEL ═══════════════════════ -->
+    <div class="chat-panel">
+
+      <!-- Chat header -->
+      <div class="chat-hdr">
+        <div class="chat-hdr-av">SV</div>
+        <div class="chat-hdr-meta">
+          <div class="chat-hdr-name">
+            Sophie van den Berg
+            <span class="conv-badge badge-req" style="font-size:10.5px">New request</span>
+          </div>
+          <div class="chat-hdr-sub">Buddy · Golden Retriever · Boarding · Jun 29 – Jul 2</div>
+        </div>
+        <div class="chat-hdr-right">
+          <button class="icon-btn" title="View owner profile">
+            <span class="material-symbols-rounded">person</span>
+          </button>
+          <button class="icon-btn" title="More options">
+            <span class="material-symbols-rounded">more_vert</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Pending request banner -->
+      <div class="pending-banner">
+        <span class="material-symbols-rounded pending-banner-icon">schedule</span>
+        <span class="pending-banner-text">Sophie's booking request is still waiting for your response.</span>
+        <span class="pending-banner-timer">22h 14m left</span>
+      </div>
+
+      <!-- Chat thread -->
+      <div class="chat-thread" id="chat-thread">
+
+        <div class="date-sep">Today · June 22</div>
+
+        <!-- Sophie message 1 -->
+        <div class="msg-grp">
+          <div class="msg-row">
+            <div class="msg-av-sm av-teal">SV</div>
+            <div class="msg-bubble owner">
+              Hi Anastasiia! I found your listing on PetPals and I think you'd be perfect for Buddy. He's a friendly 3-year-old Golden Retriever — very calm and loves cuddles. I just sent a boarding request for June 29th to July 2nd, hope that works for you! 🐕
+              <div class="msg-time">10:12</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking request card -->
+        <div class="req-wrap">
+          <div class="booking-req">
+            <div class="req-top">
+              <div class="req-label">
+                <span class="material-symbols-rounded">event</span>
+                Booking request
+              </div>
+              <span class="req-pending-pill">Pending</span>
+            </div>
+            <div class="req-rows">
+              <div class="req-row">
+                <span class="req-key">Service</span>
+                <span class="req-val">Boarding</span>
+              </div>
+              <div class="req-row">
+                <span class="req-key">Dates</span>
+                <span class="req-val">Jun 29 – Jul 2 · 3 nights</span>
+              </div>
+              <div class="req-row">
+                <span class="req-key">Pet</span>
+                <span class="req-val">Buddy · Golden Retriever</span>
+              </div>
+              <div class="req-row">
+                <span class="req-key">Rate</span>
+                <span class="req-val">€35 / night</span>
+              </div>
+              <div class="req-row">
+                <span class="req-key">Total</span>
+                <span class="req-val total">€105</span>
+              </div>
+            </div>
+            <div class="req-timer">
+              <span class="material-symbols-rounded">schedule</span>
+              You have 24 hours to respond — accepting locks in the booking.
+            </div>
+            <div class="req-btns">
+              <button class="btn-accept">
+                <span class="material-symbols-rounded">check_circle</span>
+                Accept booking
+              </button>
+              <button class="btn-decline">Decline</button>
+            </div>
+            <div class="req-note">You can still message Sophie while the request is pending.</div>
+          </div>
+        </div>
+
+        <!-- Sitter reply -->
+        <div class="msg-grp">
+          <div class="msg-row sitter">
+            <div class="msg-spacer"></div>
+            <div class="msg-bubble sitter">
+              Hi Sophie! Buddy sounds lovely 🐕 I'd be happy to host him. Before I confirm, just a couple of quick questions — does he pull on the lead, and is he okay around cats? I have a cat called Pepper who usually stays in the bedroom but they might cross paths!
+              <div class="msg-time">10:45</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sophie reply -->
+        <div class="msg-grp">
+          <div class="msg-row">
+            <div class="msg-av-sm av-teal">SV</div>
+            <div class="msg-bubble owner">
+              He's actually really good on the lead — no pulling at all! And yes, he's lived with a cat before so definitely no issues there 😄 He might be curious about Pepper but he's very gentle. Looking forward to it!
+              <div class="msg-time">11:20</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /chat-thread -->
+
+      <!-- Composer -->
+      <div class="composer">
+        <div class="composer-toolbar">
+          <button class="comp-btn">
+            <span class="material-symbols-rounded">text_snippet</span>
+            Template reply
+          </button>
+          <button class="comp-btn">
+            <span class="material-symbols-rounded">attach_file</span>
+            Attach
+          </button>
+          <button class="comp-btn">
+            <span class="material-symbols-rounded">photo_camera</span>
+            Photo
+          </button>
+        </div>
+        <div class="composer-input-row">
+          <textarea class="composer-input" placeholder="Type a message to Sophie…" rows="2"></textarea>
+          <button class="send-btn">
+            <span class="material-symbols-rounded">send</span>
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /chat-panel -->
+
+  </div><!-- /msg-body -->
+</main>
+
+<script>
+// Scroll chat thread to bottom on load
+var thread = document.getElementById('chat-thread');
+if (thread) thread.scrollTop = thread.scrollHeight;
+
+// Tab switching (visual only)
+document.querySelectorAll('.tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+    this.classList.add('active');
+  });
+});
+
+// Conversation switching (visual only)
+document.querySelectorAll('.conv-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.conv-item').forEach(function(i){ i.classList.remove('active'); });
+    this.classList.add('active');
+  });
+});
+
+// Send button — append message to thread
+document.querySelector('.send-btn').addEventListener('click', function() {
+  var input = document.querySelector('.composer-input');
+  var text = input.value.trim();
+  if (!text) return;
+
+  var row = document.createElement('div');
+  row.className = 'msg-grp';
+  row.innerHTML = '<div class="msg-row sitter">' +
+    '<div class="msg-spacer"></div>' +
+    '<div class="msg-bubble sitter">' + text.replace(/</g,'&lt;').replace(/>/g,'&gt;') +
+    '<div class="msg-time">' + new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + '</div>' +
+    '</div></div>';
+
+  thread.appendChild(row);
+  thread.scrollTop = thread.scrollHeight;
+  input.value = '';
+});
+
+// Enter to send (Shift+Enter for newline)
+document.querySelector('.composer-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    document.querySelector('.send-btn').click();
+  }
+});
+</script>
+
+</body>
+</html>
