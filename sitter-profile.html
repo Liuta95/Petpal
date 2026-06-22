@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetPals — Profile</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#1A1209;--body:#4A3728;--muted:#6B5744;--faint:#8A7060;
+  --bg:#F7F3EE;--sand:#EDE5DA;--surface:#fff;
+  --coral:#A3440F;--coral-soft:#FDE8D8;
+  --teal:#005F5F;--teal-soft:#E0F2F2;
+  --green:#1E601E;--green-soft:#E8F5E8;
+  --sidebar:#1A1209;--sidebar-w:224px;
+  --font-body:"Instrument Sans",system-ui,sans-serif;
+  --font-display:"Cormorant Garamond",Georgia,serif;
+  --radius:12px;--shadow:0 2px 20px rgba(26,18,9,.07);
+}
+
+body{
+  font-family:var(--font-body);background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;display:flex;min-height:100dvh;
+}
+
+/* ══════════════════════════════════════
+   SIDEBAR
+══════════════════════════════════════ */
+.sidebar{
+  width:var(--sidebar-w);flex-shrink:0;background:var(--sidebar);
+  display:flex;flex-direction:column;
+  position:sticky;top:0;height:100dvh;overflow-y:auto;
+}
+.sb-logo{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:6px}
+.sb-wordmark{font-family:var(--font-display);font-size:21px;font-weight:600;color:#F7F3EE;letter-spacing:-.02em}
+.sb-wordmark em{color:var(--coral);font-style:normal}
+.sb-section{padding:0 10px;margin-bottom:2px}
+.sb-section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(247,243,238,.28);padding:14px 8px 5px}
+.nav-item{
+  display:flex;align-items:center;gap:9px;padding:9px 10px;
+  border-radius:9px;margin-bottom:1px;cursor:pointer;
+  font-size:13px;font-weight:600;color:rgba(247,243,238,.55);
+  text-decoration:none;transition:all .15s;border:none;background:none;
+  font-family:inherit;width:100%;
+}
+.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(247,243,238,.9)}
+.nav-item.active{background:rgba(163,68,15,.22);color:#F7F3EE}
+.nav-icon{font-size:18px;flex-shrink:0;color:rgba(247,243,238,.4);transition:color .15s}
+.nav-item:hover .nav-icon{color:rgba(247,243,238,.75)}
+.nav-item.active .nav-icon{color:var(--coral)}
+.sb-footer{margin-top:auto;padding:14px 10px 18px;border-top:1px solid rgba(255,255,255,.07)}
+.sb-user{display:flex;align-items:center;gap:10px;padding:8px 8px;border-radius:10px;cursor:pointer;transition:background .15s}
+.sb-user:hover{background:rgba(255,255,255,.07)}
+.sb-av{width:32px;height:32px;border-radius:50%;background:var(--coral-soft);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--coral);flex-shrink:0;letter-spacing:-.01em}
+.sb-user-name{font-size:12.5px;font-weight:700;color:#F7F3EE;margin-bottom:1px;line-height:1.2}
+.sb-user-email{font-size:10.5px;color:rgba(247,243,238,.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px}
+
+/* ══════════════════════════════════════
+   MAIN
+══════════════════════════════════════ */
+.main{flex:1;min-width:0;overflow-y:auto}
+
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 32px;border-bottom:1px solid rgba(26,18,9,.07);
+  background:rgba(247,243,238,.85);backdrop-filter:blur(10px);
+  position:sticky;top:0;z-index:10;
+}
+.topbar-title{font-size:15px;font-weight:700;color:var(--ink)}
+.topbar-sub{font-size:13px;color:var(--muted)}
+.topbar-right{display:flex;align-items:center;gap:10px}
+
+.live-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px;
+  background:var(--green-soft);color:var(--green);border:1px solid rgba(30,96,30,.15);
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 0 3px rgba(30,96,30,.2)}
+
+.save-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 16px;border-radius:10px;border:none;
+  font-family:inherit;font-size:13px;font-weight:700;
+  background:var(--coral);color:#fff;cursor:pointer;transition:all .15s;
+}
+.save-btn:hover{background:#8a380c}
+.save-confirm{
+  font-size:12.5px;font-weight:600;color:var(--green);
+  display:none;align-items:center;gap:5px;
+}
+.save-confirm.show{display:inline-flex}
+
+.content{padding:28px 32px}
+
+/* ══════════════════════════════════════
+   LAYOUT GRID
+══════════════════════════════════════ */
+.dash-grid{
+  display:grid;grid-template-columns:1fr 320px;
+  gap:18px;align-items:start;
+}
+
+/* ══════════════════════════════════════
+   CARDS
+══════════════════════════════════════ */
+.card{
+  background:var(--surface);border-radius:16px;
+  padding:22px 24px;box-shadow:var(--shadow);
+  border:1px solid rgba(26,18,9,.05);
+}
+.card+.card{margin-top:18px}
+.card-label{
+  font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--muted);margin-bottom:4px;
+}
+.card-desc{font-size:12.5px;color:var(--faint);margin-bottom:18px;line-height:1.45}
+
+/* ══════════════════════════════════════
+   COMPLETENESS BANNER
+══════════════════════════════════════ */
+.completeness{
+  display:flex;gap:14px;align-items:center;
+  padding:14px 18px;border-radius:13px;margin-bottom:18px;
+  background:linear-gradient(135deg,rgba(163,68,15,.07) 0%,rgba(163,68,15,.03) 100%);
+  border:1px solid rgba(163,68,15,.14);
+}
+.completeness-pct{
+  font-family:var(--font-display);font-size:28px;font-weight:600;
+  color:var(--coral);line-height:1;flex-shrink:0;letter-spacing:-.02em;
+}
+.completeness-body{flex:1;min-width:0}
+.completeness-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.completeness-hint{font-size:12px;color:var(--muted);line-height:1.4}
+.completeness-track{
+  height:4px;border-radius:2px;background:rgba(163,68,15,.12);
+  margin-top:8px;overflow:hidden;
+}
+.completeness-fill{height:100%;border-radius:2px;background:var(--coral)}
+
+/* ══════════════════════════════════════
+   PUBLIC PREVIEW
+══════════════════════════════════════ */
+.preview-card{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px;background:var(--bg);border-radius:12px;
+  margin-bottom:16px;border:1px solid rgba(26,18,9,.07);
+}
+.preview-av{
+  width:52px;height:52px;border-radius:50%;flex-shrink:0;
+  background:var(--coral-soft);border:2px solid rgba(163,68,15,.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;color:var(--coral);letter-spacing:-.01em;
+}
+.preview-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.preview-loc{font-size:12px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:4px}
+.preview-tagline{font-size:13px;color:var(--body);margin-bottom:10px;font-style:italic}
+.preview-badges{display:flex;flex-wrap:wrap;gap:5px}
+.preview-badge{
+  font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:99px;
+  background:rgba(26,18,9,.07);color:var(--body);
+}
+.preview-label{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--faint);margin-bottom:8px;
+}
+.btn-preview{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 16px;border-radius:10px;
+  border:1.5px solid rgba(26,18,9,.16);background:#fff;
+  font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);
+  cursor:pointer;transition:all .15s;text-decoration:none;
+}
+.btn-preview:hover{border-color:var(--ink);background:var(--bg)}
+
+/* ══════════════════════════════════════
+   FORM FIELDS
+══════════════════════════════════════ */
+.field-group{margin-bottom:18px}
+.field-group:last-child{margin-bottom:0}
+.field-label{
+  font-size:12.5px;font-weight:700;color:var(--ink);
+  margin-bottom:5px;display:block;
+}
+.field-hint{font-size:11.5px;color:var(--faint);margin-bottom:6px;line-height:1.4}
+.field-input{
+  width:100%;padding:10px 13px;border-radius:10px;
+  border:1.5px solid rgba(26,18,9,.14);background:#fff;
+  font-family:inherit;font-size:13.5px;color:var(--ink);
+  transition:border-color .15s;outline:none;
+}
+.field-input:focus{border-color:var(--coral)}
+.field-input::placeholder{color:var(--faint)}
+textarea.field-input{resize:vertical;min-height:88px;line-height:1.55}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.char-count{font-size:11px;color:var(--faint);text-align:right;margin-top:4px}
+
+/* ══════════════════════════════════════
+   PHOTO UPLOAD
+══════════════════════════════════════ */
+.photo-upload{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.photo-circle{
+  width:72px;height:72px;border-radius:50%;flex-shrink:0;
+  background:var(--coral-soft);border:2px dashed rgba(163,68,15,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:21px;font-weight:800;color:var(--coral);letter-spacing:-.02em;
+  cursor:pointer;transition:all .15s;position:relative;
+}
+.photo-circle:hover{border-style:solid;background:rgba(163,68,15,.1)}
+.photo-overlay{
+  position:absolute;inset:0;border-radius:50%;
+  background:rgba(26,18,9,.45);display:flex;align-items:center;
+  justify-content:center;opacity:0;transition:opacity .15s;
+}
+.photo-circle:hover .photo-overlay{opacity:1}
+.photo-upload-info{}
+.photo-upload-title{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.photo-upload-hint{font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.4}
+.btn-upload{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:6px 12px;border-radius:8px;
+  border:1.5px solid rgba(26,18,9,.16);background:#fff;
+  font-family:inherit;font-size:12.5px;font-weight:600;color:var(--ink);
+  cursor:pointer;transition:all .15s;
+}
+.btn-upload:hover{border-color:var(--ink)}
+
+/* ══════════════════════════════════════
+   TOGGLE ROWS
+══════════════════════════════════════ */
+.toggle-group{display:flex;flex-direction:column;gap:10px}
+.toggle-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:11px 14px;background:var(--bg);border-radius:10px;
+  cursor:pointer;
+}
+.toggle-text{font-size:13px;font-weight:600;color:var(--ink)}
+.toggle-sub{font-size:11.5px;color:var(--muted);margin-top:1px}
+.toggle{position:relative;flex-shrink:0}
+.toggle input{position:absolute;opacity:0;width:0;height:0}
+.toggle-track{
+  display:block;width:38px;height:22px;border-radius:11px;
+  background:rgba(26,18,9,.14);cursor:pointer;transition:background .2s;position:relative;
+}
+.toggle-track::after{
+  content:'';position:absolute;
+  width:16px;height:16px;border-radius:50%;
+  background:#fff;top:3px;left:3px;
+  transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.18);
+}
+.toggle input:checked+.toggle-track{background:var(--teal)}
+.toggle input:checked+.toggle-track::after{transform:translateX(16px)}
+
+/* ══════════════════════════════════════
+   HOME TYPE PILLS (radio)
+══════════════════════════════════════ */
+.radio-group{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.radio-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 16px;border-radius:99px;cursor:pointer;
+  border:1.5px solid rgba(26,18,9,.14);background:#fff;
+  font-size:13px;font-weight:600;color:var(--muted);
+  transition:all .15s;user-select:none;
+}
+.radio-pill input{position:absolute;opacity:0;width:0;height:0}
+.radio-pill:has(input:checked){
+  background:var(--teal-soft);color:var(--teal);
+  border-color:rgba(0,95,95,.25);
+}
+
+/* ══════════════════════════════════════
+   CHIPS (toggleable)
+══════════════════════════════════════ */
+.chip-section{margin-bottom:18px}
+.chip-section:last-child{margin-bottom:0}
+.chip-section-label{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.chip-group{display:flex;flex-wrap:wrap;gap:7px}
+.chip{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:6px 14px;border-radius:99px;cursor:pointer;
+  border:1.5px solid rgba(26,18,9,.13);background:#fff;
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  transition:all .15s;user-select:none;
+}
+.chip input{position:absolute;opacity:0;width:0;height:0}
+.chip:has(input:checked){
+  background:var(--coral-soft);color:var(--coral);
+  border-color:rgba(163,68,15,.22);
+}
+.chip.teal:has(input:checked){
+  background:var(--teal-soft);color:var(--teal);
+  border-color:rgba(0,95,95,.22);
+}
+
+/* ══════════════════════════════════════
+   SECTION DIVIDER
+══════════════════════════════════════ */
+.section-divider{height:1px;background:rgba(26,18,9,.06);margin:20px 0}
+
+/* ══════════════════════════════════════
+   SAVE ACTIONS
+══════════════════════════════════════ */
+.save-actions{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;background:var(--surface);border-radius:16px;
+  box-shadow:var(--shadow);border:1px solid rgba(26,18,9,.05);
+  margin-top:18px;
+}
+.save-actions-left{font-size:12.5px;color:var(--muted)}
+.btn-save-primary{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:11px 24px;border-radius:11px;border:none;
+  font-family:inherit;font-size:13.5px;font-weight:700;
+  background:var(--coral);color:#fff;cursor:pointer;transition:all .15s;
+}
+.btn-save-primary:hover{background:#8a380c}
+
+/* ══════════════════════════════════════
+   RIGHT COLUMN — Profile + Account
+══════════════════════════════════════ */
+.profile-av{
+  width:52px;height:52px;border-radius:50%;background:var(--coral-soft);
+  border:2px solid rgba(163,68,15,.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;color:var(--coral);flex-shrink:0;letter-spacing:-.01em;
+}
+.profile-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+.profile-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.profile-email{font-size:12px;color:var(--muted)}
+.meta-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--body);margin-bottom:7px}
+.meta-icon{font-size:16px;color:var(--faint)}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin:14px 0 18px}
+.tag{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:99px;background:rgba(26,18,9,.07);color:var(--body)}
+.photo-nudge{
+  display:flex;align-items:flex-start;gap:11px;padding:12px 14px;
+  background:var(--coral-soft);border-radius:11px;margin-bottom:16px;
+  border:1px solid rgba(163,68,15,.14);
+}
+.nudge-icon{font-size:18px;flex-shrink:0;line-height:1.2}
+.nudge-title{font-size:12.5px;font-weight:700;color:var(--coral);margin-bottom:2px}
+.nudge-desc{font-size:12px;color:rgba(163,68,15,.75);line-height:1.4}
+.btn-sm{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 16px;border:1.5px solid rgba(26,18,9,.16);border-radius:10px;
+  font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);
+  background:#fff;cursor:pointer;transition:all .15s;width:100%;
+}
+.btn-sm:hover{border-color:var(--ink);background:var(--bg)}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:860px){
+  .sidebar{
+    position:fixed;bottom:0;left:0;right:0;top:auto;
+    width:100%;height:60px;flex-direction:row;z-index:100;
+    border-top:1px solid rgba(255,255,255,.1);overflow:hidden;
+  }
+  .sb-logo,.sb-footer,.sb-section-label{display:none}
+  .sb-section{display:flex;flex:1;padding:0;gap:0;margin:0}
+  .sb-section:last-of-type{display:none}
+  .nav-item{
+    flex-direction:column;gap:2px;padding:6px 2px 4px;
+    font-size:9.5px;flex:1;border-radius:0;margin:0;
+    justify-content:center;text-align:center;color:rgba(247,243,238,.45);
+  }
+  .nav-icon{font-size:20px}
+  .nav-item.active{background:rgba(163,68,15,.28);color:#F7F3EE}
+  .main{padding-bottom:60px}
+  .content{padding:20px 16px}
+  .topbar{padding:14px 16px}
+  .topbar-right{gap:6px}
+  .save-btn span:not(.material-symbols-rounded){display:none}
+  .dash-grid{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-wordmark">Pet<em>Pals</em></div>
+  </div>
+
+  <div class="sb-section">
+    <a class="nav-item" href="sitter-dashboard.html">
+      <span class="material-symbols-rounded nav-icon">grid_view</span>
+      Dashboard
+    </a>
+    <a class="nav-item active" href="#">
+      <span class="material-symbols-rounded nav-icon">person</span>
+      Profile
+    </a>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">room_service</span>
+      Services &amp; rates
+    </a>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">calendar_month</span>
+      Availability
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">Activity</div>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">chat</span>
+      Messages
+    </a>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">payments</span>
+      Payouts
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">Account</div>
+    <a class="nav-item" href="#">
+      <span class="material-symbols-rounded nav-icon">settings</span>
+      Settings
+    </a>
+    <a class="nav-item" href="index.html" style="margin-top:4px">
+      <span class="material-symbols-rounded nav-icon">logout</span>
+      Sign out
+    </a>
+  </div>
+
+  <div class="sb-footer">
+    <div class="sb-user">
+      <div class="sb-av">AL</div>
+      <div style="min-width:0">
+        <div class="sb-user-name">Anastasiia Liuta</div>
+        <div class="sb-user-email">anasssta9@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════ -->
+<main class="main">
+
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">Profile</div>
+      <div class="topbar-sub">Edit your public listing</div>
+    </div>
+    <div class="topbar-right">
+      <span class="save-confirm" id="save-confirm">
+        <span class="material-symbols-rounded" style="font-size:15px;color:var(--green)">check_circle</span>
+        Saved
+      </span>
+      <button class="save-btn" onclick="handleSave()">
+        <span class="material-symbols-rounded" style="font-size:16px">save</span>
+        <span>Save changes</span>
+      </button>
+      <div class="live-pill">
+        <span class="live-dot"></span>
+        Listing live
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="dash-grid">
+
+      <!-- ── LEFT COLUMN ── -->
+      <div>
+
+        <!-- Completeness banner -->
+        <div class="completeness">
+          <div class="completeness-pct">80%</div>
+          <div class="completeness-body">
+            <div class="completeness-title">Your profile is 80% complete</div>
+            <div class="completeness-hint">Add a profile photo and fill in your home environment to stand out to pet owners.</div>
+            <div class="completeness-track">
+              <div class="completeness-fill" style="width:80%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PUBLIC PROFILE SUMMARY ── -->
+        <div class="card">
+          <div class="card-label">Public profile summary</div>
+          <div class="card-desc">This is how you appear to pet owners in search results and on your listing page.</div>
+
+          <div class="preview-label">Owner view preview</div>
+          <div class="preview-card">
+            <div class="preview-av">AL</div>
+            <div style="flex:1;min-width:0">
+              <div class="preview-name">Anastasiia Liuta</div>
+              <div class="preview-loc">
+                <span class="material-symbols-rounded" style="font-size:13px">location_on</span>
+                Amsterdam, Netherlands
+              </div>
+              <div class="preview-tagline">"Loving dog sitter in Amsterdam with 3 years of experience"</div>
+              <div class="preview-badges">
+                <span class="preview-badge">🏠 Boarding</span>
+                <span class="preview-badge">🦮 Dog walking</span>
+                <span class="preview-badge">🚪 Drop-in visits</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Tagline <span style="font-weight:400;color:var(--faint)">— shown under your name</span></label>
+            <div class="field-hint">One sentence that tells owners what makes you the right fit.</div>
+            <input class="field-input" type="text" value="Loving dog sitter in Amsterdam with 3 years of experience" maxlength="100" oninput="updateCount(this,'tagline-count')">
+            <div class="char-count"><span id="tagline-count">63</span>/100</div>
+          </div>
+
+          <a href="#" class="btn-preview" target="_blank">
+            <span class="material-symbols-rounded" style="font-size:16px">open_in_new</span>
+            Preview public profile
+          </a>
+        </div>
+
+        <!-- ── ABOUT YOU ── -->
+        <div class="card">
+          <div class="card-label">About you</div>
+          <div class="card-desc">Help pet owners get to know you before they reach out.</div>
+
+          <div class="photo-upload">
+            <div class="photo-circle">
+              AL
+              <div class="photo-overlay">
+                <span class="material-symbols-rounded" style="font-size:18px;color:#fff">photo_camera</span>
+              </div>
+            </div>
+            <div class="photo-upload-info">
+              <div class="photo-upload-title">Profile photo</div>
+              <div class="photo-upload-hint">Sitters with a photo receive 3× more bookings. JPG or PNG, min 400×400 px.</div>
+              <button class="btn-upload">
+                <span class="material-symbols-rounded" style="font-size:14px">upload</span>
+                Upload photo
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Bio</label>
+            <div class="field-hint">Tell owners about yourself, your experience with pets, and why you love animal care.</div>
+            <textarea class="field-input" maxlength="500" oninput="updateCount(this,'bio-count')">I'm Anastasiia, a lifelong dog lover based in Amsterdam. I've been caring for dogs professionally for 3 years — from daily walks to week-long boarding stays. I work from home, so your dog will never be left alone for long. I treat every pet like my own.</textarea>
+            <div class="char-count"><span id="bio-count">247</span>/500</div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Years of experience</label>
+              <select class="field-input">
+                <option>Less than 1 year</option>
+                <option>1–2 years</option>
+                <option selected>3–5 years</option>
+                <option>5–10 years</option>
+                <option>10+ years</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Languages spoken</label>
+              <input class="field-input" type="text" value="English, Ukrainian, Dutch (basic)">
+            </div>
+          </div>
+
+          <div class="toggle-group">
+            <label class="toggle-row">
+              <div>
+                <div class="toggle-text">I have pets of my own</div>
+                <div class="toggle-sub">Owners often prefer sitters who are also pet parents</div>
+              </div>
+              <span class="toggle">
+                <input type="checkbox">
+                <span class="toggle-track"></span>
+              </span>
+            </label>
+            <label class="toggle-row">
+              <div>
+                <div class="toggle-text">I work from home</div>
+                <div class="toggle-sub">Lets owners know their pet won't be left alone</div>
+              </div>
+              <span class="toggle">
+                <input type="checkbox" checked>
+                <span class="toggle-track"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- ── HOME ENVIRONMENT ── -->
+        <div class="card">
+          <div class="card-label">Home environment</div>
+          <div class="card-desc">Pet owners want to picture where their pet will stay. Be as specific as you can.</div>
+
+          <div style="margin-bottom:16px">
+            <div class="field-label" style="margin-bottom:8px">Home type</div>
+            <div class="radio-group">
+              <label class="radio-pill">
+                <input type="radio" name="home-type" value="apartment" checked>
+                🏢 Apartment
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="home-type" value="house">
+                🏡 House
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="home-type" value="studio">
+                🛋️ Studio
+              </label>
+            </div>
+          </div>
+
+          <div class="toggle-group" style="margin-bottom:18px">
+            <label class="toggle-row">
+              <div>
+                <div class="toggle-text">Has a fenced yard or garden</div>
+              </div>
+              <span class="toggle">
+                <input type="checkbox">
+                <span class="toggle-track"></span>
+              </span>
+            </label>
+            <label class="toggle-row">
+              <div>
+                <div class="toggle-text">Other pets live at home</div>
+                <div class="toggle-sub">Guests dogs will share the space with resident pets</div>
+              </div>
+              <span class="toggle">
+                <input type="checkbox">
+                <span class="toggle-track"></span>
+              </span>
+            </label>
+            <label class="toggle-row">
+              <div>
+                <div class="toggle-text">Children live at home</div>
+              </div>
+              <span class="toggle">
+                <input type="checkbox">
+                <span class="toggle-track"></span>
+              </span>
+            </label>
+            <label class="toggle-row">
+              <div>
+                <div class="toggle-text">Non-smoking home</div>
+              </div>
+              <span class="toggle">
+                <input type="checkbox" checked>
+                <span class="toggle-track"></span>
+              </span>
+            </label>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Anything else owners should know about your home?</label>
+            <div class="field-hint">e.g. nearby park, floor level, elevator access, parking for drop-off.</div>
+            <textarea class="field-input" style="min-height:72px" placeholder="I live on the 2nd floor with an elevator. There's a large dog park 5 minutes' walk away…"></textarea>
+          </div>
+        </div>
+
+        <!-- ── PET PREFERENCES ── -->
+        <div class="card">
+          <div class="card-label">Pet preferences</div>
+          <div class="card-desc">Tell owners which pets you're comfortable caring for. Only matching requests will appear in your inbox.</div>
+
+          <div class="chip-section">
+            <div class="chip-section-label">Pet types accepted</div>
+            <div class="chip-group">
+              <label class="chip teal">
+                <input type="checkbox" checked>
+                🐕 Dogs
+              </label>
+              <label class="chip teal">
+                <input type="checkbox">
+                🐈 Cats
+              </label>
+              <label class="chip teal">
+                <input type="checkbox">
+                🐇 Small animals
+              </label>
+              <label class="chip teal">
+                <input type="checkbox">
+                🐦 Birds
+              </label>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <div class="chip-section">
+            <div class="chip-section-label">Dog size</div>
+            <div class="chip-group">
+              <label class="chip">
+                <input type="checkbox" checked>
+                S · up to 10 kg
+              </label>
+              <label class="chip">
+                <input type="checkbox" checked>
+                M · 10–25 kg
+              </label>
+              <label class="chip">
+                <input type="checkbox" checked>
+                L · 25–45 kg
+              </label>
+              <label class="chip">
+                <input type="checkbox">
+                XL · 45 kg+
+              </label>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <div class="chip-section">
+            <div class="chip-section-label">Dog age</div>
+            <div class="chip-group">
+              <label class="chip">
+                <input type="checkbox" checked>
+                🐾 Puppies (under 1 yr)
+              </label>
+              <label class="chip">
+                <input type="checkbox" checked>
+                Adult dogs
+              </label>
+              <label class="chip">
+                <input type="checkbox" checked>
+                Senior dogs (8 yr+)
+              </label>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <div class="chip-section">
+            <div class="chip-section-label">Special needs &amp; skills</div>
+            <div class="chip-group">
+              <label class="chip">
+                <input type="checkbox" checked>
+                💊 Can give medication
+              </label>
+              <label class="chip">
+                <input type="checkbox" checked>
+                🧘 Comfortable with anxious dogs
+              </label>
+              <label class="chip">
+                <input type="checkbox">
+                🦺 Experience with reactive dogs
+              </label>
+              <label class="chip">
+                <input type="checkbox">
+                🥣 Separates dogs at feeding
+              </label>
+              <label class="chip">
+                <input type="checkbox">
+                🚗 Can transport to vet
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Save row -->
+        <div class="save-actions">
+          <div class="save-actions-left">Changes are saved to your live listing immediately.</div>
+          <button class="btn-save-primary" onclick="handleSave()">
+            <span class="material-symbols-rounded" style="font-size:17px">save</span>
+            Save changes
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT COLUMN ── -->
+      <div>
+
+        <!-- Profile card -->
+        <div class="card">
+          <div class="card-label">My profile</div>
+
+          <div class="photo-nudge">
+            <div class="nudge-icon">📷</div>
+            <div>
+              <div class="nudge-title">No profile photo yet</div>
+              <div class="nudge-desc">Your listing is live — add a photo to get 3× more requests</div>
+            </div>
+          </div>
+
+          <div class="profile-head">
+            <div class="profile-av">AL</div>
+            <div>
+              <div class="profile-name">Anastasiia Liuta</div>
+              <div class="profile-email">anasssta9@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="meta-row">
+            <span class="material-symbols-rounded meta-icon">location_on</span>
+            Amsterdam, Netherlands
+          </div>
+          <div class="meta-row">
+            <span class="material-symbols-rounded meta-icon">pets</span>
+            Dogs · Medium breeds
+          </div>
+
+          <div class="tag-row">
+            <span class="tag">🏠 Boarding</span>
+            <span class="tag">🦮 Dog walking</span>
+            <span class="tag">🚪 Drop-in visits</span>
+          </div>
+
+          <button class="btn-sm">
+            <span class="material-symbols-rounded" style="font-size:16px">open_in_new</span>
+            Preview public profile
+          </button>
+        </div>
+
+        <!-- Account info -->
+        <div class="card">
+          <div class="card-label">Account</div>
+          <div class="meta-row" style="margin-bottom:10px">
+            <span class="material-symbols-rounded meta-icon" style="color:var(--green)">check_circle</span>
+            <span style="font-weight:700;color:var(--green)">Status: Listing live</span>
+          </div>
+          <div class="meta-row" style="margin-bottom:10px">
+            <span class="material-symbols-rounded meta-icon">mail</span>
+            anasssta9@gmail.com
+          </div>
+          <div class="meta-row" style="margin-bottom:10px">
+            <span class="material-symbols-rounded meta-icon">verified_user</span>
+            Identity verified
+          </div>
+          <div class="meta-row" style="margin-bottom:0">
+            <span class="material-symbols-rounded meta-icon">schedule</span>
+            Member since June 2026
+          </div>
+        </div>
+
+        <!-- Profile tips -->
+        <div class="card">
+          <div class="card-label">Tips for a stronger profile</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span class="material-symbols-rounded" style="font-size:16px;color:var(--coral);flex-shrink:0;margin-top:1px">photo_camera</span>
+              <div style="font-size:12.5px;color:var(--muted);line-height:1.45"><strong style="color:var(--ink)">Add a friendly photo.</strong> Profiles with a photo get booked 3× more.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span class="material-symbols-rounded" style="font-size:16px;color:var(--coral);flex-shrink:0;margin-top:1px">edit_note</span>
+              <div style="font-size:12.5px;color:var(--muted);line-height:1.45"><strong style="color:var(--ink)">Write a specific bio.</strong> Mention your neighbourhood, routine, and what dogs love about your home.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span class="material-symbols-rounded" style="font-size:16px;color:var(--coral);flex-shrink:0;margin-top:1px">home</span>
+              <div style="font-size:12.5px;color:var(--muted);line-height:1.45"><strong style="color:var(--ink)">Complete your home section.</strong> Owners decide faster when they can picture the space.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function updateCount(el, id) {
+  var span = document.getElementById(id);
+  if (span) span.textContent = el.value.length;
+}
+
+function handleSave() {
+  var confirm = document.getElementById('save-confirm');
+  confirm.classList.add('show');
+  setTimeout(function() { confirm.classList.remove('show'); }, 2500);
+}
+
+// Init char counts on load
+(function() {
+  var tagline = document.querySelector('input[maxlength="100"]');
+  var bio = document.querySelector('textarea[maxlength="500"]');
+  if (tagline) document.getElementById('tagline-count').textContent = tagline.value.length;
+  if (bio) document.getElementById('bio-count').textContent = bio.value.length;
+})();
+</script>
+
+</body>
+</html>
